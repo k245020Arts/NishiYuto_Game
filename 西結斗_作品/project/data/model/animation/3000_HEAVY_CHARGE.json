@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 50.0,
+    "eventStartTime": 0.0,
+    "fileName": "3000_HEAVY_CHARGE",
+    "id": "3000_HEAVY_CHARGE",
+    "loop": false,
+    "maxFrame": 60.0,
+    "playSpeed": 2.0
+  }
+}

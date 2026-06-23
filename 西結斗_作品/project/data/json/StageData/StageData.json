@@ -1,0 +1,36 @@
+{
+   "stages": [
+   {
+     "id": 0,
+      "name" : "Stage0",
+      "map" : 2,
+      "bgm" : "PlaySceneBGM",
+      "bossID" : 0,
+      "stageImageHandleName" : "Stage1"
+   },
+   {
+     "id": 1,
+      "name" : "Stage1",
+      "map" : 2,
+      "bgm" : "PlaySceneBGM2",
+      "bossID" : 1,
+      "stageImageHandleName" : "Stage2"
+    },
+    {
+     "id": 2,
+      "name" : "テストステージ1",
+      "map" : 0,
+      "bgm" : "PlaySceneBGM2",
+      "bossID" : 1,
+      "stageImageHandleName" : "Stage2"
+    },
+    {
+     "id": 3,
+      "name" : "テストステージ2",
+      "map" : 1,
+      "bgm" : "PlaySceneBGM2",
+      "bossID" : 0,
+      "stageImageHandleName" : "Stage1"
+    }
+  ]
+}

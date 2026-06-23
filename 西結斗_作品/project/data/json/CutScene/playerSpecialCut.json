@@ -1,0 +1,100 @@
+{
+  "cutScenes": {
+    "cutScene0": {
+      "camera": {
+        "endPos": {
+          "x": 500.0,
+          "y": 200.0,
+          "z": 5500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 1000.0,
+          "z": -2000.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 2000.0
+        }
+      },
+      "duration": 1.0,
+      "ease": "In",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "First_Player"
+    },
+    "cutScene1": {
+      "camera": {
+        "endPos": {
+          "x": 500.0,
+          "y": 200.0,
+          "z": 5500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 1000.0,
+          "z": -2000.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 2000.0
+        }
+      },
+      "duration": 0.5,
+      "ease": "In",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "First_Player"
+    },
+    "cutScene2": {
+      "camera": {
+        "endPos": {
+          "x": 300.0,
+          "y": 200.0,
+          "z": 5000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 1000.0,
+          "z": -2000.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 2000.0
+        }
+      },
+      "duration": 0.2,
+      "ease": "In",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "First_Player"
+    },
+    "cutScene3": {
+      "camera": {
+        "endPos": {
+          "x": 300.0,
+          "y": 200.0,
+          "z": 5000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 1000.0,
+          "z": -2000.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 2000.0
+        }
+      },
+      "duration": 1.5,
+      "ease": "In",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "First_Player"
+    }
+  }
+}

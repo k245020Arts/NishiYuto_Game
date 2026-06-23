@@ -1,0 +1,100 @@
+{
+  "cutScenes": {
+    "cutScene0": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 100.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 100.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 5.0,
+      "ease": "Linear",
+      "firstPosBaseName": "",
+      "followPos": "First_Enemy",
+      "followTarget": "Enemy"
+    },
+    "cutScene1": {
+      "camera": {
+        "endPos": {
+          "x": 1000.0,
+          "y": 500.0,
+          "z": -1000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 100.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 2.0,
+      "ease": "Linear",
+      "firstPosBaseName": "",
+      "followPos": "First_Enemy",
+      "followTarget": "Enemy"
+    },
+    "cutScene2": {
+      "camera": {
+        "endPos": {
+          "x": 1000.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 100.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 1.0,
+      "ease": "Linear",
+      "firstPosBaseName": "",
+      "followPos": "First_Enemy",
+      "followTarget": "Enemy"
+    },
+    "cutScene3": {
+      "camera": {
+        "endPos": {
+          "x": 1000.0,
+          "y": 500.0,
+          "z": -2500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 100.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 1.0,
+      "ease": "Linear",
+      "firstPosBaseName": "",
+      "followPos": "First_Enemy",
+      "followTarget": "Enemy"
+    }
+  }
+}

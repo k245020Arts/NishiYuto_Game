@@ -1,0 +1,175 @@
+{
+  "BossNormalAttack9": {
+    "animID": "2000_ATTACK9",
+    "animNum": 12,
+    "armThrow": true,
+    "attackBeforeAnimID": "",
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "attackCollsionEndTime": 85.0,
+    "attackCollsionStartTime": 72.4159164428711,
+    "attackFlashStartTime": 7.0,
+    "attackPositionFrameNum": 15,
+    "attackSoundStartTime": 1.0,
+    "bossID": "",
+    "damagePattern": "NONE",
+    "hitDamage": 0.0,
+    "intervalTime": 0.20000000298023224,
+    "intervalTimeSub": true,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 6.0,
+    "justAvoidCollsionStartTime": 5.0,
+    "lookMaxCounter": 72.4159164428711,
+    "lookNum": 1,
+    "lookPlayer": true,
+    "maxIntervalTime": 0.30000001192092896,
+    "minIntervalTime": 0.10000000149011612,
+    "objectApperaPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "slowAmout": 0.10000000149011612,
+    "slowTime": 0.30000001192092896,
+    "soundEvent": [
+      {
+        "loop": false,
+        "loopAnim": false,
+        "name": "BossShotFiring",
+        "soundStartFrame": 78.0,
+        "soundStopFrame": 80.0,
+        "soundStopFrameAfetrSoundPlay": true
+      }
+    ],
+    "speedUpMotionSpeed": 0.30000001192092896,
+    "throwAttackData": [
+      {
+        "armAddPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "armFrameNum": 15,
+        "armSwordHand": false,
+        "armThrow": true,
+        "baseFirction": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "baseGravity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "blastBlinkMaxCounter": 0.5,
+        "blastCan": true,
+        "blastColliderInfo": {
+          "inRadius": 50.0,
+          "outRadius": 100.0
+        },
+        "blastJustAvoidColliderInfo": {
+          "inRadius": 300.0,
+          "outRadius": 950.0
+        },
+        "bossHit": true,
+        "bossHitCollRadius": 200.0,
+        "diffusionAngle": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "flyingHeight": 0.0,
+        "flyingSpeed": 10000.0,
+        "freeDir": false,
+        "maxRadius": 3000.0,
+        "playerAttackFlying": true,
+        "playerAttackFlyingCollRadius": 200.0,
+        "playerAttackObjectDrop": true,
+        "playerHit": true,
+        "playerHitCollRadius": 200.0,
+        "playerHitJustAvoidCollRadius": 300.0,
+        "playerHitNoReaction": false,
+        "pushCollCan": true,
+        "pushCollTransform": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          }
+        },
+        "randTime": 100.0,
+        "randomBlast": false,
+        "randomBlastRate": 0.0,
+        "thorwStartPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "thorwToFront": true,
+        "thorwVelocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "throwFallGravity": 0.0,
+        "throwFirstSpeed": 10000.0,
+        "throwHeight": 0.0,
+        "throwObjectApperaTime": 31.586830139160156,
+        "throwObjectID": "BossShot",
+        "throwSpeed": 10000.0,
+        "throwStartTime": 78.0,
+        "throwToFall": false,
+        "throwToFallToPlayer": false,
+        "throwToPlayer": false,
+        "upSpeed": 0.0,
+        "waveSpeed": 50.0
+      }
+    ],
+    "throwObject": true,
+    "throwObjectNum": 5,
+    "useFlash": true,
+    "voiceName": "E_AttackV"
+  }
+}

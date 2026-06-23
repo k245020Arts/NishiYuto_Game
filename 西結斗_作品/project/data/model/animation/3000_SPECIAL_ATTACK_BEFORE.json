@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 39.0,
+    "eventStartTime": 7.0,
+    "fileName": "3000_SPECIAL_ATTACK_BEFORE",
+    "id": "3000_SPECIAL_ATTACK_BEFORE",
+    "loop": false,
+    "maxFrame": 35.400001525878906,
+    "playSpeed": 1.2000000476837158
+  }
+}

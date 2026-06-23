@@ -1,0 +1,149 @@
+{
+  "BossHalfSpecialAttack": {
+    "animID": "2000_ATTACK_IDOL",
+    "animNum": 10,
+    "armFrameNum": 0,
+    "armThrow": false,
+    "attackBeforeAnimID": "",
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "attackCollsionEndTime": -1.0,
+    "attackCollsionStartTime": -1.0,
+    "attackFlashStartTime": 2.2420775429197073e-44,
+    "attackPositionFrameNum": 16,
+    "attackSoundStartTime": -87.59027099609375,
+    "bossID": "",
+    "damagePattern": "NONE",
+    "hitDamage": 0.0,
+    "intervalTime": 0.30000001192092896,
+    "intervalTimeSub": false,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 6.0,
+    "justAvoidCollsionStartTime": 5.0,
+    "maxIntervalTime": 0.44999998807907104,
+    "minIntervalTime": 0.15000000596046448,
+    "objectApperaPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "slowAmout": 2.2420775429197073e-44,
+    "slowTime": 1.2167590450180892e+27,
+    "speedUpMotionSpeed": -3.74531738918305e+23,
+    "throwAttackData": [
+      {
+        "baseFirction": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "baseGravity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "blastBlinkMaxCounter": 0.5,
+        "blastCan": true,
+        "blastColliderInfo": {
+          "inRadius": 50.0,
+          "outRadius": 100.0
+        },
+        "blastJustAvoidColliderInfo": {
+          "inRadius": 300.0,
+          "outRadius": 950.0
+        },
+        "bossHit": true,
+        "bossHitCollRadius": 200.0,
+        "bossRushHit": true,
+        "bossRushHitCollRadius": 0.0,
+        "flyingHeight": 1500.0,
+        "flyingSpeed": 10000.0,
+        "freeDir": false,
+        "maxHeight": 12000.0,
+        "maxRadius": 3000.0,
+        "maxSpeed": 3000.0,
+        "minHeight": 9000.0,
+        "minSpeed": 1500.0,
+        "playerAttackFlying": true,
+        "playerAttackFlyingCollRadius": 200.0,
+        "playerHit": true,
+        "playerHitCollRadius": 200.0,
+        "playerHitJustAvoidCollRadius": 300.0,
+        "predictionCicleCan": true,
+        "predictionCicleColliderInfo": {
+          "rayFinishPos": -10000.0,
+          "rayStartPos": 10000.0
+        },
+        "pushCollCan": true,
+        "pushCollTransform": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          }
+        },
+        "randCan": true,
+        "randCollInfo": {
+          "rayFinishPos": -300.0,
+          "rayStartPos": 300.0
+        },
+        "randTime": 100.0,
+        "randomBlast": true,
+        "randomBlastRate": 0.10000000149011612,
+        "randomHeight": true,
+        "randomSpeed": true,
+        "throwObjectID": "BossAttackRock1",
+        "throwToFall": false,
+        "throwToFallToPlayer": true,
+        "waveSpeed": 50.0
+      }
+    ],
+    "throwObject": true,
+    "throwObjectApperaTime": 0.0,
+    "throwObjectNum": 18,
+    "throwStartTime": 0.0,
+    "useFlash": true,
+    "voiceName": ""
+  }
+}

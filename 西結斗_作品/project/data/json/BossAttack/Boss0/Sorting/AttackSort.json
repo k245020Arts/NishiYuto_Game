@@ -1,0 +1,130 @@
+{
+  "AttackSort": {
+    "BossBackStep": {
+      "addWeight": 0,
+      "attackState": false,
+      "distance": 0.0,
+      "id": "BossBackStep",
+      "maxAction": 0,
+      "priority": 50,
+      "weight": 30
+    },
+    "BossNormalAttack1": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNormalAttack1",
+      "maxAction": 1,
+      "priority": 10,
+      "weight": 10
+    },
+    "BossNormalAttack2": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNormalAttack2",
+      "maxAction": 1,
+      "priority": 10,
+      "weight": 10
+    },
+    "BossNormalAttack3": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNormalAttack3",
+      "maxAction": 1,
+      "priority": 10,
+      "weight": 10
+    },
+    "BossNormalAttack4": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNormalAttack4",
+      "maxAction": 1,
+      "priority": 10,
+      "weight": 10
+    },
+    "BossNormalAttack5": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNormalAttack5",
+      "maxAction": 1,
+      "priority": 30,
+      "weight": 10
+    },
+    "BossNormalAttack6": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNormalAttack6",
+      "maxAction": 1,
+      "priority": 30,
+      "weight": 50
+    },
+    "BossNormalAttack7": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 2000.0,
+      "id": "BossNormalAttack7",
+      "maxAction": 0,
+      "priority": 10,
+      "weight": 10
+    },
+    "BossNormalAttack9": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 2000.0,
+      "id": "BossNormalAttack9",
+      "maxAction": 1,
+      "priority": 10,
+      "weight": 0
+    },
+    "BossNornalAttack9": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNornalAttack9",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 0
+    },
+    "BossSpecialAttack1": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossSpecialAttack1",
+      "maxAction": 1,
+      "priority": 50,
+      "weight": 30
+    },
+    "BossSpecialAttack2": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 2000.0,
+      "id": "BossSpecialAttack2",
+      "maxAction": 1,
+      "priority": 50,
+      "weight": 0
+    },
+    "BossSpecialSmallAttack1": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossSpecialSmallAttack1",
+      "maxAction": 1,
+      "priority": 50,
+      "weight": 30
+    },
+    "BossWalk": {
+      "addWeight": 0,
+      "attackState": false,
+      "distance": 0.0,
+      "id": "BossWalk",
+      "maxAction": 0,
+      "priority": 10,
+      "weight": 40
+    }
+  }
+}

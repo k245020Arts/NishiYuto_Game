@@ -1,0 +1,92 @@
+{
+  "BossSpecialAttack1": {
+    "addGravity": -5.0,
+    "addVelocity": true,
+    "animID": "2000_SATTACK1",
+    "animNum": 7,
+    "attackBeforeAnimID": "",
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": -50.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 500.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "attackCollsionEndTime": 55.0,
+    "attackCollsionStartTime": 50.0,
+    "attackFlashStartTime": 7.0,
+    "attackPositionFrameNum": 36,
+    "attackSoundStartTime": 1.0,
+    "baseFirstSpeed": 0.0,
+    "baseSpeed": 0.0,
+    "bossID": "",
+    "damagePattern": "BLOW_AWAY",
+    "groundEffectStartTime": 40.0,
+    "groundShakeCamera": 3.0,
+    "groundShakeTime": 0.30000001192092896,
+    "hitDamage": 200.0,
+    "jump": true,
+    "jumpGroundEffect": 12,
+    "jumpSpeed": 3000.0,
+    "jumpStartTime": 15.0,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": -50.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 700.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 6.0,
+    "justAvoidCollsionStartTime": 5.0,
+    "lookMaxCounter": 50.0,
+    "lookNum": 1,
+    "lookPlayer": true,
+    "maxMoveSpeed": 30000.0,
+    "minMoveSpeed": 12000.0,
+    "moveFinishTime": 45.0,
+    "moveStartTime": 15.0,
+    "playerAloowMove": true,
+    "playerBaseNear": 1000.0,
+    "playerNearAloowStop": false,
+    "playerNearStop": true,
+    "shockMoveEffect": 11,
+    "shockWave": true,
+    "shockWaveSpeed": 50.0,
+    "slowAmout": 0.10000000149011612,
+    "slowTime": 0.30000001192092896,
+    "soundEvent": [
+      {
+        "loop": false,
+        "loopAnim": false,
+        "name": "BossJump",
+        "soundStartFrame": 10.0,
+        "soundStopFrame": 20.0,
+        "soundStopFrameAfetrSoundPlay": true
+      }
+    ],
+    "speedUpMotionSpeed": 0.30000001192092896,
+    "startRange": 50.0,
+    "useFlash": true,
+    "voiceName": "E_AttackV"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "cutScenes": {
+    "cutScene0": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 2000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 2000.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.0,
+      "ease": "Out",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene1": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 2000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 2000.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 0.0
+        }
+      },
+      "duration": 1.0,
+      "ease": "Out",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene2": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 2000.0
+        },
+        "target": {
+          "x": 100.0,
+          "y": 500.0,
+          "z": 0.0
+        }
+      },
+      "duration": 2.0,
+      "ease": "Out",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene3": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": 2000.0
+        },
+        "target": {
+          "x": 100.0,
+          "y": 500.0,
+          "z": 0.0
+        }
+      },
+      "duration": 2.0,
+      "ease": "Out",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    }
+  }
+}

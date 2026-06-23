@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": -1.0,
+    "eventStartTime": -1.0,
+    "fileName": "2000_SATTACK2_STOP",
+    "id": "2000_SATTACK2_STOP",
+    "loop": false,
+    "maxFrame": 61.0,
+    "playSpeed": 1.0
+  }
+}

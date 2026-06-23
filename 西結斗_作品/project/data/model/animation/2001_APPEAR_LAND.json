@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 70.0,
+    "eventStartTime": 10.0,
+    "fileName": "2001_APPEAR_LAND",
+    "id": "2001_APPEAR_LAND",
+    "loop": false,
+    "maxFrame": -1.0,
+    "playSpeed": 1.0
+  }
+}

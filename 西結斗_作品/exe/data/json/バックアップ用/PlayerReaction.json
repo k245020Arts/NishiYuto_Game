@@ -1,0 +1,187 @@
+{
+  "PlayerReactions": {
+    "PlayerAttack1": {
+      "PlayerState": "PlayerAttack1",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 40.0,
+        "y": 40.0,
+        "z": 40.0
+      },
+      "cameraShakeTime": 0.10000000149011612,
+      "chargeLevels": [],
+      "playerShakePower": {
+        "x": 50.0,
+        "y": 50.0,
+        "z": 50.0
+      },
+      "playerShakeTime": 0.07000000029802322,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    },
+    "PlayerAttack2": {
+      "PlayerState": "PlayerAttack2",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 40.0,
+        "y": 40.0,
+        "z": 40.0
+      },
+      "cameraShakeTime": 0.10000000149011612,
+      "chargeLevels": [],
+      "playerShakePower": {
+        "x": 50.0,
+        "y": 50.0,
+        "z": 50.0
+      },
+      "playerShakeTime": 0.10000000149011612,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    },
+    "PlayerAttack3": {
+      "PlayerState": "PlayerAttack3",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 40.0,
+        "y": 40.0,
+        "z": 40.0
+      },
+      "cameraShakeTime": 0.10000000149011612,
+      "chargeLevels": [],
+      "playerShakePower": {
+        "x": 50.0,
+        "y": 50.0,
+        "z": 50.0
+      },
+      "playerShakeTime": 0.11999999731779099,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    },
+    "PlayerAttack4": {
+      "PlayerState": "PlayerAttack4",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "cameraShakeTime": 0.30000001192092896,
+      "chargeLevels": [],
+      "playerShakePower": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "playerShakeTime": 0.15000000596046448,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    },
+    "PlayerAttack5": {
+      "PlayerState": "PlayerAttack5",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "cameraShakeTime": 0.30000001192092896,
+      "chargeLevels": [],
+      "playerShakePower": {
+        "x": 150.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "playerShakeTime": 0.25,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    },
+    "PlayerHeavyAttack": {
+      "PlayerState": "PlayerHeavyAttack",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "cameraShakeTime": 0.30000001192092896,
+      "chargeLevels": [
+        {
+          "cameraShakePower": {
+            "x": 30.0,
+            "y": 30.0,
+            "z": 30.0
+          },
+          "cameraShakeTime": 0.10000000149011612,
+          "shakePower": {
+            "x": 30.0,
+            "y": 30.0,
+            "z": 30.0
+          },
+          "shakeTime": 0.05000000074505806
+        },
+        {
+          "cameraShakePower": {
+            "x": 50.0,
+            "y": 50.0,
+            "z": 50.0
+          },
+          "cameraShakeTime": 0.10000000149011612,
+          "shakePower": {
+            "x": 50.0,
+            "y": 50.0,
+            "z": 50.0
+          },
+          "shakeTime": 0.20000000298023224
+        },
+        {
+          "cameraShakePower": {
+            "x": 100.0,
+            "y": 100.0,
+            "z": 100.0
+          },
+          "cameraShakeTime": 0.30000001192092896,
+          "shakePower": {
+            "x": 150.0,
+            "y": 150.0,
+            "z": 150.0
+          },
+          "shakeTime": 0.4000000059604645
+        }
+      ],
+      "playerShakePower": {
+        "x": 150.0,
+        "y": 150.0,
+        "z": 150.0
+      },
+      "playerShakeTime": 0.4000000059604645,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    },
+    "PlayerJustAvoidAttack1": {
+      "PlayerState": "PlayerJustAvoidAttack1",
+      "ShakePattern": 1,
+      "cameraShakePower": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "cameraShakeTime": 0.30000001192092896,
+      "chargeLevels": [],
+      "playerShakePower": {
+        "x": 100.0,
+        "y": 100.0,
+        "z": 100.0
+      },
+      "playerShakeTime": 0.15000000596046448,
+      "shakerType": true,
+      "soundKind": 7,
+      "soundName": "swordHit00000"
+    }
+  }
+}

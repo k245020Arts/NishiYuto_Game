@@ -1,0 +1,220 @@
+{
+  "cutScenes": {
+    "cutScene0": {
+      "camera": {
+        "endPos": {
+          "x": 100.0,
+          "y": 500.0,
+          "z": -1000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.20000000298023224,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene1": {
+      "camera": {
+        "endPos": {
+          "x": 200.0,
+          "y": 500.0,
+          "z": -500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.20000000298023224,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene2": {
+      "camera": {
+        "endPos": {
+          "x": 500.0,
+          "y": 500.0,
+          "z": 0.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.20000000298023224,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene3": {
+      "camera": {
+        "endPos": {
+          "x": 600.0,
+          "y": 500.0,
+          "z": 500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.20000000298023224,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene4": {
+      "camera": {
+        "endPos": {
+          "x": 500.0,
+          "y": 200.0,
+          "z": 1000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.20000000298023224,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene5": {
+      "camera": {
+        "endPos": {
+          "x": 600.0,
+          "y": 200.0,
+          "z": 2000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.5,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene6": {
+      "camera": {
+        "endPos": {
+          "x": 600.0,
+          "y": 200.0,
+          "z": 2000.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.5,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene7": {
+      "camera": {
+        "endPos": {
+          "x": 600.0,
+          "y": 500.0,
+          "z": 800.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 0.20000000298023224,
+      "ease": "In",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    },
+    "cutScene8": {
+      "camera": {
+        "endPos": {
+          "x": 600.0,
+          "y": 500.0,
+          "z": 800.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 500.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 400.0,
+          "z": 0.0
+        }
+      },
+      "duration": 5.0,
+      "ease": "Linear",
+      "firstPosBaseName": "World",
+      "followPos": "First_Player",
+      "followTarget": "Player"
+    }
+  }
+}

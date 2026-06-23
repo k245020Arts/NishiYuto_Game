@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": -1.0,
+    "eventStartTime": -1.0,
+    "fileName": "3000_IDOL1",
+    "id": "3000_IDOL1",
+    "loop": true,
+    "maxFrame": 60.0,
+    "playSpeed": 1.0
+  }
+}

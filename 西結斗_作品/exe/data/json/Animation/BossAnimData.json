@@ -1,0 +1,274 @@
+{
+  "Animator": {
+    "2000_APPEAR_FALL": {
+      "eventFinishTime": 70.0,
+      "eventStartTime": 10.0,
+      "fileName": "2000_APPEAR_FALL",
+      "id": "2000_APPEAR_FALL",
+      "loop": true,
+      "maxFrame": 60.0,
+      "playSpeed": 1.0
+    },
+    "2000_APPEAR_LAND": {
+      "eventFinishTime": 70.0,
+      "eventStartTime": 10.0,
+      "fileName": "2000_APPEAR_LAND",
+      "id": "2000_APPEAR_LAND",
+      "loop": false,
+      "maxFrame": 70.0,
+      "playSpeed": 1.5
+    },
+    "2000_ATTACK1": {
+      "eventFinishTime": 60.0,
+      "eventStartTime": 25.0,
+      "fileName": "2000_ATTACK1",
+      "id": "2000_ATTACK1",
+      "loop": false,
+      "maxFrame": 50.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK2": {
+      "eventFinishTime": 60.0,
+      "eventStartTime": 25.0,
+      "fileName": "2000_ATTACK2",
+      "id": "2000_ATTACK2",
+      "loop": false,
+      "maxFrame": 95.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK3": {
+      "eventFinishTime": 55.0,
+      "eventStartTime": 40.0,
+      "fileName": "2000_ATTACK3",
+      "id": "2000_ATTACK3",
+      "loop": false,
+      "maxFrame": 80.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK4": {
+      "eventFinishTime": 30.0,
+      "eventStartTime": 20.0,
+      "fileName": "2000_ATTACK4",
+      "id": "2000_ATTACK4",
+      "loop": false,
+      "maxFrame": 39.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK5": {
+      "eventFinishTime": 30.0,
+      "eventStartTime": 20.0,
+      "fileName": "2000_ATTACK5",
+      "id": "2000_ATTACK5",
+      "loop": false,
+      "maxFrame": 39.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK6": {
+      "eventFinishTime": 65.0,
+      "eventStartTime": 50.0,
+      "fileName": "2000_ATTACK6",
+      "id": "2000_ATTACK6",
+      "loop": false,
+      "maxFrame": 110.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK7": {
+      "eventFinishTime": 85.0,
+      "eventStartTime": 72.4159164428711,
+      "fileName": "2000_ATTACK7",
+      "id": "2000_ATTACK7",
+      "loop": false,
+      "maxFrame": 146.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_ATTACK8": {
+      "eventFinishTime": 90.0,
+      "eventStartTime": 50.0,
+      "fileName": "2000_ATTACK8",
+      "id": "2000_ATTACK8",
+      "loop": false,
+      "maxFrame": 110.0,
+      "playSpeed": 1.0
+    },
+    "2000_ATTACK9": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_ATTACK9",
+      "id": "2000_ATTACK9",
+      "loop": false,
+      "maxFrame": 110.0,
+      "playSpeed": 1.0
+    },
+    "2000_ATTACK_IDOL": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_ATTACK_IDOL",
+      "id": "2000_ATTACK_IDOL",
+      "loop": true,
+      "maxFrame": 160.0,
+      "playSpeed": 1.0
+    },
+    "2000_BACKSTEP": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_BACKSTEP",
+      "id": "2000_BACKSTEP",
+      "loop": true,
+      "maxFrame": 49.0,
+      "playSpeed": 1.0
+    },
+    "2000_DAMAGE": {
+      "eventFinishTime": 70.0,
+      "eventStartTime": 10.0,
+      "fileName": "2000_DAMAGE",
+      "id": "2000_DAMAGE",
+      "loop": false,
+      "maxFrame": 65.0,
+      "playSpeed": 1.7999999523162842
+    },
+    "2000_DIE": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_DIE",
+      "id": "2000_DIE",
+      "loop": false,
+      "maxFrame": 138.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_FEAR": {
+      "eventFinishTime": 70.0,
+      "eventStartTime": 10.0,
+      "fileName": "2000_FEAR",
+      "id": "2000_FEAR",
+      "loop": true,
+      "maxFrame": 60.0,
+      "playSpeed": 1.0
+    },
+    "2000_IDLE": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_IDLE",
+      "id": "2000_IDLE",
+      "loop": true,
+      "maxFrame": 160.0,
+      "playSpeed": 1.0
+    },
+    "2000_IDLE2": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_IDLE2",
+      "id": "2000_IDLE2",
+      "loop": true,
+      "maxFrame": 121.0,
+      "playSpeed": 1.0
+    },
+    "2000_ROAR3": {
+      "eventFinishTime": 120.0,
+      "eventStartTime": 30.0,
+      "fileName": "2000_ROAR3",
+      "id": "2000_ROAR3",
+      "loop": false,
+      "maxFrame": 67.5,
+      "playSpeed": 0.6000000238418579
+    },
+    "2000_ROAR_ANIM": {
+      "eventFinishTime": 40.0,
+      "eventStartTime": 30.0,
+      "fileName": "2000_ROAR_ANIM",
+      "id": "2000_ROAR_ANIM",
+      "loop": false,
+      "maxFrame": 162.0,
+      "playSpeed": 1.0
+    },
+    "2000_RUN": {
+      "eventFinishTime": 40.0,
+      "eventStartTime": 30.0,
+      "fileName": "2000_RUN",
+      "id": "2000_RUN",
+      "loop": true,
+      "maxFrame": 26.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_SATTACK1": {
+      "eventFinishTime": 55.0,
+      "eventStartTime": 50.0,
+      "fileName": "2000_SATTACK1",
+      "id": "2000_SATTACK1",
+      "loop": false,
+      "maxFrame": 97.0,
+      "playSpeed": 1.0
+    },
+    "2000_SATTACK1_SAMLL": {
+      "eventFinishTime": 55.0,
+      "eventStartTime": 40.0,
+      "fileName": "2000_SATTACK1_SAMLL",
+      "id": "2000_SATTACK1_SAMLL",
+      "loop": false,
+      "maxFrame": 95.0,
+      "playSpeed": 1.2999999523162842
+    },
+    "2000_SATTACK2": {
+      "eventFinishTime": 150.0,
+      "eventStartTime": 0.0,
+      "fileName": "2000_SATTACK2",
+      "id": "2000_SATTACK2",
+      "loop": true,
+      "maxFrame": 19.0,
+      "playSpeed": 1.0
+    },
+    "2000_SATTACK2_BEFORE_2": {
+      "eventFinishTime": 100.0,
+      "eventStartTime": 0.0,
+      "fileName": "2000_SATTACK2_BEFORE_2",
+      "id": "2000_SATTACK2_BEFORE_2",
+      "loop": false,
+      "maxFrame": 30.0,
+      "playSpeed": 1.0
+    },
+    "2000_SATTACK2_STOP": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "2000_SATTACK2_STOP",
+      "id": "2000_SATTACK2_STOP",
+      "loop": false,
+      "maxFrame": 61.0,
+      "playSpeed": 1.0
+    },
+    "2000_THREAT": {
+      "eventFinishTime": 70.0,
+      "eventStartTime": 10.0,
+      "fileName": "2000_THREAT",
+      "id": "2000_THREAT",
+      "loop": false,
+      "maxFrame": 85.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_WAIT_SEE": {
+      "eventFinishTime": 45.0,
+      "eventStartTime": 30.0,
+      "fileName": "2000_WAIT_SEE",
+      "id": "2000_WAIT_SEE",
+      "loop": true,
+      "maxFrame": 36.0,
+      "playSpeed": 0.800000011920929
+    },
+    "2000_WALK": {
+      "eventFinishTime": 45.0,
+      "eventStartTime": 30.0,
+      "fileName": "2000_WALK",
+      "id": "2000_WALK",
+      "loop": true,
+      "maxFrame": 42.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "2000_WIN": {
+      "eventFinishTime": 70.0,
+      "eventStartTime": 10.0,
+      "fileName": "2000_WIN",
+      "id": "2000_WIN",
+      "loop": true,
+      "maxFrame": 85.0,
+      "playSpeed": 1.0
+    }
+  }
+}

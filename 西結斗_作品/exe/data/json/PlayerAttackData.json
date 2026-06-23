@@ -1,0 +1,368 @@
+{
+  "PlayerAttackData": {
+    "PlayerAttack1": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 5500.0
+      },
+      "PlayerState": "PlayerAttack1",
+      "attackAgainStartCounterMax": 0.0,
+      "attackInputStartTime": 5.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 27.0,
+      "collsionStartTime": 19.0,
+      "hitDamage": 500.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.10000000149011612,
+      "noAttackRunTimer": 0.05000000074505806,
+      "normalAttackNextID": "PlayerAttack2",
+      "specialAttackNextID": "PlayerAttack4"
+    },
+    "PlayerAttack2": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 7500.0
+      },
+      "PlayerState": "PlayerAttack2",
+      "attackAgainStartCounterMax": 0.0,
+      "attackInputStartTime": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 30.0,
+      "collsionStartTime": 10.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.10000000149011612,
+      "noAttackRunTimer": 0.25,
+      "normalAttackNextID": "PlayerAttack3",
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack3": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 7500.0
+      },
+      "PlayerState": "PlayerAttack3",
+      "attackAgainStartCounterMax": 0.0,
+      "attackInputStartTime": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 20.0,
+      "collsionStartTime": 10.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.05000000074505806,
+      "noAttackRunTimer": 0.10000000149011612,
+      "normalAttackNextID": "PlayerAttack4",
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack4": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 3000.0,
+        "z": 5000.0
+      },
+      "PlayerState": "PlayerAttack4",
+      "attackAgainStartCounterMax": 0.20000000298023224,
+      "attackInputStartTime": 0.0,
+      "attackNum": 3,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 42.0,
+      "collsionStartTime": 30.0,
+      "hitDamage": 200.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.0,
+      "noAttackRunTimer": 0.4000000059604645,
+      "normalAttackNextID": "PlayerAttack5",
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack5": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "PlayerState": "PlayerAttack5",
+      "attackAgainStartCounterMax": 0.10000000149011612,
+      "attackInputStartTime": 0.0,
+      "attackNum": 4,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 30.0,
+      "collsionStartTime": 10.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.0,
+      "noAttackRunTimer": 0.4000000059604645,
+      "normalAttackNextID": "PlayerAttack1",
+      "specialAttackNextID": ""
+    },
+    "PlayerHeavyAttack": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 4000.0
+      },
+      "PlayerState": "PlayerHeavyAttack",
+      "attackAgainStartCounterMax": 0.10000000149011612,
+      "attackInputStartTime": 30.0,
+      "attackNum": 4,
+      "chargeLevels": [
+        {
+          "MoveSpeed": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1000.0
+          },
+          "againTimer": 0.20000000298023224,
+          "againTimerFlag": 0,
+          "hitDamage": 50.0
+        },
+        {
+          "MoveSpeed": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 5000.0
+          },
+          "againTimer": 0.30000001192092896,
+          "againTimerFlag": 2,
+          "hitDamage": 200.0
+        },
+        {
+          "MoveSpeed": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10000.0
+          },
+          "againTimer": 0.07000000029802322,
+          "againTimerFlag": 10,
+          "hitDamage": 300.0
+        }
+      ],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 20.0,
+      "collsionStartTime": 5.0,
+      "hitDamage": 300.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.0,
+      "noAttackRunTimer": 0.05000000074505806,
+      "normalAttackNextID": "PlayerHeavyAttack",
+      "specialAttackNextID": ""
+    },
+    "PlayerHeavyCharge": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 3000.0
+      },
+      "PlayerState": "PlayerHeavyCharge",
+      "attackAgainStartCounterMax": 0.0,
+      "attackInputStartTime": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": -1.0,
+      "collsionStartTime": -1.0,
+      "hitDamage": 30.0,
+      "motionCancelStartTime": -1.0,
+      "nextAttackRunTimer": 0.0,
+      "noAttackRunTimer": 0.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "specialAttackNextID": "PlayerHeavyAttack"
+    },
+    "PlayerJustAvoidAttack1": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 10000.0
+      },
+      "PlayerState": "PlayerJustAvoidAttack1",
+      "attackAgainStartCounterMax": 0.0,
+      "attackInputStartTime": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 100.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 500.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 30.0,
+      "collsionStartTime": 4.0,
+      "hitDamage": 230.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 1.0,
+      "noAttackRunTimer": 1.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "specialAttackNextID": ""
+    },
+    "PlayerSpecialAttack": {
+      "AttackMove": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "PlayerState": "PlayerSpecialAttack",
+      "attackAgainStartCounterMax": 0.0,
+      "attackInputStartTime": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 100.0,
+          "z": 200.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 2000.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 39.0,
+      "collsionStartTime": 7.0,
+      "hitDamage": 200.0,
+      "motionCancelStartTime": 0.0,
+      "nextAttackRunTimer": 0.0,
+      "noAttackRunTimer": 0.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "specialAttackNextID": ""
+    }
+  }
+}

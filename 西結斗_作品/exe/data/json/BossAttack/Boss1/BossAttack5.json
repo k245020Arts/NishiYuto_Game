@@ -1,0 +1,146 @@
+{
+  "BossAttack5": {
+    "animID": "2001_Attack5",
+    "animNum": 4,
+    "armThrow": true,
+    "attackBeforeAnimID": "",
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "attackCollsionEndTime": 0.0,
+    "attackCollsionStartTime": 0.0,
+    "attackFlashStartTime": 0.0,
+    "attackPositionFrameNum": 0,
+    "attackSoundStartTime": 0.0,
+    "bossID": "",
+    "damagePattern": "NONE",
+    "hitDamage": 0.0,
+    "intervalTime": 0.0,
+    "intervalTimeSub": false,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 0.0,
+    "justAvoidCollsionStartTime": 0.0,
+    "lookMaxCounter": 60.0,
+    "lookNum": 1,
+    "lookPlayer": true,
+    "maxIntervalTime": 0.0,
+    "minIntervalTime": 0.0,
+    "objectApperaPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "slowAmout": 0.0,
+    "slowTime": 0.0,
+    "speedUpMotionSpeed": 0.0,
+    "throwAttackData": [
+      {
+        "Capsule": true,
+        "CapsuleEndPos": {
+          "x": 0.0,
+          "y": 200.0,
+          "z": 0.0
+        },
+        "CapsuleStartPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "armAddPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "armFrameNum": 37,
+        "armSwordHand": true,
+        "armThrow": true,
+        "attackFinishDelete": true,
+        "baseFirction": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "baseGravity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "capsuleEndPosExtend": false,
+        "capsuleEndPosExtendFromThrowStart": false,
+        "capsuleEndPosExtendStartAnimFrame": 0.0,
+        "capsuleEndPosExtendOffset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "diffusionAngle": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "freeDir": false,
+        "playerHit": true,
+        "playerHitCollRadius": 200.0,
+        "playerHitJustAvoidCollRadius": 400.0,
+        "playerHitNoReaction": false,
+        "randTime": 10.0,
+        "thorwStartPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "thorwToFront": false,
+        "thorwVelocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "throwFallGravity": 0.0,
+        "throwFirstSpeed": 0.0,
+        "throwHeight": 0.0,
+        "throwObjectApperaTime": 0.0,
+        "throwObjectID": "BossTree",
+        "throwSpeed": 0.0,
+        "throwStartTime": 150.0,
+        "throwToFall": false,
+        "throwToFallToPlayer": false,
+        "throwToPlayer": false,
+        "upSpeed": 0.0
+      }
+    ],
+    "throwObject": true,
+    "throwObjectNum": 0,
+    "useFlash": false,
+    "voiceName": ""
+  }
+}

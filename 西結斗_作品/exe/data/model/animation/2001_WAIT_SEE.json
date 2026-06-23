@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 45.0,
+    "eventStartTime": 30.0,
+    "fileName": "2001_WAIT_SEE",
+    "id": "2001_WAIT_SEE",
+    "loop": true,
+    "maxFrame": -1.0,
+    "playSpeed": 0.800000011920929
+  }
+}

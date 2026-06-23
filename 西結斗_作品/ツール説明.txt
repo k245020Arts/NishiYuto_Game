@@ -1,0 +1,64 @@
+ツール起動手順
+
+本資料では、自作ツールの起動方法について説明します。
+詳細はReadMeにも記載していますが、動作確認を容易にするため本資料に手順をまとめています。
+
+起動は「SKY WARS DEBUG.exe」を使用します。
+
+■ カメラツール
+起動方法
+	「SKY WARS DEBUG.exe」を起動
+	Tabキーを押す
+
+機能
+	演出用カメラの編集
+	プログラム知識なしでカメラ設定が可能
+	セーブにより設定を保存可能
+
+関連ソース
+	CutSceneCamera.cpp.h
+	CameraEditorGui.cpp.h
+
+
+■ デバッグ画面
+起動方法
+	「SKY WARS DEBUG.exe」を起動
+	Zキーを押す
+
+機能
+	当たり判定の可視化
+	ログ表示
+	座標調整
+
+関連ソース
+	Hierarchy.cpp.h
+
+
+■ プレイヤーパラメータ調整ツール
+起動方法
+	通常版 / DEBUG版：起動可能
+	Release版：F1キーでマウス表示後、Ctrlキーで表示
+
+機能
+	攻撃ごとのパラメータ調整
+	Reloadで即時反映
+	SaveでJSON保存
+
+関連ソース
+	PlayerParamWindow.cpp.h
+
+
+■ ボスパラメータ調整ツール
+起動方法
+	通常版 / DEBUG版：起動可能
+	Release版：F1キーでマウス表示後、F2キーで起動
+
+機能
+	攻撃・投擲物の追加（Add系ボタン）
+	パラメータ調整
+	SaveでJSON保存
+
+関連ソース
+	BossAttackDataSerializer.cpp.h
+	BossAttack.cpp.h
+

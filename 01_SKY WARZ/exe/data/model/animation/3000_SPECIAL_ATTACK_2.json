@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 39.0,
+    "eventStartTime": 7.0,
+    "fileName": "3000_SPECIAL_ATTACK_2",
+    "id": "3000_SPECIAL_ATTACK_2",
+    "loop": false,
+    "maxFrame": 80.0,
+    "playSpeed": 1.0
+  }
+}

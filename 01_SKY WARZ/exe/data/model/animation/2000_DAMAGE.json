@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 70.0,
+    "eventStartTime": 10.0,
+    "fileName": "2000_DAMAGE",
+    "id": "2000_DAMAGE",
+    "loop": false,
+    "maxFrame": 65.0,
+    "playSpeed": 1.7999999523162842
+  }
+}

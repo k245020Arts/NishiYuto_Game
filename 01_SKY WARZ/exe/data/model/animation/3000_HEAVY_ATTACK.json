@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 20.0,
+    "eventStartTime": 5.0,
+    "fileName": "3000_HEAVY_ATTACK",
+    "id": "3000_HEAVY_ATTACK",
+    "loop": false,
+    "maxFrame": 60.0,
+    "playSpeed": 1.0
+  }
+}

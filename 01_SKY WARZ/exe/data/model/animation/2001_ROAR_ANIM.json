@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 40.0,
+    "eventStartTime": 30.0,
+    "fileName": "2001_ROAR_ANIM",
+    "id": "2001_ROAR_ANIM",
+    "loop": false,
+    "maxFrame": 162.0,
+    "playSpeed": 1.0
+  }
+}

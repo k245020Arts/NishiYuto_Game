@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 30.0,
+    "eventStartTime": 20.0,
+    "fileName": "2000_ATTACK4",
+    "id": "2000_ATTACK4",
+    "loop": false,
+    "maxFrame": 39.0,
+    "playSpeed": 1.2000000476837158
+  }
+}

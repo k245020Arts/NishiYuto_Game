@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 70.0,
+    "eventStartTime": 10.0,
+    "fileName": "2000_THREAT",
+    "id": "2000_THREAT",
+    "loop": false,
+    "maxFrame": 85.0,
+    "playSpeed": 1.2000000476837158
+  }
+}

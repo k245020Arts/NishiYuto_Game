@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 70.0,
+    "eventStartTime": 10.0,
+    "fileName": "2001_WIN",
+    "id": "2001_WIN",
+    "loop": true,
+    "maxFrame": -1.0,
+    "playSpeed": 1.0
+  }
+}

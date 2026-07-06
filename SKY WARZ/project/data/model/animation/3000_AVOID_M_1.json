@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 5.0,
+    "eventStartTime": 0.0,
+    "fileName": "3000_AVOID_M_1",
+    "id": "3000_AVOID_M_1",
+    "loop": false,
+    "maxFrame": 54.0,
+    "playSpeed": 2.0
+  }
+}

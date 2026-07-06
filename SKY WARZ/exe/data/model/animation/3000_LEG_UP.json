@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 50.0,
+    "eventStartTime": 0.0,
+    "fileName": "3000_LEG_UP",
+    "id": "3000_LEG_UP",
+    "loop": false,
+    "maxFrame": 60.0,
+    "playSpeed": 1.0
+  }
+}

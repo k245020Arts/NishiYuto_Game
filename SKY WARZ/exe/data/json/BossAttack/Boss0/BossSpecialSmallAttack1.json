@@ -1,0 +1,82 @@
+{
+  "BossSpecialSmallAttack1": {
+    "addGravity": -1000.0,
+    "addVelocity": true,
+    "animID": "2000_SATTACK1_SAMLL",
+    "animNum": 9,
+    "attackBeforeAnimID": "",
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": -50.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 500.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "attackCollsionEndTime": 55.0,
+    "attackCollsionStartTime": 40.0,
+    "attackFlashStartTime": 0.0,
+    "attackPositionFrameNum": 36,
+    "attackSoundStartTime": 1.0,
+    "baseFirstSpeed": 0.0,
+    "baseSpeed": 0.0,
+    "bossID": "",
+    "damagePattern": "BACK",
+    "groundEffectStartTime": 60.0,
+    "groundShakeCamera": 3.0,
+    "groundShakeTime": 0.30000001192092896,
+    "hitDamage": 200.0,
+    "jump": true,
+    "jumpGroundEffect": 12,
+    "jumpSpeed": 2000.0,
+    "jumpStartTime": 50.0,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": -50.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 700.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 6.0,
+    "justAvoidCollsionStartTime": 5.0,
+    "lookMaxCounter": 58.0,
+    "lookNum": 1,
+    "lookPlayer": true,
+    "maxMoveSpeed": 30000.0,
+    "minMoveSpeed": 12000.0,
+    "moveFinishTime": 58.0,
+    "moveStartTime": 35.0,
+    "playerAloowMove": true,
+    "playerBaseNear": 500.0,
+    "playerNearAloowStop": false,
+    "playerNearStop": true,
+    "shockMoveEffect": 11,
+    "shockWave": true,
+    "shockWaveSpeed": 50.0,
+    "slowAmout": 0.10000000149011612,
+    "slowTime": 0.30000001192092896,
+    "speedUpMotionSpeed": 0.30000001192092896,
+    "startRange": 50.0,
+    "useFlash": false,
+    "voiceName": ""
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "AttackSort": {
+    "BossAttack1": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossAttack1",
+      "maxAction": 5,
+      "priority": 2,
+      "weight": 20
+    },
+    "BossAttack2": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossAttack2",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 20
+    },
+    "BossAttack3": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossAttack3",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 30
+    },
+    "BossAttack4": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 2000.0,
+      "id": "BossAttack4",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 30
+    },
+    "BossAttack5": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossAttack5",
+      "maxAction": 1,
+      "priority": 50,
+      "weight": 20
+    },
+    "BossAttack6": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 2000.0,
+      "id": "BossAttack6",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 0
+    },
+    "BossBackStep": {
+      "addWeight": 0,
+      "attackState": false,
+      "distance": 0.0,
+      "id": "BossBackStep",
+      "maxAction": 0,
+      "priority": 50,
+      "weight": 30
+    },
+    "BossWalk": {
+      "addWeight": 0,
+      "attackState": false,
+      "distance": 0.0,
+      "id": "BossWalk",
+      "maxAction": 0,
+      "priority": 10,
+      "weight": 40
+    }
+  }
+}

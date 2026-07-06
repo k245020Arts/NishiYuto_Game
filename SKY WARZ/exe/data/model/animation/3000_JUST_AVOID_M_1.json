@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 25.0,
+    "eventStartTime": 10.0,
+    "fileName": "3000_JUST_AVOID_M_1",
+    "id": "3000_JUST_AVOID_M_1",
+    "loop": false,
+    "maxFrame": 35.0,
+    "playSpeed": 1.5
+  }
+}

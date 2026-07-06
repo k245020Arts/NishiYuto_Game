@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 70.0,
+    "eventStartTime": 10.0,
+    "fileName": "2000_FEAR",
+    "id": "2000_FEAR",
+    "loop": true,
+    "maxFrame": 60.0,
+    "playSpeed": 1.0
+  }
+}

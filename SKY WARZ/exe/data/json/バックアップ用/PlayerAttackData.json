@@ -1,0 +1,302 @@
+{
+  "PlayerAttackData": {
+    "PlayerAttack1": {
+      "PlayerState": "PlayerAttack1",
+      "attackAgainStartCounterMax": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 5500.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack2",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack2": {
+      "PlayerState": "PlayerAttack2",
+      "attackAgainStartCounterMax": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 7500.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack3",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack3": {
+      "PlayerState": "PlayerAttack3",
+      "attackAgainStartCounterMax": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 7500.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack4",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack4": {
+      "PlayerState": "PlayerAttack4",
+      "attackAgainStartCounterMax": 0.20000000298023224,
+      "attackNum": 3,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 5000.0,
+      "hitDamage": 200.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack5",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerAttack5": {
+      "PlayerState": "PlayerAttack5",
+      "attackAgainStartCounterMax": 0.10000000149011612,
+      "attackNum": 4,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 0.0,
+      "hitDamage": 150.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerHeavyAttack": {
+      "PlayerState": "PlayerHeavyAttack",
+      "attackAgainStartCounterMax": 0.10000000149011612,
+      "attackNum": 4,
+      "chargeLevels": [
+        {
+          "againTimer": 0.20000000298023224,
+          "againTimerFlag": 0,
+          "frontSpeed": 1000.0,
+          "hitDamage": 50.0
+        },
+        {
+          "againTimer": 0.30000001192092896,
+          "againTimerFlag": 2,
+          "frontSpeed": 2000.0,
+          "hitDamage": 150.0
+        },
+        {
+          "againTimer": 0.10000000149011612,
+          "againTimerFlag": 6,
+          "frontSpeed": 10000.0,
+          "hitDamage": 300.0
+        }
+      ],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 4000.0,
+      "hitDamage": 300.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerHeavyAttack",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerJustAvoidAttack1": {
+      "PlayerState": "PlayerJustAvoidAttack1",
+      "attackAgainStartCounterMax": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 100.0,
+          "z": 200.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 10000.0,
+      "hitDamage": 200.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerSpecialAttack": {
+      "PlayerState": "PlayerSpecialAttack",
+      "attackAgainStartCounterMax": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 100.0,
+          "z": 200.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 2000.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 0.0,
+      "hitDamage": 200.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "runTimer": 0.0,
+      "specialAttackNextID": ""
+    },
+    "PlayerHeavyCharge": {
+      "PlayerState": "PlayerHeavyCharge",
+      "attackAgainStartCounterMax": 0.0,
+      "attackNum": 0,
+      "chargeLevels": [],
+      "collTrans": {
+        "position": {
+          "x": 0.0,
+          "y": 80.0,
+          "z": 100.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 300.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "collsionFinishTime": 0.0,
+      "collsionStartTime": 0.0,
+      "frontSpeed": 5500.0,
+      "hitDamage": 30.0,
+      "motionCancelStartTime": 0.0,
+      "normalAttackNextID": "PlayerAttack1",
+      "runTimer": 0.0,
+      "specialAttackNextID": "PlayerHeavyAttack"
+    }
+  }
+}

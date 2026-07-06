@@ -1,0 +1,63 @@
+{
+  "BossAttack1": {
+    "animID": "2001_ATTACK2",
+    "animNum": 1,
+    "attackBeforeAnimID": "",
+    "attackCameraBossLook": true,
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -100.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 480.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    "attackCollsionEndTime": 55.0,
+    "attackCollsionStartTime": 40.0,
+    "attackFlashStartTime": 7.0,
+    "attackPositionFrameNum": 61,
+    "attackSoundStartTime": 1.0,
+    "bossID": "",
+    "cameraChangeSpeed": 1000.0,
+    "damagePattern": "BACK",
+    "hitDamage": 100.0,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -100.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 580.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 6.0,
+    "justAvoidCollsionStartTime": 5.0,
+    "lookMaxCounter": 40.0,
+    "lookNum": 1,
+    "lookPlayer": true,
+    "slowAmout": 0.10000000149011612,
+    "slowTime": 0.30000001192092896,
+    "speedUpMotionSpeed": 0.30000001192092896,
+    "trailRightHand": true,
+    "useFlash": true,
+    "useTrail": true,
+    "voiceName": "E_AttackV"
+  }
+}

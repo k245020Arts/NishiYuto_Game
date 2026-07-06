@@ -1,0 +1,18 @@
+{
+  "Boss": [
+    {
+      "bossID": 0,
+      "bossName": "Volcraid",
+      "defense": 500.0,
+      "hp": 30000.0,
+      "modelName": "BossModel"
+    },
+    {
+      "bossID": 1,
+      "bossName": "Serapion",
+      "defense": 1000.0,
+      "hp": 30000.0,
+      "modelName": "BossModel3"
+    }
+  ]
+}

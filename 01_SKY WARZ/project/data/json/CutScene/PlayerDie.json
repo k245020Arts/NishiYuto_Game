@@ -1,0 +1,100 @@
+{
+  "cutScenes": {
+    "cutScene0": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 1.5,
+      "ease": "Linear",
+      "firstPosBaseName": "",
+      "followPos": "Player",
+      "followTarget": "Player"
+    },
+    "cutScene1": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 1.5,
+      "ease": "Out",
+      "firstPosBaseName": "",
+      "followPos": "Enemy",
+      "followTarget": "Enemy"
+    },
+    "cutScene2": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 3.0399999618530273,
+      "ease": "Out",
+      "firstPosBaseName": "",
+      "followPos": "Enemy",
+      "followTarget": "Enemy"
+    },
+     "cutScene3": {
+      "camera": {
+        "endPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "startPos": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -1500.0
+        },
+        "target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "duration": 3.0,
+      "ease": "Out",
+      "firstPosBaseName": "",
+      "followPos": "Enemy",
+      "followTarget": "Enemy"
+    }
+  }
+}

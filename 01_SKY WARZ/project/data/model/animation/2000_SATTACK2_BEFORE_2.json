@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 100.0,
+    "eventStartTime": 0.0,
+    "fileName": "2000_SATTACK2_BEFORE_2",
+    "id": "2000_SATTACK2_BEFORE_2",
+    "loop": false,
+    "maxFrame": 30.0,
+    "playSpeed": 1.0
+  }
+}

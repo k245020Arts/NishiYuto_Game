@@ -1,0 +1,211 @@
+{
+  "Animator": {
+    "3000_ATTACK01_M_1": {
+      "eventFinishTime": 27.0,
+      "eventStartTime": 19.0,
+      "fileName": "3000_ATTACK01_M_1",
+      "id": "3000_ATTACK01_M_1",
+      "loop": false,
+      "maxFrame": 38.0,
+      "playSpeed": 2.3
+    },
+    "3000_ATTACK02_M_1": {
+      "eventFinishTime": 30.0,
+      "eventStartTime": 10.0,
+      "fileName": "3000_ATTACK02_M_1",
+      "id": "3000_ATTACK02_M_1",
+      "loop": false,
+      "maxFrame": 50.0,
+      "playSpeed": 2.0999999046325684
+    },
+    "3000_ATTACK03_M_1": {
+      "eventFinishTime": 19.0,
+      "eventStartTime": 14.0,
+      "fileName": "3000_ATTACK03_M_1",
+      "id": "3000_ATTACK03_M_1",
+      "loop": false,
+      "maxFrame": 26.0,
+      "playSpeed": 2.0999999046325684
+    },
+    "3000_ATTACK04_M_1": {
+      "eventFinishTime": 42.0,
+      "eventStartTime": 30.0,
+      "fileName": "3000_ATTACK04_M_1",
+      "id": "3000_ATTACK04_M_1",
+      "loop": false,
+      "maxFrame": 95.0,
+      "playSpeed": 3.0999999046325684
+    },
+    "3000_ATTACK05_M_1": {
+      "eventFinishTime": 20.0,
+      "eventStartTime": 10.0,
+      "fileName": "3000_ATTACK05_M_1",
+      "id": "3000_ATTACK05_M_1",
+      "loop": false,
+      "maxFrame": 68.0,
+      "playSpeed": 1.5
+    },
+    "3000_ATTACK11": {
+      "eventFinishTime": 25.0,
+      "eventStartTime": 7.0,
+      "fileName": "3000_ATTACK11",
+      "id": "3000_ATTACK11",
+      "loop": false,
+      "maxFrame": 24.0,
+      "playSpeed": 9.0
+    },
+    "3000_ATTACK11_M_1": {
+      "eventFinishTime": 21.0,
+      "eventStartTime": 4.0,
+      "fileName": "3000_ATTACK11_M_1",
+      "id": "3000_ATTACK11_M_1",
+      "loop": false,
+      "maxFrame": 39.0,
+      "playSpeed": 0.699999988079071
+    },
+    "3000_AVOID_M_1": {
+      "eventFinishTime": 5.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_AVOID_M_1",
+      "id": "3000_AVOID_M_1",
+      "loop": false,
+      "maxFrame": 54.0,
+      "playSpeed": 2.0
+    },
+    "3000_DAMAGE_M_1": {
+      "eventFinishTime": 10.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_DAMAGE_M_1",
+      "id": "3000_DAMAGE_M_1",
+      "loop": false,
+      "maxFrame": 53.0,
+      "playSpeed": 2.0
+    },
+    "3000_DIE_M_1": {
+      "eventFinishTime": 12.0,
+      "eventStartTime": 9.0,
+      "fileName": "3000_DIE_M_1",
+      "id": "3000_DIE_M_1",
+      "loop": false,
+      "maxFrame": 69.0,
+      "playSpeed": 0.5
+    },
+    "3000_FALL_M_1": {
+      "eventFinishTime": 10.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_FALL_M_1",
+      "id": "3000_FALL_M_1",
+      "loop": true,
+      "maxFrame": 55.0,
+      "playSpeed": 1.0
+    },
+    "3000_GETU3000_M_1": {
+      "eventFinishTime": 10.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_GETU3000_M_1",
+      "id": "3000_GETU3000_M_1",
+      "loop": false,
+      "maxFrame": 81.0,
+      "playSpeed": 1.0
+    },
+    "3000_HEAVY_ATTACK": {
+      "eventFinishTime": 20.0,
+      "eventStartTime": 5.0,
+      "fileName": "3000_HEAVY_ATTACK",
+      "id": "3000_HEAVY_ATTACK",
+      "loop": false,
+      "maxFrame": 60.0,
+      "playSpeed": 1.0
+    },
+    "3000_HEAVY_CHARGE": {
+      "eventFinishTime": 50.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_HEAVY_CHARGE",
+      "id": "3000_HEAVY_CHARGE",
+      "loop": false,
+      "maxFrame": 60.0,
+      "playSpeed": 2.0
+    },
+    "3000_IDOL1": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "3000_IDOL1",
+      "id": "3000_IDOL1",
+      "loop": true,
+      "maxFrame": 60.0,
+      "playSpeed": 1.0
+    },
+    "3000_JUST_AVOID_M_1": {
+      "eventFinishTime": 25.0,
+      "eventStartTime": 10.0,
+      "fileName": "3000_JUST_AVOID_M_1",
+      "id": "3000_JUST_AVOID_M_1",
+      "loop": false,
+      "maxFrame": 35.0,
+      "playSpeed": 1.5
+    },
+    "3000_LEG_UP": {
+      "eventFinishTime": 50.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_LEG_UP",
+      "id": "3000_LEG_UP",
+      "loop": false,
+      "maxFrame": 60.0,
+      "playSpeed": 1.0
+    },
+    "3000_RUN_M_1": {
+      "eventFinishTime": -1.0,
+      "eventStartTime": -1.0,
+      "fileName": "3000_RUN_M_1",
+      "id": "3000_RUN_M_1",
+      "loop": true,
+      "maxFrame": 21.0,
+      "playSpeed": 1.5
+    },
+    "3000_SPECIAL_ATTACK_2": {
+      "eventFinishTime": 39.0,
+      "eventStartTime": 7.0,
+      "fileName": "3000_SPECIAL_ATTACK_2",
+      "id": "3000_SPECIAL_ATTACK_2",
+      "loop": false,
+      "maxFrame": 80.0,
+      "playSpeed": 1.0
+    },
+    "3000_SPECIAL_ATTACK_BEFORE": {
+      "eventFinishTime": 39.0,
+      "eventStartTime": 7.0,
+      "fileName": "3000_SPECIAL_ATTACK_BEFORE",
+      "id": "3000_SPECIAL_ATTACK_BEFORE",
+      "loop": false,
+      "maxFrame": 89.0,
+      "playSpeed": 1.2000000476837158
+    },
+    "3000_TURN1": {
+      "eventFinishTime": 21.0,
+      "eventStartTime": 10.0,
+      "fileName": "3000_TURN1",
+      "id": "3000_TURN1",
+      "loop": false,
+      "maxFrame": 23.0,
+      "playSpeed": 1.2999999523162842
+    },
+    "3000_WIN": {
+      "eventFinishTime": 45.0,
+      "eventStartTime": 30.0,
+      "fileName": "3000_WIN",
+      "id": "3000_WIN",
+      "loop": false,
+      "maxFrame": 75.0,
+      "playSpeed": 1.0
+    },
+    "3000_WINIDOL": {
+      "eventFinishTime": 50.0,
+      "eventStartTime": 0.0,
+      "fileName": "3000_WINIDOL",
+      "id": "3000_WINIDOL",
+      "loop": true,
+      "maxFrame": 30.0,
+      "playSpeed": 1.0
+    }
+  }
+}

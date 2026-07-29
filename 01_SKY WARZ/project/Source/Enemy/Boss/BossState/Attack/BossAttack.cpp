@@ -7,7 +7,7 @@
 #include "../../../../Component/Collider/sphereCollider.h"
 #include "../../../EnemyBase.h"
 #include "../../../Boss/Boss.h"
-#include "../../../../Common/ResourceLoader.h"
+#include "../../../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../../EnemyState/EnemyStateManager.h"
 #include "../../../../Common/Effect/EffectManager.h"
 #include "../../../../Common/Sound/SoundManager.h"
@@ -16,13 +16,14 @@
 #include "../../../TrashEnemy/TrashEnemy.h"
 #include "../../../../Common/Debug/DebugLogText.h"
 #include "../../../../State/StateManager.h"
-#include "../../../../Common/Easing.h"
+#include "../../../../Common/Easing/Easing.h"
 #include "../BossStatus.h"
 #include "../../../../Component/Physics/Physics.h"
 #include "../../../../Component/Collider/DountCollider.h"
 #include "../../../../Component/EnemyAttackObject/ShockWave/ShockWave.h"
 #include "../../../../Component/EnemyAttackObject/BossRock/BossRockManager.h"
 #include "../AttackSorting.h"
+#include "../../../TrashEnemy/TrashEnemyManager.h"
 
 BossAttack::BossAttack()
 {
@@ -69,6 +70,7 @@ void BossAttack::Update()
 	JumpEvent();
 	ThrowObjectsEvent();
 	SoundEvent();
+	TrashEnemySpownEvent();
 	if (attackParam.useTrail) {
 		BossTrail(attackParam.trailRightHand);
 	}
@@ -134,6 +136,8 @@ void BossAttack::Start()
 		soundLoopPlaying[event.name] = false;
 		soundPlayed[event.name] = false;
 	}
+
+	enemySpownNum = 0;
 }
 
 void BossAttack::Finish()
@@ -207,6 +211,23 @@ void BossAttack::BossJustAvoidCollsion()
 		e->SetShape(CollsionInformation::SPHERE, &e->justAvoidColl);
 		e->justAvoidCollTime = 3.0f;
 	}
+}
+
+bool BossAttack::isFinishAttack()
+{
+	Boss* boss = GetBase<Boss>();
+	if (!CurrentAttackAnim())
+	{
+		return false;
+	}
+	if (boss->enemyBaseComponent.anim->IsFinish())
+	{
+		/*boss->BossAttackStateChange();
+		boss->GetStateManager()->GetState<AttackSorting>()->AttackFinish();*/
+		return true;
+	}
+	else
+		return false;
 }
 
 void BossAttack::RotateEvent()
@@ -596,6 +617,32 @@ void BossAttack::BossDushSound()
 		firstOnes = true;
 		secondOnes = true;
 	}
+}
+
+void BossAttack::TrashEnemySpownEvent()
+{
+	Boss* b = GetBase<Boss>();
+
+	if (!attackParam.useEnemySpawnEvent) {
+		return;
+	}
+
+	const float frame = b->enemyBaseComponent.anim->GetCurrentFrame();
+
+	if (frame >= attackParam.enemySpawnStartFrame) {
+		//小分けで出現しないなら1回の出現とする
+		int totalSpownNum = 1;
+		if (attackParam.splitEnemySpawn) {
+			totalSpownNum = attackParam.enemySpawnCount;
+		}
+		if (totalSpownNum > enemySpownNum) {
+			enemySpownNum++;
+			b->trashEnemy->CreateEnemy(attackParam.enemySpawnPosition, attackParam.meleeEnemySpawnNum, attackParam.rangedEnemySpawnNum);
+		}
+	}
+
+	//ToDo 敵殲滅イベントを作成
+
 }
 
 void BossAttack::AttackStart()

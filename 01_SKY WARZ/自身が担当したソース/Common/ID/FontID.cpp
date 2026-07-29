@@ -12,7 +12,7 @@ void Font_ID::DeleteFontID()
 	fontId.clear();
 }
 
-std::string Font_ID::GetFontID(Font_ID _type)
+const std::string Font_ID::GetFontID(Font_ID _type)
 {
 	int type = (int)_type;
 	if (type < 0 && type >= (int)Font_MAX) {

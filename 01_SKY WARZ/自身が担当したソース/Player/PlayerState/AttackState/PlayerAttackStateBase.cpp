@@ -1,6 +1,6 @@
 #include "PlayerAttackStateBase.h"
 #include "../../player.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Common/Sound/SoundManager.h"
 #include "../../../Common/InputManager/InputManager.h"
 #include "../playerStateManager.h"
@@ -15,6 +15,8 @@
 PlayerAttackStateBase::PlayerAttackStateBase()
 {
 	easingCount		= 0.0f;
+	heavyAttackHoldFrame = 0.0f;
+	chargeAttack = false;
 	beforeAngle		= 0.0f;
 	angle			= 0.0f;
 	nextAttack		= 0.0f;
@@ -87,7 +89,7 @@ void PlayerAttackStateBase::Update()
 						p->playerCom.player->AvoidFinishState();
 					}
 				}
-				else {
+				else if(special){
 					//次の攻撃状態が記録されているなら派生攻撃へと移行、強攻撃状態
 					if (playerAttackData.specialAttackNextID != StateID::STATE_MAX) {
 						p->playerCom.stateManager->ChangeState(playerAttackData.specialAttackNextID);
@@ -96,6 +98,10 @@ void PlayerAttackStateBase::Update()
 						p->playerCom.player->AvoidFinishState();
 					}
 					
+				}
+				else {
+					//チャージ攻撃の準備が出来たらチャージ攻撃へ移行
+					p->playerCom.stateManager->ChangeState(StateID::PLAYER_HEAVY_CHARGE_S);
 				}
 				
 			}
@@ -166,6 +172,8 @@ void PlayerAttackStateBase::Start()
 	runTimer = -1.0f;
 	normal = false;
 	special = false;
+	heavyAttackHoldFrame = 0.0f;
+	chargeAttack = false;
 }
 
 void PlayerAttackStateBase::Finish()
@@ -176,9 +184,10 @@ void PlayerAttackStateBase::Finish()
 		p->playerCom.camera->CameraLeapSet(0.2f);
 		p->playerCom.physics->SetFirction(PlayerInformation::BASE_INTERIA);
 	}
+
 }
 
-bool PlayerAttackStateBase::IsAttack()
+bool PlayerAttackStateBase::IsAttack()const
 {
 	Player* p = GetBase<Player>();
 	float frame = p->playerCom.anim->GetCurrentFrame();
@@ -211,7 +220,9 @@ void PlayerAttackStateBase::AttackCommonUpdate()
 	}
 	//collsionCreate = false;
 	Player* p = GetBase<Player>();
-	float frame = p->playerCom.anim->GetCurrentFrame();
+	const float frame = p->playerCom.anim->GetCurrentFrame();
+	const int CHANGE_ATTACK_INPUT_FRAME = 10;
+
 	if (InputManager::GetInstance()->KeyInputDown("attack")) {
 		//アニメーション一定フレーム以降なら
 		if (playerAttackData.attackInputStartTime <= frame) {
@@ -220,14 +231,47 @@ void PlayerAttackStateBase::AttackCommonUpdate()
 			special = false;
 		}
 	}
-	if (InputManager::GetInstance()->KeyInputDown("heavyAttack")) {
-		//アニメーション一定フレーム以降なら
-		if (playerAttackData.attackInputStartTime <= frame) {
-			nextAttack = true;
-			special = true;
+	
+	if (InputManager::GetInstance()->KeyInput("heavyAttack"))
+	{
+		heavyAttackHoldFrame++;
+		if (heavyAttackHoldFrame >= CHANGE_ATTACK_INPUT_FRAME)
+		{
+			//長押し攻撃
+			chargeAttack = true;
+			special = false;
 			normal = false;
+			nextAttack = true;
 		}
 	}
+
+	//強い攻撃は長押し判定も取りたいので連続入力取得をする
+	if (InputManager::GetInstance()->KeyInputUp("heavyAttack"))
+	{
+		if (heavyAttackHoldFrame >= CHANGE_ATTACK_INPUT_FRAME)
+		{
+			//長押し攻撃
+			chargeAttack = true;
+			special = false;
+			normal = false;
+		}
+		else
+		{
+			//短押し攻撃
+			if (playerAttackData.attackInputStartTime <= frame)
+			{
+				nextAttack = true;
+				special = true;
+				normal = false;
+			}
+		}
+
+		heavyAttackHoldFrame = 0;
+	}
+
+	
+	
+
 	//攻撃の時に回避行動をいれたら回避状態に移行
 	if (InputManager::GetInstance()->KeyInputDown("avoid")) {
 		if (playerAttackData.motionCancelStartTime <= frame) {
@@ -256,7 +300,7 @@ void PlayerAttackStateBase::AttackCommonUpdate()
 			AttackMoveStart();
 		}
 		if (speedChange) {
-			p->playerCom.anim->SetPlaySpeed(3.5f);
+			p->playerCom.anim->SetPlaySpeed(playerAttackData.attackSpeedChangeRate);
 		}
 		beforeAttack = false;
 

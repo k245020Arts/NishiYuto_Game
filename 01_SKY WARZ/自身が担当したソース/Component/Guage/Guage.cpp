@@ -97,14 +97,14 @@ void Guage::Draw()
 {
 }
 
-void Guage::EdgeDrawReady(int _image, MeshRenderer2D::GraphMode _mode, Transform _transfrom)
+void Guage::EdgeDrawReady(int _image, MeshRenderer2D::GraphMode _mode, const Transform& _transfrom)
 {
 	edge = obj->Component()->AddComponent<MeshRenderer2D>();
 	edge->TextureHandle(_image, _mode);
 	edge->SetTransform(_transfrom);
 }
 
-void Guage::DamageGuageDrawReady(int _image, MeshRenderer2D::GraphMode _mode,Transform _transform)
+void Guage::DamageGuageDrawReady(int _image, MeshRenderer2D::GraphMode _mode,const Transform& _transform)
 {
 	damageGuage = obj->Component()->AddComponent<MeshRenderer2D>();
 	damageGuage->TextureHandle(_image, _mode);
@@ -112,7 +112,7 @@ void Guage::DamageGuageDrawReady(int _image, MeshRenderer2D::GraphMode _mode,Tra
 	damageGuage->SetTransform(transfrom);
 }
 
-void Guage::WorldToScreenMode(bool _mode, VECTOR3 _plusPos)
+void Guage::WorldToScreenMode(bool _mode, const VECTOR3& _plusPos)
 {
 	screenMode	= _mode;
 	plus		= _plusPos;

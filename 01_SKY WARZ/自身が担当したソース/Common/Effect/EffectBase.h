@@ -31,13 +31,13 @@ public:
 	/// <summary>
 	/// エフェクトを再生させる2Dと3Dで関数を分けている
 	/// </summary>
-	void EffectPlay2D();
-	void EffectPlay3D();
+	void EffectPlay2D()const;
+	void EffectPlay3D()const;
 	/// <summary>
 	/// エフェクトをストップさせる2Dと3Dで関数を分けている
 	/// </summary>
-	void EffectStop2D();
-	void EffectStop3D();
+	void EffectStop2D()const;
+	void EffectStop3D()const;
 
 	void ChangeSpeed(float _speed) { speed = _speed; }
 
@@ -45,7 +45,7 @@ public:
 	/// 現在使用してるエフェクトのIDをわたす
 	/// </summary>
 	/// <returns>エフェクトのID</returns>
-	Effect_ID::EFFECT_ID GetEffectID() { return id; }
+	Effect_ID::EFFECT_ID GetEffectID()const { return id; }
 	/// <summary>
 	/// エフェクトの再生を止める
 	/// </summary>
@@ -59,17 +59,17 @@ public:
 	/// <summary>
 	/// エフェクトの色を変える2Dver
 	/// </summary>
-	void SetColor2D(Color::Rgb _rgb);
+	void SetColor2D(Color::Rgb _rgb)const;
 	/// <summary>
 	///  エフェクトの色を変える3Dver
 	/// </summary>
 	/// <param name="_rgb">RGBの構造体</param>
-	void SetColor3D(Color::Rgb _rgb);
-	void SetColor(Color::Rgb _rgb);
+	void SetColor3D(Color::Rgb _rgb)const;
+	void SetColor(Color::Rgb _rgb)const;
 	/// <summary>
 	/// 親子関係は継続しつつ親子関係のTransformを外したいときに使う関数
 	/// </summary>
-	void ParentTransformRemove();
+	void ParentTransformRemove()const;
 
 private:
 
@@ -77,12 +77,12 @@ private:
 	BaseObject* parent;
 	Effect_ID::EFFECT_ID id;
 
-	typedef void (EffectBase::* EffectKind)();
+	typedef void (EffectBase::* EffectKind)()const;
 	EffectKind effectPlay;
-	typedef void (EffectBase::* Stop)();
+	typedef void (EffectBase::* Stop)()const;
 	Stop effectStop;
 
-	typedef void (EffectBase::* EfColor)(Color::Rgb _rgb);
+	typedef void (EffectBase::* EfColor)(Color::Rgb _rgb)const;
 	EfColor effectColor;
 	
 	int hPlayHandle;

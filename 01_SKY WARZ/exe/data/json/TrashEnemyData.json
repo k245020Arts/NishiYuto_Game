@@ -1,0 +1,30 @@
+{
+  "normalAttack1": 20.0,
+  "CooperateAttack1": 50.0,
+  "CooperateAttack2": 50.0,
+  "maxHp": 1500.0,
+  "defense": 500.0,
+  "coolTime": 30.0,
+  "runSpeed": 40.0,
+  "range": 2000.0,
+  "runRange": 600.0,
+  "atkRange": 300.0,
+  "playerRange": 1200.0,
+  "chaseRange": 1500.0,
+  "cooperateRange": 200.0
+}
+
+/*
+normalAttack1 	  攻撃のダメージ数値
+CooperateAttack1  近距離の連携攻撃のダメージ
+CooperateAttack2  遠距離の連携攻撃のダメージ
+maxHp 			      最大HP
+defense 		    	防御力
+coolTime; 		    一段目の攻撃までの時間
+runSpeed;		  	  移動速度
+range 			      idelとrunの切り替わり
+runRange			    runと様子見の切り替わり
+playerRange
+chaseRange		   プレイヤーと離れたときに切り替わる
+cooperateRange
+*/

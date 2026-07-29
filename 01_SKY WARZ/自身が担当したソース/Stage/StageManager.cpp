@@ -3,7 +3,7 @@
 #include "../Component/MeshRenderer/MeshRenderer.h"
 #include "stage.h"
 #include "../Component/ComponentManager.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "Wall.h"
 #include "../Component/Collider/ModelCollider.h"
 #include "../Player/Player.h"

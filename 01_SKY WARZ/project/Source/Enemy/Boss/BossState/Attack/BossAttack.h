@@ -57,6 +57,11 @@ public:
 	/// </summary>
 	void SoundEvent();
 
+	/// <summary>
+	/// 雑魚敵召喚イベントを実行
+	/// </summary>
+	void TrashEnemySpownEvent();
+
 	void AttackStart();
 	void BossDushSound();
 
@@ -74,6 +79,8 @@ public:
 	/// ジャスト回避当たり判定の生成
 	/// </summary>
 	void BossJustAvoidCollsion();
+
+	bool isFinishAttack();
 
 private:
 	float averageSpeed;
@@ -98,4 +105,6 @@ private:
 	Boss* bossPtr;
 	std::unordered_map<std::string, bool> soundPlayed;
 	std::unordered_map<std::string, bool> soundLoopPlaying;
+
+	int enemySpownNum;
 };

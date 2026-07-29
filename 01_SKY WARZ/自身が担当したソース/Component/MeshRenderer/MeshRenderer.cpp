@@ -90,7 +90,7 @@ void MeshRenderer::ImguiDraw()
 	}
 }
 
-void MeshRenderer::RotationMesh(int _meshNum, float _angle)
+void MeshRenderer::RotationMesh(int _meshNum, float _angle)const
 {
 	MV1SetFrameUserLocalMatrix(hModel, _meshNum, MGetRotY(_angle));
 }

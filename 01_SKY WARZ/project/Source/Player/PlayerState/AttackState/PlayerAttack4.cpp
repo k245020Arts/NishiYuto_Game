@@ -5,7 +5,7 @@
 #include "../../Player.h"
 #include "../../../Component/Physics/Physics.h"
 #include "../../../Camera/Camera.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Shaker/Shaker.h"
 #include "../../../Common/Function.h"
 #include "../../../Common/InputManager/InputManager.h"
@@ -41,6 +41,7 @@ void PlayerAttack4::Update()
 	collsionCreate = false;
 	PlayerAttackStateBase::Update();
 	PlayerAttackStateBase::AttackCommonUpdate();
+	float frame = p->playerCom.anim->GetCurrentFrame();
 	timer -= Time::DeltaTimeRate();
 	if (timer <= 0.0f) {
 		p->playerCom.anim->SetPlaySpeed(1.0f);

@@ -13,8 +13,11 @@ namespace StateID{
         PLAYER_JUST_AVOID_ATTACK1_S,
         PLAYER_ATTACK2_S,
         PLAYER_ATTACK3_S,
-        PLAYER_ATTACK5_S,
         PLAYER_ATTACK4_S,
+        PLAYER_ATTACK5_S,
+        PLAYER_ATTACK6_S,
+        PLAYER_ATTACK7_S,
+        PLAYER_ATTACK8_S,
         PLAYER_DAMAGE_S,
         PLAYER_BLOW_AWAY_S,
         PLAYER_DIE_S,
@@ -25,6 +28,10 @@ namespace StateID{
         PLAYER_BOSS_APPEAR_S,
         PLAYER_HEAVY_CHARGE_S,
         PLAYER_HEAVY_ATTACK_S,
+        PLAYER_HEAVY_ATTACK2_S,
+        PLAYER_HEAVY_ATTACK3_S,
+        PLAYER_HEAVY_ATTACK4_S,
+        PLAYER_HEAVY_ATTACK5_S,
         PLAYER_LOSE_S,
 
         BOSS_IDOL_S,
@@ -80,7 +87,7 @@ namespace StateID{
 
     void DeleteStateID();
 
-	std::string GetID(State_ID _type);
+    const std::string GetID(State_ID _type);
 	void SetID(std::string _state, State_ID _type);
 
     State_ID StringToID(std::string _str);

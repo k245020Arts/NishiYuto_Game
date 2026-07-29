@@ -2,9 +2,8 @@
 #include "../TrashEnemy.h"
 #include "../../../Component/Animator/Animator.h"
 #include "../../../State/StateManager.h"
-#include "T_EnemyStatus.h"
 #include "../../../Component/Physics/Physics.h"
-#include "../../../Common/Random.h"
+#include "../../../Common/Random/Random.h"
 
 T_EnemyIdol::T_EnemyIdol()
 {
@@ -48,8 +47,8 @@ void T_EnemyIdol::Start()
 	}
 
 	setGravity = enemy->enemyBaseComponent.physics->GetGravity();
-	float addSpeed = (float)Random::GetInt(0, 500);
-	enemy->enemyBaseComponent.physics->SetGravity(VECTOR3(0, -1000 - addSpeed, 0));
+	float addSpeed = (float)Random::GetInt(0, RandMax);
+	enemy->enemyBaseComponent.physics->SetGravity(VECTOR3(0, Gravity - addSpeed, 0));
 
 	EnemyStateBase::Start();
 }
@@ -64,11 +63,8 @@ void T_EnemyIdol::NormalMove()
 {
 	TrashEnemy* enemy = GetBase<TrashEnemy>();
 
-	/*if (enemy->GetEnemyType() != enemy->EnemyType::MELEE && counter == 0)
-		enemy->enemyBaseComponent.anim->Play(ID::TE_R_IDOL);
-	counter = 1;*/
-
-	if (enemy->GetPos().y >= 30)
+	const float Point = 30.0f;
+	if (enemy->GetPos().y >= Point)
 		return;
 
 	if (enemy->GetEnemyType() != EnemyType::MELEE)
@@ -79,6 +75,6 @@ void T_EnemyIdol::NormalMove()
 
 	VECTOR3 targetVec = enemy->obj->GetTransform()->position - enemy->enemyBaseComponent.playerObj->GetTransform()->position;
 	detectionRange += Time::DeltaTimeRate() * RANGESPEED;
-	if (targetVec.Size() < enemy->eStatus->GetStatus().chaseRange + detectionRange )
+	if (targetVec.Size() < enemy->GetStatus().chaseRange + detectionRange )
 		enemy->enemyBaseComponent.state->ChangeState(StateID::T_ENEMY_RUN_S);
 }

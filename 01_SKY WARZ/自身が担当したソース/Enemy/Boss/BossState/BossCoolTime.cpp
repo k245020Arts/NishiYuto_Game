@@ -8,7 +8,6 @@ BossCoolTime::BossCoolTime()
 {
 	animId		= ID::B_COOLTIME;
 	string		= Function::GetClassNameC<BossCoolTime>();
-	//id = ID::B_COOLTIME;
 	bs			= nullptr;
 	coolTime	= 0.0f;
 }
@@ -22,19 +21,24 @@ void BossCoolTime::Update()
 {
 	Boss* b = GetBase<Boss>();
 	b->LookPlayer();
-	bs			= b->bs;
+	bs = b->bs;
 
 	//UŒ‚‚Ü‚Å‚ÌŽžŠÔiŒã‚ÅC³j
-	coolTime	+= Time::DeltaTimeRate();
-	if (coolTime >= b->coolTime)
-		b->enemyBaseComponent.state->ChangeState(StateID::ATTACK_SORTING_S);
+	coolTime += Time::DeltaTimeRate();
+	if (coolTime >= b->attackCoolTime)
+	{
+		if(b->RunChangeAttack())
+			b->enemyBaseComponent.state->ChangeState(StateID::ATTACK_SORTING_S);
+		else
+			b->enemyBaseComponent.state->ChangeState(StateID::BOSS_RUN_S);
+	}
 }
 
 void BossCoolTime::Start()
 {
 	Boss* b = GetBase<Boss>();
 	coolTime = 0;
-	b->GetAttackCoolTime();
+	//b->GetAttackCoolTime();
 	EnemyStateBase::Start();
 }
 

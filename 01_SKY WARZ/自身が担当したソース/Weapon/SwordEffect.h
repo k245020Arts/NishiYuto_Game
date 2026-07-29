@@ -109,7 +109,7 @@ public:
 	/// <param name="_rgb">色</param>
 	/// <param name="_boneIndex">キャラクターのボーンのフレーム番号</param>
 	/// <param name="_time">生成される時間</param>
-	void CreateEffect(VECTOR3 _topPos, VECTOR3 _bottomPos, Color::Rgb _rgb, int _boneIndex, float _time);
+	void CreateEffect(const VECTOR3& _topPos, const VECTOR3& _bottomPos, Color::Rgb _rgb, int _boneIndex, float _time);
 
 private:
 	struct Points
@@ -121,6 +121,16 @@ private:
 
 		CharaWeapon* weapon;
 		BaseObject* charaObj;
+
+		Points() {
+			top = VZero;
+			btm = VZero;
+			rgb = Color::Rgb();
+			bone = 0;
+			weapon = nullptr;
+			charaObj = nullptr;
+
+		}
 	};
 
 	std::vector<Points> points; //リングバッファ
@@ -134,7 +144,7 @@ private:
 	float timeMax;
 
 	bool called;
-	VERTEX3D MakeVertex(VECTOR3 _pos, float u, float v, Color::Rgb _rgb);
+	VERTEX3D MakeVertex(const VECTOR3& _pos, float u, float v, Color::Rgb _rgb);
 };
 
 

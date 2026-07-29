@@ -121,8 +121,8 @@ void CollsionManager::FindGameControler()
 
 bool CollsionManager::CollsionSphereToSphere(ColliderBase* col1, ColliderBase* col2, Pushback& resolver,VECTOR3& _hitPos)
 {
-	Transform* trans1 = col1->GetTransform();
-	Transform* trans2 = col2->GetTransform();
+	const Transform* trans1 = col1->GetTransform();
+	const Transform* trans2 = col2->GetTransform();
 
 	float dist = VSize(VSub(trans1->WorldTransform().position, trans2->WorldTransform().position));
 
@@ -135,14 +135,14 @@ bool CollsionManager::CollsionSphereToSphere(ColliderBase* col1, ColliderBase* c
 
 bool CollsionManager::CollsionModelToRay(ColliderBase* col1, ColliderBase* col2, Pushback& resolver, VECTOR3& _hitPos)
 {
-	Transform* modelTransform = col1->GetTransform();
-	Transform* rayStartTrans = col2->GetTransform();
-	Transform* rayEndTrans = dynamic_cast<RayCollider*>(col2)->GetEndTransform();
+	const Transform* modelTransform = col1->GetTransform();
+	const Transform* rayStartTrans = col2->GetTransform();
+	const Transform* rayEndTrans = dynamic_cast<RayCollider*>(col2)->GetEndTransform();
 
-	VECTOR3 startPos = rayStartTrans->WorldTransform().position;
-	VECTOR3 endPos = rayEndTrans->WorldTransform().position;
+	const VECTOR3 startPos = rayStartTrans->WorldTransform().position;
+	const VECTOR3 endPos = rayEndTrans->WorldTransform().position;
 
-	auto result = MV1CollCheck_Line(dynamic_cast<ModelCollider*>(col1)->GetModel(), -1, startPos, endPos);
+	const auto result = MV1CollCheck_Line(dynamic_cast<ModelCollider*>(col1)->GetModel(), -1, startPos, endPos);
 	Physics* p = col2->GetObj()->Component()->GetComponent<Physics>();
 
 	if (result.HitFlag != 0)
@@ -153,7 +153,7 @@ bool CollsionManager::CollsionModelToRay(ColliderBase* col1, ColliderBase* col2,
 		}*/
 		VECTOR3 normal = result.Normal;
 		VECTOR3 rayVec = endPos - startPos;
-		float rayLength = VSize(rayVec);
+		float rayLength = rayVec.Size();
 		float hitDist = VSize(result.HitPosition - startPos);
 		float penetration = rayLength - hitDist;
 		if (penetration < 0.0f) penetration = 0.0f;
@@ -163,13 +163,13 @@ bool CollsionManager::CollsionModelToRay(ColliderBase* col1, ColliderBase* col2,
 
 		if (p != nullptr)
 		{
-			bool grounded = resolver.IsGrounded(0.5f);
+			const bool grounded = resolver.IsGrounded(0.5f);
 			p->SetGround(grounded);   // ← ヒット時のみ ground を更新
 		}
 
 		if (col2->GetCollTag() == CollsionInformation::SHADOW)
 		{
-			VECTOR3 push = startPos - result.HitPosition;
+			const VECTOR3 push = startPos - result.HitPosition;
 			col2->GetBaseObject()->Component()->GetComponent<Shadow>()->ChangeScale(push, result.HitPosition);
 		}
 
@@ -188,8 +188,8 @@ bool CollsionManager::CollsionModelToRay(ColliderBase* col1, ColliderBase* col2,
 
 bool CollsionManager::CollsionSphereToModel(ColliderBase* col1, ColliderBase* col2, Pushback& resolver,VECTOR3& _hitPos)
 {
-	Transform* trans1 = col1->GetTransform();
-	Transform* trans2 = col2->GetTransform();
+	const Transform* trans1 = col1->GetTransform();
+	const Transform* trans2 = col2->GetTransform();
 
 
 
@@ -209,7 +209,7 @@ bool CollsionManager::CollsionSphereToModel(ColliderBase* col1, ColliderBase* co
 	for (int i = 0; i < result.HitNum; i++) {
 		auto& pol = result.Dim[i];
 
-		VECTOR3 centerToPoly = pos - pol.Position[i];
+		const VECTOR3 centerToPoly = pos - pol.Position[i];
 		float penetration = VDot(pol.Normal, centerToPoly);
 
 		resolver.AddPush(pol.Normal, penetration,CollsionInformation::SPHERE, pol.HitPosition);
@@ -227,9 +227,9 @@ bool CollsionManager::CollsionSphereToModel(ColliderBase* col1, ColliderBase* co
 
 bool CollsionManager::CollsionSphereToDount(ColliderBase* col1, ColliderBase* col2, Pushback& resolver,VECTOR3& _hitPos)
 {
-	Transform* trans1 = col1->GetTransform();
-	Transform* trans2 = col2->GetTransform();
-	float outRadius = dynamic_cast<DountCollider*>(col2)->GetOutRadius();
+	const Transform* trans1 = col1->GetTransform();
+	const Transform* trans2 = col2->GetTransform();
+	const float outRadius = dynamic_cast<DountCollider*>(col2)->GetOutRadius();
 
 	float dist = VSize(VSub(trans1->WorldTransform().position, trans2->WorldTransform().position));
 	//内側の円の当たり判定に当たっていないかつ外側の円の当たり判定に当たっているとき
@@ -244,17 +244,17 @@ bool CollsionManager::CollsionSphereToDount(ColliderBase* col1, ColliderBase* co
 
 bool CollsionManager::CollsionAABBToRay(ColliderBase* col1, ColliderBase* col2, Pushback& resolver,VECTOR3& _hitPos)
 {
-	Transform* rayStartTrans = col1->GetTransform();  // レイの始点
-	Transform* rayEndTrans = dynamic_cast<RayCollider*>(col1)->GetEndTransform(); // レイの終点
+	const Transform* rayStartTrans = col1->GetTransform();  // レイの始点
+	const Transform* rayEndTrans = dynamic_cast<RayCollider*>(col1)->GetEndTransform(); // レイの終点
 
 	// レイの開始点と終了点(ワールド座標)
-	VECTOR3 startPos = rayStartTrans->WorldTransform().position;
-	VECTOR3 endPos = rayEndTrans->WorldTransform().position;
+	const VECTOR3 startPos = rayStartTrans->WorldTransform().position;
+	const VECTOR3 endPos = rayEndTrans->WorldTransform().position;
 
 	VECTOR3 dir = endPos - startPos; // 方向ベクトル
 	dir = dir.Normalize();
 
-	AABBCollider::AABBInfo box = dynamic_cast<AABBCollider*>(col2)->GetAABBInfo();
+	const AABBCollider::AABBInfo box = dynamic_cast<AABBCollider*>(col2)->GetAABBInfo();
 
 	float tMin = 0.0f;
 	float tMax = 20000.0f;
@@ -306,25 +306,25 @@ bool CollsionManager::CollsionAABBToRay(ColliderBase* col1, ColliderBase* col2, 
 	return true;
 }
 
-VECTOR3 ClosestPointOnSegment(VECTOR3& p, VECTOR3& a, VECTOR3& b)
+VECTOR3 ClosestPointOnSegment(const VECTOR3& p, const VECTOR3& a, const VECTOR3& b)
 {
-	VECTOR3 ab = b - a;
+	const VECTOR3 ab = b - a;
 	float t = VDot(p - a, ab) / ab.SquareSize();
 
-	// 0～1にクランプ（線分内に収める）
+	//0～1の範囲に収める
 	t = max(0.0f, min(1.0f, t));
 
-	VECTOR3 dist = ab * t;
+	const VECTOR3 dist = ab * t;
 
 	return a + dist;
 }
 
 bool CollsionManager::CollsionSphereToCapsule(ColliderBase* col1, ColliderBase* col2, Pushback& resolver, VECTOR3& _hitPos)
 {
-	CapsuleCollider* capsule = dynamic_cast<CapsuleCollider*>(col2);
-	Transform* sphereTransform = col1->GetTransform();
-	Transform* capsuleStartTransform = col2->GetTransform();
-	Transform* capsuleTransformEnd = capsule->CapselEndTransform();
+	const CapsuleCollider* capsule = dynamic_cast<CapsuleCollider*>(col2);
+	const Transform* sphereTransform = col1->GetTransform();
+	const Transform* capsuleStartTransform = col2->GetTransform();
+	const Transform* capsuleTransformEnd = capsule->CapselEndTransform();
 
 	VECTOR3 startPos = VZero;
 	VECTOR3 endPos = VZero;
@@ -338,16 +338,18 @@ bool CollsionManager::CollsionSphereToCapsule(ColliderBase* col1, ColliderBase* 
 	}
 	
 	
-	float capselRadous = capsule->GetRadius();
-	VECTOR3 spherePosition = sphereTransform->WorldTransform().position;
+	const float capselRadous = capsule->GetRadius();
+	const VECTOR3 spherePosition = sphereTransform->WorldTransform().position;
 
 	//円の中心点からカプセルの中の一番近い点の算出
-	VECTOR3 closest = ClosestPointOnSegment(spherePosition, startPos, endPos);
+	const VECTOR3 closest = ClosestPointOnSegment(spherePosition, startPos, endPos);
 
-	float distSq = VSquareSize(sphereTransform->WorldTransform().position - closest);
-	float r = sphereTransform->WorldTransform().scale.x + capselRadous;
+	const VECTOR3 closeDist = sphereTransform->WorldTransform().position - closest;
 
-	bool result = distSq <= r * r;
+	const float distSqareSize = closeDist.SquareSize();
+	const float r = sphereTransform->WorldTransform().scale.x + capselRadous;
+
+	const bool result = distSqareSize <= r * r;
 
 	return result;
 }

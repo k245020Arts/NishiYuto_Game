@@ -1,6 +1,6 @@
 #include "CameraEditorGui.h"
 #include "../../ImGui/imgui.h"
-#include "../Common/JsonReader.h"
+#include "../Common/JsonReader/JsonReader.h"
 #include "../Enemy/EnemyManager.h"
 #include "../../ImGui/imgui_impl_dxlib.hpp"
 

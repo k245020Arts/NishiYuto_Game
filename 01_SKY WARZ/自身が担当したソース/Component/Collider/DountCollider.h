@@ -22,7 +22,7 @@ public:
 	/// ŠO‘¤‚Ì”¼Œa‚ÌŽæ“¾
 	/// </summary>
 	/// <returns>ŠO‘¤‚Ì”¼Œa‚ÌŽæ“¾</returns>
-	float GetOutRadius() { return outRadius; }
+	float GetOutRadius() const { return outRadius; }
 	/// <summary>
 	/// ŠO‘¤‚Ì”¼Œa‚ð‘«‚·
 	/// </summary>

@@ -1,10 +1,10 @@
 #include "Sound.h"
 #include "../../../Library/myDxLib.h"
 #include "../../../Library/Time.h"
-#include "../Easing.h"
+#include "../Easing/Easing.h"
 
 namespace {
-	static const int ParamMAX = 22050;
+	static constexpr int ParamMAX = 22050;
 	float param[ParamMAX];
 }
 
@@ -14,7 +14,6 @@ Sound::Sound()
 	feedOutTime		= 0.0f;
 	active			= false;
 	firstPlay		= false;
-	loop			= false;
 	volume			= 0;
 	lastPlayintBgm	= 0;
 	soundHandle		= -1;
@@ -47,16 +46,14 @@ void Sound::SoundData(int _soundHandle, int _volume)
 	ChangeVolumeSoundMem(volume,soundHandle);
 }
 
-void Sound::PlaySe()
+void Sound::PlaySe()const
 {
 	PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
-	loop = false;
 }
 
-void Sound::PlayBGM(bool _loop, bool firstPlay)
+void Sound::PlayBGM(bool _loop, bool firstPlay)const
 {
-	loop = _loop;
-	if (!loop) {
+	if (_loop) {
 		PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
 	}
 	else {
@@ -66,12 +63,12 @@ void Sound::PlayBGM(bool _loop, bool firstPlay)
 }
 
 
-void Sound::StopBGM()
+void Sound::StopBGM()const
 {
 	StopSoundMem(soundHandle);
 }
 
-void Sound::StopSE()
+void Sound::StopSE()const
 {
 	StopSoundMem(soundHandle);
 }
@@ -90,12 +87,12 @@ void Sound::BGMFeedOut(float time)
 	active		= true;
 }
 
-void Sound::ChangeVolumeSound(int _volume)
+void Sound::ChangeVolumeSound(int _volume)const
 {
 	ChangeVolumeSoundMem(_volume, soundHandle);
 }
 
-void Sound::BaseChangeVolumeSound()
+void Sound::BaseChangeVolumeSound()const
 {
 	ChangeVolumeSound(volume);
 }

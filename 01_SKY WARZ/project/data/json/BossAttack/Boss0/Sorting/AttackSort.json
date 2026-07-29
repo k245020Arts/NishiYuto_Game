@@ -9,6 +9,15 @@
       "priority": 50,
       "weight": 30
     },
+    "BossNomalAttack10": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossNomalAttack10",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 1
+    },
     "BossNormalAttack1": {
       "addWeight": 0,
       "attackState": true,
@@ -116,6 +125,15 @@
       "maxAction": 1,
       "priority": 50,
       "weight": 30
+    },
+    "BossSpecialSmallAttack2": {
+      "addWeight": 0,
+      "attackState": true,
+      "distance": 0.0,
+      "id": "BossSpecialSmallAttack2",
+      "maxAction": 1,
+      "priority": 1,
+      "weight": 0
     },
     "BossWalk": {
       "addWeight": 0,

@@ -18,7 +18,7 @@
 #include "../../Source/Common/Effect/EffectManager.h"
 #include "../../Source/Stage/Sky.h"
 #include "TitleControl.h"
-#include "../Common/BlurScreen.h"
+#include "../Common/BlurScreen/BlurScreen.h"
 
 TitleScene::TitleScene()
 {

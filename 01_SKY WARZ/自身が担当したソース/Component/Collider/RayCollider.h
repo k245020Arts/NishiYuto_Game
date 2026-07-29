@@ -20,7 +20,7 @@ public:
 	/// <param name="_transform2">ê¸ÇÃññí[</param>
 	void RaySet(const CollsionInfo& _info, const Transform& _transform,const Transform& _endTransform, std::function<void(const CollsionEventData&)> _funk);
 	void RaySet(const CollsionInfo& _info, const Transform& _transform,const Transform& _endTransform, std::function<void(const CollsionEventData&)> _funk,std::string _tag);
-	Transform* GetEndTransform() { return endTransform; }
+	Transform* GetEndTransform() const { return endTransform; }
 
 private:
 	Transform* endTransform;

@@ -4,7 +4,7 @@
 #include "../../Component/Transform/Transform.h"
 #include "../../Component/Color/Color.h"
 #include "../ComponentManager.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include "../MeshRenderer2D/MeshRenderer2D.h"
 
 EnemyDamageUI::EnemyDamageUI()

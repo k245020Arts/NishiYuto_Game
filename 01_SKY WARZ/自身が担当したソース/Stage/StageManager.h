@@ -2,11 +2,11 @@
 #include "../../Library/GameObject.h"
 #include "vector"
 #include "../Component/Transform/Transform.h"
-#include "../Common/JsonReader.h"
+#include "../Common/JsonReader/JsonReader.h"
 
 class Object3D;
 
-static const float WALL_EDGE_POS = 13000.0f;
+static constexpr float WALL_EDGE_POS = 13000.0f;
 
 struct StageModelData
 {

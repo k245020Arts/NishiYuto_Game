@@ -27,7 +27,7 @@ public:
 	void ImguiDraw()override;
 
 	//プレイヤーのモデルとかが反対になってしまっているのを強制的に直す関数
-	void RotationMesh(int _meshNum,float _angle);
+	void RotationMesh(int _meshNum,float _angle)const;
 
 	/// <summary>
 	/// ローカルの座標を参照して描画をさせたいときに使う

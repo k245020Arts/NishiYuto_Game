@@ -42,17 +42,17 @@ public:
 	/// 現在のキャラのオブジェクトのポインタの取得
 	/// </summary>
 	/// <returns>現在のキャラのオブジェクト</returns>
-	BaseObject* GetChara() { return chara; }
+	BaseObject* GetChara()const { return chara; }
 	/// <summary>
 	/// 現在のキャラの剣のモデル
 	/// </summary>
 	/// <returns></returns>
-	int WeaponModel() { return weaponHandle; }
+	int WeaponModel()const { return weaponHandle; }
 	/// <summary>
 	/// 現在のキャラのオブジェクトのモデルデータの取得
 	/// </summary>
 	/// <returns></returns>
-	int CharaModel() { return modelHandle; }
+	int CharaModel() const{ return modelHandle; }
 	/// <summary>
 	/// 剣の行列を取得
 	/// </summary>
@@ -64,7 +64,7 @@ public:
 	/// <param name="_model"></param>
 	void SetImage(int _model);
 
-	MATRIX* GetMatrixPtr() { return &matrix; }
+	const MATRIX* GetMatrixPtr()const { return &matrix; }
 
 private:
 	BaseObject* chara;

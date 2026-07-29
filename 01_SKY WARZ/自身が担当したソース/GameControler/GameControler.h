@@ -49,7 +49,7 @@ public:
 	/// State‚Ìí—Ş‚Ìæ“¾
 	/// </summary>
 	/// <returns>Œ»İ‚Ìstate</returns>
-	GameState GetStateNumber();
+	GameState GetStateNumber()const;
 	/// <summary>
 	/// ƒQ[ƒ€State‚Ì•ÏX
 	/// </summary>

@@ -134,7 +134,7 @@ void Hierachy::DrawHierarchy(BaseObject* _obj)
 	}
 }
 
-void Hierachy::InspectorDraw()
+void Hierachy::InspectorDraw()const
 {
 	ImGui::Begin("inspector");
 	//なにも選ばれてなかったら描画をしない。

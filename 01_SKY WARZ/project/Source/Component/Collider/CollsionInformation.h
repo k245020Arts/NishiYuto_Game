@@ -128,7 +128,7 @@ public:
 	void AddPush(const VECTOR3& _normal, float _penetration, CollsionInformation::Shape _shape, const VECTOR3& _targetPos);
 
 	// 押し返しベクトルを計算して返す
-	VECTOR3 ResultPushback(float  _maxLength = 5.0f,VECTOR3 _pos = VZero);
+	VECTOR3 ResultPushback(float  _maxLength = 5.0f, const VECTOR3& _pos = VZero);
 
 	/// <summary>
 	/// 押し返しを適用
@@ -139,7 +139,7 @@ public:
 	/// <param name="maxLength">最大の長さ</param>
 	void Apply(Transform* _transform, Physics* _physics, bool _affectVelocity = true, float _maxLength = 5.0f);
 	bool IsGrounded(float _minYNormal = 0.6f);
-	std::vector<PushInfo>& GetPushInfo() { return pushes; }
+	const std::vector<PushInfo>& GetPushInfo()const { return pushes; }
 private:
 	std::vector<PushInfo> pushes;
 };
@@ -152,7 +152,7 @@ struct CollsionEventData
 	BaseObject* targetObject;				//相手のオブジェクト
 	ColliderBase* targetColliderBase;			//相手のオブジェクト
 
-	std::vector<PushInfo> pushes;			//当たり判定の押し返し情報
+	const std::vector<PushInfo> pushes;			//当たり判定の押し返し情報
 	CollsionInformation::Tag myTag;			//自分の当たり判定のタグ
 	CollsionInformation::Shape myShape;		//自分の当たり判定の形
 	Transform* myTransform;					//自分の当たったトランスフォーム
@@ -164,12 +164,16 @@ struct CollsionEventData
 
 
 	
-	CollsionEventData() {
+	CollsionEventData() : CollsionEventData(std::vector<PushInfo>{})
+	{
+	}
+
+	CollsionEventData(const std::vector<PushInfo>& _pushes) : pushes(_pushes)
+	{
 		targetTransform = nullptr;
 		targetTag = CollsionInformation::TAG_MAX;
 		targetShape = CollsionInformation::SHAPE_MAX;
 		targetColliderBase = nullptr;
-		pushes.clear();
 		myTag = CollsionInformation::TAG_MAX;
 		myShape = CollsionInformation::SHAPE_MAX;
 		myTransform = nullptr;

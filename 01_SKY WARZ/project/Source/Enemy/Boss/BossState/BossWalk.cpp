@@ -1,7 +1,7 @@
 #include "BossWalk.h"
 #include "../../../State/StateManager.h"
 #include "../Boss.h"
-#include "../../../Common/Random.h"
+#include "../../../Common/Random/Random.h"
 
 BossWalk::BossWalk()
 {

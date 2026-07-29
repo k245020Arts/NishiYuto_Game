@@ -2,7 +2,7 @@
 #include "../camera.h"
 #include "../../Common/InputManager/PadInput.h"
 #include "../../Common/InputManager/InputManager.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include <algorithm>
 #include "../../GameControler/GameControler.h"
 
@@ -136,7 +136,7 @@ void FreeCamera::StickMove()
 	}
 }
 
-float FreeCamera::AnglePI(float _current, float _target)
+float FreeCamera::AnglePI(float _current, float _target)const
 {
 	float diff = _target - _current;
 

@@ -2,7 +2,7 @@
 #include "../Component/Object/Object3D.h"
 #include "../Component/Transform/transform.h"
 #include "../Component/MeshRenderer/MeshRenderer.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "CharaWeapon.h"
 #include "../Component/ComponentManager.h"
 
@@ -57,12 +57,12 @@ void WeaponManager::CreateEnemyWeapon()
 	//wea->CreateSwordEffect();
 }
 
-void WeaponManager::CreateTrailPlayer(VECTOR3 _nPos, VECTOR3 _fPos, float _r, float _g, float _b, float _a, int index, float _time)
+void WeaponManager::CreateTrailPlayer(const VECTOR3& _nPos, const VECTOR3& _fPos, float _r, float _g, float _b, float _a, int index, float _time)
 {
 	pWeapon->CreateSwordEffect(_nPos,_fPos,_r,_g,_b,_a,index,_time);
 }
 
-void WeaponManager::CreateTrailEnemy(VECTOR3 _nPos, VECTOR3 _fPos, float _r, float _g, float _b, float _a, int index, float _time)
+void WeaponManager::CreateTrailEnemy(const VECTOR3& _nPos, const VECTOR3& _fPos, float _r, float _g, float _b, float _a, int index, float _time)
 {
 	eWeapon->CreateSwordEffect(_nPos, _fPos, _r, _g, _b, _a, index, _time);
 }

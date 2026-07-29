@@ -95,7 +95,7 @@ void Shaker::AddShakePower(const VECTOR3& _power)
 	power += _power;
 }
 
-VECTOR3 Shaker::GetShake(const VECTOR3& _shake)
+VECTOR3 Shaker::GetShake(const VECTOR3& _shake)const
 {
 	return  _shake * (GetRand(66535) - 66535 / 2.0f) / (65535 / 2.0f);
 }

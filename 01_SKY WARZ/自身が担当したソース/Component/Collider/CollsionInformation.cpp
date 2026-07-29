@@ -82,7 +82,7 @@ void Pushback::AddPush(const VECTOR3& _normal, float  _penetration, CollsionInfo
     }
 }
 
-VECTOR3 Pushback::ResultPushback(float  _maxLength, VECTOR3 _pos) {
+VECTOR3 Pushback::ResultPushback(float  _maxLength, const VECTOR3& _pos) {
     if (pushes.empty()) {
         return VZero;
     }

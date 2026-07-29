@@ -1,7 +1,7 @@
 {
   "BossNormalAttack9": {
     "animID": "2000_ATTACK9",
-    "animNum": 12,
+    "animNum": 11,
     "armThrow": true,
     "attackBeforeAnimID": "",
     "attackCollTransform": {

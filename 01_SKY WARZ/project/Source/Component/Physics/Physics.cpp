@@ -6,8 +6,8 @@
 namespace {
 	const VECTOR3 MIN_FRICTION = VECTOR3(5.0f, 5.0f, 5.0f);
 	
-	const int PHYSICS_SUBSTEPS = 6;  // 1フレームを何分割するか
-	const int GROUND_MISS_THRESHOLD = 1;
+	constexpr int PHYSICS_SUBSTEPS = 6;  // 1フレームを何分割するか
+	constexpr int GROUND_MISS_THRESHOLD = 1;
 }
 
 Physics::Physics()
@@ -46,7 +46,7 @@ void Physics::Update()
 	}
 	*lastTransform = *currentTransform;
 
-	float dt = obj->GetObjectTimeRate();
+	const float deltaTime = obj->GetObjectTimeRate();
 
 	// 地面にいない場合のみ重力を加算
 	if (ground)
@@ -67,15 +67,15 @@ void Physics::Update()
 	{
 		groundMissCount = 0;
 		gravity = baseGravity;
-		velocity += gravity * dt;
+		velocity += gravity * deltaTime;
 	}
 	
 	// 摩擦減衰
-	float resistance = velocity.Size();
+	const float resistance = velocity.Size();
 	VECTOR3 velo = velocity;
 	//velo.y -= 5.0f * dt;
 
-	float newSpeed = max(resistance - firction.Size() * dt, 0.0f);
+	float newSpeed = max(resistance - firction.Size() * deltaTime, 0.0f);
 	velocity = velocity.Normalize() * newSpeed;
 	velocity.y = velo.y;
 
@@ -84,7 +84,7 @@ void Physics::Update()
 		velocity.y = 0.0f;
 
 	// 位置更新
-	currentTransform->position += velocity * dt;
+	currentTransform->position += velocity * deltaTime;
 }
 
 void Physics::Draw()

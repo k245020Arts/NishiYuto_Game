@@ -47,13 +47,14 @@ namespace Effect_ID {
 		THROW_EFFECT10,
 
 		COOPERATEATTACK,
+		ENEMY_SPOWN,
 
 		EFFECT_MAX
 	};
 
 	void DeleteEffectID();
 
-	std::string GetEffectID(EFFECT_ID _type);
+	const std::string GetEffectID(EFFECT_ID _type);
 
 	void SetEffectID(std::string _effect, EFFECT_ID _type);
 

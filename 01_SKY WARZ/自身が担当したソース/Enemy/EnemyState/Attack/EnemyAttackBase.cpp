@@ -7,7 +7,7 @@
 #include "../../../Component/Collider/sphereCollider.h"
 #include "../../EnemyBase.h"
 #include "../../Boss/Boss.h"
-#include "../../../Common/ResourceLoader.h"
+#include "../../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../EnemyState/EnemyStateManager.h"
 #include "../../../Common/Effect/EffectManager.h"
 #include "../../../Common/Sound/SoundManager.h"
@@ -16,7 +16,7 @@
 #include "../../TrashEnemy/TrashEnemy.h"
 #include "../../../Common/Debug/DebugLogText.h"
 #include "../../../State/StateManager.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../Boss/BossState/BossStatus.h"
 #include "../../../Component/Physics/Physics.h"
 #include "../../../Component/Collider/DountCollider.h"
@@ -121,7 +121,7 @@ void EnemyAttackBase::AttackSound()
 	}
 }
 
-void EnemyAttackBase::AttackFlash(ID::IDType _modelId, int _modelFrame, std::string _voice)
+void EnemyAttackBase::AttackFlash(ID::IDType _modelId, int _modelFrame, const std::string& _voice)
 {
 	EnemyBase* e = GetBase<EnemyBase>();
 	float time = e->enemyBaseComponent.anim->EventStartTime(attackParam.animID);
@@ -141,7 +141,7 @@ void EnemyAttackBase::AttackFlash(ID::IDType _modelId, int _modelFrame, std::str
 	}
 }
 
-void EnemyAttackBase::AttackBeforeFrash(ID::IDType _modelId, int _modelFrame, std::string _voice)
+void EnemyAttackBase::AttackBeforeFrash(ID::IDType _modelId, int _modelFrame, const std::string& _voice)
 {
 	EnemyBase* e = GetBase<EnemyBase>();
 	if (sound) {
@@ -231,12 +231,12 @@ void EnemyAttackBase::LoadAttackParam()
 	}
 }
 
-void EnemyAttackBase::SetAttackParam(BossAttackParam _param)
+void EnemyAttackBase::SetAttackParam(const BossAttackParam& _param)
 {
 	attackParam = _param;
 }
 
-bool EnemyAttackBase::CurrentAttackAnim()
+bool EnemyAttackBase::CurrentAttackAnim()const
 {
 	Boss* boss = GetBase<Boss>();
 	//攻撃のフレームならTrueを返す(前隙、後隙はfalse)

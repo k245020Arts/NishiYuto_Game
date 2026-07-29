@@ -19,18 +19,18 @@ public:
 	/// アニメーションが再生中かどうか
 	/// </summary>
 	/// <returns></returns>
-	bool IsPlaying() { return playing; }
+	bool IsPlaying()const { return playing; }
 
 	/// <summary>
 	/// 今現在のアニメーションカウンター
 	/// </summary>
 	/// <returns>今現在のアニメーションカウンタ</returns>
-	float GetAnimCounter() { return animCounter; }
+	float GetAnimCounter()const { return animCounter; }
 	/// <summary>
 	/// 今現在写真を何分割しているかどうか
 	/// </summary>
 	/// <returns> 今現在写真を何分割しているかどうか</returns>
-	int GetGraphNum() { return graphNum; }
+	int GetGraphNum()const { return graphNum; }
 
 	/// <summary>
 	/// アニメーションを終了

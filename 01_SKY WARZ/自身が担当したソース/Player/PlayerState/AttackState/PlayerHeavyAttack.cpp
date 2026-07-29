@@ -6,7 +6,7 @@
 #include "../../Player.h"
 #include "../../../Component/Physics/Physics.h"
 #include "../../../Camera/Camera.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Shaker/Shaker.h"
 #include "../../../Common/Function.h"
 #include "../../../Common/InputManager/InputManager.h"
@@ -72,5 +72,5 @@ void PlayerHeavyAttack::Finish()
 	p->playerCom.anim->SetPlaySpeed(1.0f);
 	p->playerCom.anim->AnimEventReset();
 	p->playerCom.camera->ChangeStateCamera(StateID::FREE_CAMERA_S);
-
+	p->attackLevel = 0;
 }

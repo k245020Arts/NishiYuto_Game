@@ -6,7 +6,21 @@ MATRIX Transform::GetPositionMatrix()const
 	return MGetTranslate(position);
 }
 
-MATRIX Transform::GetRotationMatrix()
+MATRIX Transform::GetRotationMatrix()const
+{
+	MATRIX mry = MGetRotY(rotation.y);
+	MATRIX mrx = MGetRotX(rotation.x);
+	MATRIX mrz = MGetRotZ(rotation.z);
+
+	return mrz * mrx * mry;
+}
+
+MATRIX Transform::GetScaleMatrix()const
+{
+	return MGetScale(scale);
+}
+
+MATRIX Transform::UpdateRotationMatrix()
 {
 	MATRIX mry = MGetRotY(rotation.y);
 	MATRIX mrx = MGetRotX(rotation.x);
@@ -15,12 +29,7 @@ MATRIX Transform::GetRotationMatrix()
 	return rotMatrix;
 }
 
-MATRIX Transform::GetScaleMatrix()const
-{
-	return MGetScale(scale);
-}
-
-MATRIX Transform::GetMatrix()
+MATRIX Transform::GetMatrix()const
 {
 	return  GetScaleMatrix() * GetRotationMatrix() * GetPositionMatrix();
 }
@@ -37,7 +46,7 @@ void Transform::SetParent(Transform* _pare)
 	}
 }
 
-Transform Transform::WorldTransform()
+Transform Transform::WorldTransform()const
 {
 	VECTOR3 worldPos = position;
 	VECTOR3 worldRot = rotation;
@@ -117,7 +126,7 @@ void Transform::RemoveChild(Transform* _child)
 	}
 }
 
-void Transform::RemoveParent(Transform* transform)
+void Transform::RemoveParent(const Transform* transform)
 {
 	if (parent == nullptr) { //êeÇ™nullptrÇ»ÇÁï‘Ç∑
 		return;

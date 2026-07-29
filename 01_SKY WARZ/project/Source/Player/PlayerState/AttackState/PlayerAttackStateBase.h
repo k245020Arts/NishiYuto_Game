@@ -1,6 +1,6 @@
 #pragma once
 #include "../PlayerStateBase.h"
-#include "../../../Common/JsonReader.h"
+#include "../../../Common/JsonReader/JsonReader.h"
 
 class PlayerAttackStateBase : public PlayerStateBase
 {
@@ -27,7 +27,7 @@ public:
 	/// 現在攻撃中かを取得
 	/// </summary>
 	/// <returns></returns>
-	bool IsAttack();
+	bool IsAttack()const;
 
 	/// <summary>
 	/// 攻撃の当たり判定の生成をある程度統一化させた関数
@@ -37,7 +37,7 @@ public:
 	/// 当たり判定が直前に生成されたかを取得
 	/// </summary>
 	/// <returns>攻撃が生成されていたらtrue</returns>
-	bool GetCollsionCreate() { return collsionCreate; }
+	bool GetCollsionCreate()const { return collsionCreate; }
 
 	/// <summary>
 	/// 必殺技を発動
@@ -85,6 +85,7 @@ public:
 		VECTOR3 attackMove;									// 攻撃時移動量
 
 		Transform collTrans;								// 攻撃判定Transform
+		float attackSpeedChangeRate;
 
 		std::vector<ChargeAttackLevelData> chargeLevels;	// チャージ攻撃レベルデータ一覧
 
@@ -111,6 +112,7 @@ public:
 			, noAttackRunTimer(0.0f)
 			, attackMove(VZero)
 			, collTrans()
+			, attackSpeedChangeRate(0.0f)
 			, chargeLevels()
 		{
 		}
@@ -131,6 +133,7 @@ public:
 			float _noAttackRunTimer,
 			VECTOR3 _attackMove,
 			const Transform& collTrans,
+			float _attackSpeedChangeRate,
 			const std::vector<ChargeAttackLevelData>& chargeLevels = {}
 		)
 			: state(state)
@@ -147,6 +150,7 @@ public:
 			, noAttackRunTimer(_noAttackRunTimer)
 			, attackMove(_attackMove)
 			, collTrans(collTrans)
+			, attackSpeedChangeRate(_attackSpeedChangeRate)
 			, chargeLevels(chargeLevels)
 		{
 		}
@@ -186,6 +190,8 @@ protected:
 	bool rockOn;
 
 	int attackCount;
+	float heavyAttackHoldFrame;
+	bool chargeAttack;
 
 	float attackAgainStartCounter;
 	bool speedChange;
@@ -236,6 +242,7 @@ inline void to_json(nlohmann::json& j, const PlayerAttackStateBase::PlayerAttack
 		{"noAttackRunTimer",           p.noAttackRunTimer},
 		{"AttackMove",                 p.attackMove},
 		{"collTrans",                  p.collTrans},
+		{"attackSpeedChangeRate",      p.attackSpeedChangeRate},
 		{"chargeLevels",               p.chargeLevels},
 	};
 }
@@ -262,6 +269,7 @@ inline void from_json(const nlohmann::json& j, PlayerAttackStateBase::PlayerAtta
 		j.at("AttackMove").get_to(p.attackMove);
 	}
 	j.at("collTrans").get_to(p.collTrans);
+	j.at("attackSpeedChangeRate").get_to(p.attackSpeedChangeRate);
 
 	// チャージ非対応のStateはキーなしでもOK
 	if (j.contains("chargeLevels")) {

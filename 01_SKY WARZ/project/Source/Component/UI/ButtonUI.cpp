@@ -3,6 +3,7 @@
 #include "../../Common/InputManager/InputManager.h"
 #include "../../Component/Transform/Transform.h"
 #include "../ComponentManager.h"
+#include "../Color/Color.h"
 
 namespace {
 	int buttonNum[ButtonUI::ButtonType::BUTTON_MAX] = {
@@ -34,10 +35,7 @@ ButtonUI::ButtonUI()
 
 ButtonUI::~ButtonUI()
 {
-	if (backImage <= 0) {
-		DeleteGraph(backImage);
-		backImage = -1;
-	}
+
 }
 
 void ButtonUI::Update()
@@ -67,16 +65,16 @@ void ButtonUI::Update()
 	}
 	
 	if (gradeMode) {
-		r += Time::DeltaTimeRate() * 255.0f;
-		g += Time::DeltaTimeRate() * 255.0f;
-		b += Time::DeltaTimeRate() * 255.0f;
-		if (r >= 255.0f) {
+		r += Time::DeltaTimeRate() * (float)OPAQUE_COLOR;
+		g += Time::DeltaTimeRate() * (float)OPAQUE_COLOR;
+		b += Time::DeltaTimeRate() * (float)OPAQUE_COLOR;
+		if (r >= (float)OPAQUE_COLOR) {
 			r = 0.0f;
 		}
-		if (g >= 255.0f) {
+		if (g >= (float)OPAQUE_COLOR) {
 			g = 0.0f;
 		}
-		if (b >= 255.0f) {
+		if (b >= (float)OPAQUE_COLOR) {
 			b = 0.0f;
 		}
 	}
@@ -84,7 +82,7 @@ void ButtonUI::Update()
 
 void ButtonUI::Draw()
 {
-	Transform* transform = obj->GetTransform();
+	const Transform* transform = obj->GetTransform();
 	//分かりやすいように押しているときや、ボタンがアクティブじゃなかったら灰色にする
 	if (push || !buttonActive) {
 		SetDrawBright(50, 50, 50);
@@ -124,6 +122,6 @@ void ButtonUI::Start(ButtonType _buttonType, int _handle, Color::Rgb _rgb)
 	type = _buttonType;
 	obj->GetTransform()->scale = 0.8f;
 	buttonActive = true;
-	backImage = LoadGraph("data/image/UICicle.png");
+	backImage = ResourceLoad::LoadImageGraph(ResourceLoad::IMAGE_PATH + "UICicle",ID::UI_BACK_GRAPH);
 	rgbColor = _rgb;
 }

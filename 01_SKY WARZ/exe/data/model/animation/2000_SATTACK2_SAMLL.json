@@ -1,0 +1,11 @@
+{
+  "Animator": {
+    "eventFinishTime": 55.0,
+    "eventStartTime": 40.0,
+    "fileName": "2000_SATTACK2_SAMLL",
+    "id": "2000_SATTACK2_SAMLL",
+    "loop": false,
+    "maxFrame": 77.0,
+    "playSpeed": 1.5
+  }
+}

@@ -32,11 +32,11 @@ public:
 	/// <param name="_pattern">shakeの種類</param>
 	/// <param name="_stop">完全にストップするか</param>
 	/// <param name="_second">秒数(-1を指定すると下のshakeStop関数が呼ばれるまでずっと振動)</param>
-	void CameraShake(VECTOR3 _power, Shaker::ShakePattern _pattern, bool _stop, float _second);
+	void CameraShake(const VECTOR3& _power, Shaker::ShakePattern _pattern, bool _stop, float _second)const;
 	/// <summary>
 	/// カメラ振動の解除
 	/// </summary>
-	void CameraShakeStop();
+	void CameraShakeStop()const ;
 	/// <summary>
 	/// カメラトランスフォームの取得
 	/// </summary>

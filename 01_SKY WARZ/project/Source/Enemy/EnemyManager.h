@@ -84,25 +84,25 @@ public:
 	/// 近くの敵のBaseObjectを取得
 	/// </summary>
 	/// <returns></returns>
-	EnemyBase* PlayerNearEnemy();
+	EnemyBase* PlayerNearEnemy()const;
 	/// <summary>
 	/// カメラの近くにいたら敵を半透明にさせる関数
 	/// </summary>
 	/// <param name="camPos">カメラのポジション</param>
-	void NearEnemyAlpha(const VECTOR3& camPos);
+	void NearEnemyAlpha(const VECTOR3& camPos)const;
 	/// <summary>
 	/// 最も近い敵のTransformを取得
 	/// </summary>
 	/// <param name="_pos">対象となる座標</param>
 	/// <returns>近い敵のTransform</returns>
-	Transform NearEnemyPos(const VECTOR3& _pos);
+	Transform NearEnemyPos(const VECTOR3& _pos)const;
 	/// <summary>
 	/// 最も近い敵のTransformを取得
 	/// </summary>
 	/// <param name="_pos">対象となる座標</param>
 	/// <param name="_angle">視野の角度</param>
 	/// <returns>Transform</returns>
-	Transform NearFovEnemyPos(Transform& _transform,float _angle);
+	Transform NearFovEnemyPos(const Transform& _transform,float _angle)const;
 	/// <summary>
 	/// カメラロックオンの開始（一番近くの敵を参照）
 	/// </summary>
@@ -121,12 +121,12 @@ public:
 	/// <param name="camera">カメラのポインタ</param>
 	/// <param name="_targetTransform">攻撃してきた敵のTransform</param>
 	/// <returns>カメラの回転の方向</returns>
-	EnemyAttackChangeCameraDirection BossAttackCamera(Camera* camera,const Transform& _targetTransform);
+	EnemyAttackChangeCameraDirection BossAttackCamera(Camera* camera,const Transform& _targetTransform)const;
 	/// <summary>
 	/// Enemyすべてがカメラが入っているかどうかを調べる
 	/// </summary>
 	/// <returns></returns>
-	bool CameraInEnemy();
+	bool CameraInEnemy()const;
 	/// <summary>
 	/// 敵が必殺技に当てられる状態になったらこの関数を呼ぶ
 	/// </summary>
@@ -142,11 +142,11 @@ public:
 	/// <param name="_pTransform">プレイヤーのTransform</param>
 	/// <param name="_angle">視野角度</param>
 	/// <returns>敵の人数</returns>
-	int PlayerFovEnemyNum(Transform* _pTransform, float _angle);
+	int PlayerFovEnemyNum(const Transform* _pTransform, float _angle)const;
 
-	bool ObjectIsEnemy(BaseObject* _base);
+	bool ObjectIsEnemy(BaseObject* _base)const;
 
-	int GetEnemySize() { return (int)enemy.size(); }
+	int GetEnemySize()const { return (int)enemy.size(); }
 
 private:
 	

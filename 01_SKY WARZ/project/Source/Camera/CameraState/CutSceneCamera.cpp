@@ -1,5 +1,5 @@
 #include "CutSceneCamera.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include "../../Component/Transform/Transform.h"
 #include "../cameraInformation.h"
 #include "../../Component/Shaker/Shaker.h"
@@ -62,7 +62,7 @@ void CutSceneCamera::Update()
     Camera* camera = GetBase<Camera>();
     if (camera->cutSceneData.empty()) return;
 
-    CutSceneSpece::CutScene& cut = camera->cutSceneData[camera->cutSceneIndex];
+    CutSceneSpece::CutScene& cut = camera->cutSceneData.at(camera->cutSceneIndex);
 
     // 対象切り替え判定 
     bool isTransition = (cut.followPosName != beforePosName);
@@ -72,7 +72,7 @@ void CutSceneCamera::Update()
     time -= Time::DeltaTimeRate();
     float t = std::clamp(time / cut.duration, 0.0f, 1.0f);
 
-    Transform* posBase = PlayerEnemyWorldToPos(cut.followPosName);
+    const Transform* posBase = PlayerEnemyWorldToPos(cut.followPosName);
 
     if (posBase != nullptr)
     {
@@ -131,7 +131,7 @@ void CutSceneCamera::Update()
         baseRot = enemyLastRot;
     }
 
-    VECTOR3 endPos = basePos + cut.camera.endPos * baseRot;
+    const VECTOR3 endPos = basePos + cut.camera.endPos * baseRot;
 
     VECTOR3 movePos = VZero;
 
@@ -166,10 +166,10 @@ void CutSceneCamera::Update()
     else
     {
         // 追従の時はoffsetのみ補間 
-        VECTOR3 currentPos =
+        const VECTOR3 currentPos =
             camera->cameraComponent.cameraTransform->position;
 
-        VECTOR3 currentOffset = currentPos - basePos;
+        const VECTOR3 currentOffset = currentPos - basePos;
         VECTOR3 targetOffset = cut.camera.endPos * baseRot;
 
         VECTOR3 offset = VZero;
@@ -197,7 +197,7 @@ void CutSceneCamera::Update()
     camera->cameraComponent.cameraTransform->position += camera->cameraComponent.shaker->GetShakePower();
    
     // ターゲット
-    Transform* targetBase = PlayerEnemyWorldToPos(cut.followPosTarget);
+    const Transform* targetBase = PlayerEnemyWorldToPos(cut.followPosTarget);
 
     if (targetBase != nullptr)
     {
@@ -256,7 +256,7 @@ void CutSceneCamera::Update()
         targetBaseRot = enemyLastTargetRot;
     }
 
-    VECTOR3 endTarget = targetBasePos + cut.camera.target * targetBaseRot;
+    const VECTOR3 endTarget = targetBasePos + cut.camera.target * targetBaseRot;
     VECTOR3 moveTarget = VZero;
 
   
@@ -290,10 +290,10 @@ void CutSceneCamera::Update()
     else
     {
         // 追従の時はoffsetのみ補間 
-        VECTOR3 currentTarget = camera->target;
+        const VECTOR3 currentTarget = camera->target;
 
-        VECTOR3 currentOffset = currentTarget - targetBasePos;
-        VECTOR3 targetOffset = cut.camera.target * targetBaseRot;
+        const VECTOR3 currentOffset = currentTarget - targetBasePos;
+        const VECTOR3 targetOffset = cut.camera.target * targetBaseRot;
 
         VECTOR3 offset = VZero;
 
@@ -400,13 +400,13 @@ void CutSceneCamera::Start()
     beforePosName = "";
     beforeTargetName = "";
 
-    Transform* startTransform = PlayerEnemyWorldToPos(camera->cutSceneData[camera->cutSceneIndex].firstPosBaseName);
+    const Transform* startTransform = PlayerEnemyWorldToPos(camera->cutSceneData[camera->cutSceneIndex].firstPosBaseName);
     //最初に指定するTransformがあったら
     if (startTransform != nullptr) {
         firstPos = camera->cutSceneData[camera->cutSceneIndex].camera.startPos * startTransform->GetRotationMatrix() + startTransform->position;;
     }
    else {
-        Transform* st = PlayerEnemyWorldToPos(camera->cutSceneData[camera->cutSceneIndex].followPosName);
+       const Transform* st = PlayerEnemyWorldToPos(camera->cutSceneData[camera->cutSceneIndex].followPosName);
        if (st != nullptr) {
             firstPos = camera->cutSceneData[camera->cutSceneIndex].camera.startPos * st->GetRotationMatrix() + st->position;;
        }
@@ -431,9 +431,9 @@ void CutSceneCamera::Finish()
     
 }
 
-Transform* CutSceneCamera::PlayerEnemyWorldToPos(std::string _name)
+const Transform* CutSceneCamera::PlayerEnemyWorldToPos(const std::string& _name)const
 {
-    Camera* camera = GetBase<Camera>();
+    const Camera* camera = GetBase<Camera>();
     
     //プレイヤー関連の名前がついていたらプレイヤーのTransformを取得
     if (_name == PLAYER_POS_NAME || _name == PLAYER_FIRST_POS_NAME)
@@ -448,7 +448,7 @@ Transform* CutSceneCamera::PlayerEnemyWorldToPos(std::string _name)
 
 void CutSceneCamera::StateImguiDraw()
 {
-    Camera* camera = GetBase<Camera>();
+    const Camera* camera = GetBase<Camera>();
     ImGui::Text("CutScene Index : %d", camera->cutSceneIndex);
 }
 //#include "CutSceneCamera.h"

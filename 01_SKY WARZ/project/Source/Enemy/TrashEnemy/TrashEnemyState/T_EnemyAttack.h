@@ -18,6 +18,7 @@ protected:
 	//エフェクトなどの情報が入ってる
 	void AttackInformation(TrashEnemy* _e);
 private:
+	void RunMove(TrashEnemy* _enemy);
 	float counter;
 
 };

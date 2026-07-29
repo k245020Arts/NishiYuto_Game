@@ -10,11 +10,10 @@ class Player;
 class CharaWeapon;
 class BossStatus;
 class BossRockManager;
-//class TrashEnemyManager;
-//class PlayerAttack3;
 
 class PlayerSpecialAttack;
 class BossAttackDataSerializer;
+class TrashEnemyManager;
 
 class Boss : public EnemyBase
 {
@@ -63,6 +62,7 @@ public:
 		std::string	modelName;
 		float hp;
 		float defense;
+		float attackCoolTime;
 
 		BossParam(){
 			bossID = 0;
@@ -70,6 +70,7 @@ public:
 			modelName = "";
 			hp = 0.0f;
 			defense = 0.0f;
+			attackCoolTime = 0.0f;
 		}
 	};
 	
@@ -146,7 +147,7 @@ public:
 	/// 攻撃のクールタイムの取得
 	/// </summary>
 	/// <returns>攻撃のクールタイム</returns>
-	float GetAttackCoolTime();
+	//float GetAttackCoolTime();
 
 	/// <summary>
 	/// ボスの攻撃をさせたいときに呼ぶ
@@ -173,7 +174,7 @@ public:
 	void BossDamageCollsionEvent(const CollsionEventData& _data);
 
 private:
-	void PlayerSpecialAttackHit(const EnemyInformation::EnemyReaction& _e, std::shared_ptr<PlayerSpecialAttack> _ps,VECTOR3 _randomPos,float _randomAngle);
+	void PlayerSpecialAttackHit(const EnemyInformation::EnemyReaction& _e, const std::shared_ptr<PlayerSpecialAttack> _ps,const VECTOR3& _randomPos,float _randomAngle);
 	Boss* boss;
 	BossStatus* bs;
 
@@ -193,8 +194,8 @@ private:
 	HP_RATE hpRate;
 	bool roaf;
 
-	//TrashEnemyManager* trashEnemy;
-	float coolTime;
+	TrashEnemyManager* trashEnemy;
+	float attackCoolTime;
 
 	float attackNum;
 	Player* player;
@@ -218,7 +219,9 @@ private:
 	std::function<void(const CollsionEventData&)> attackFunk;
 	std::function<void(const CollsionEventData&)> justAvoidAttackFunk;
 
-	VECTOR3 GetDamageDrawPos();
+	VECTOR3 GetDamageDrawPos()const;
+
+	bool isComboAttack;
 };
 
 // to_json
@@ -242,4 +245,5 @@ inline void from_json(const JSON& j, Boss::BossParam& p)
 	j.at("modelName").get_to(p.modelName);
 	j.at("hp").get_to(p.hp);
 	j.at("defense").get_to(p.defense);
+	j.at("attackCoolTime").get_to(p.attackCoolTime);
 }

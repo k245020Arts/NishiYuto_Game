@@ -3,7 +3,7 @@
 #include "../Component/Object/Object2D.h"
 #include "../Component/MeshRenderer2D/MeshRenderer2D.h"
 #include "../Component/ComponentManager.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Common/Sound/SoundManager.h"
 #include "../Camera/Camera.h"
 #include "../Wave/Wave.h"
@@ -15,7 +15,7 @@
 #include "../GuideWindow/GuideWindow.h"
 
 namespace {
-	const int GAME_STATE_MAX = 5;
+	constexpr int GAME_STATE_MAX = 5;
 
 	const std::string stateName[GAME_STATE_MAX]{
 		{"BEFORE"},
@@ -34,6 +34,7 @@ GameControler::GameControler()
 	gamePlayNum++;
 	SetDrawOrder(-500);
 	pause = FindGameObject<PauseScreen>();
+	camera = nullptr;
 	//winImage = Load::LoadImageGraph(Load::IMAGE_PATH + "Win", ID::WIN);
 	//loseImage = Load::LoadImageGraph(Load::IMAGE_PATH + "Lose", ID::LOSE);
 
@@ -57,6 +58,8 @@ GameControler::GameControler()
 	changeState = true;
 
 	guide = new GuideWindow();
+
+	keepGameState = GameState::NONE;
 	//guide->SetDrawOrder(-400000);
 }
 
@@ -316,7 +319,7 @@ void GameControler::ChangeState(GameState _name)
 	}
 }
 
-GameControler::GameState GameControler::GetStateNumber()
+GameControler::GameState GameControler::GetStateNumber()const
 {
 	return gameState;
 }

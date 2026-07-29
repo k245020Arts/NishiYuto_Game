@@ -1,5 +1,5 @@
 #include "PlayerSpecialAttackCamera.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include "../../Component/Transform/Transform.h"
 #include "../CameraInformation.h"
 #include "./../../Component/Shaker/Shaker.h"

@@ -8,7 +8,7 @@ public:
 	VECTOR3 position;
 	VECTOR3 rotation;
 	VECTOR3 scale;
-	VECTOR3 Forward() { return VECTOR3(0, 0, 1) * rotMatrix; }
+	const VECTOR3 Forward()const { return VECTOR3(0, 0, 1) * GetRotationMatrix(); }
 	Transform() {
 		position = VZero;
 		rotation = VZero;
@@ -41,10 +41,12 @@ public:
 	}
 
 	MATRIX GetPositionMatrix()const ;
-	MATRIX GetRotationMatrix() ;
+	MATRIX GetRotationMatrix()const ;
 	MATRIX GetScaleMatrix()const ;
 
-	MATRIX GetMatrix() ;
+	MATRIX UpdateRotationMatrix();
+
+	MATRIX GetMatrix()const ;
 
 	//子が親を追加したいとき
 	void SetParent(Transform* _pare);
@@ -57,7 +59,7 @@ public:
 		child.emplace_back(_child);
 	}
 	//子のポジションのワールド座標を取り出す関数。
-	Transform WorldTransform();
+	Transform WorldTransform()const;
 	/// <summary>
 	/// ワールドTransformをセットする
 	/// </summary>
@@ -75,7 +77,7 @@ public:
 	/// <param name="_matrix">回転行列</param>
 	void SetRotationMatrix(const MATRIX& _matrix) { rotMatrix = _matrix; }
 
-	void RemoveParent(Transform* transform);
+	void RemoveParent(const Transform* transform);
 
 private:
 

@@ -85,7 +85,7 @@ void InputManager::Update()
 	}
 }
 
-PadInput* InputManager::GetControllerInput()
+const PadInput* InputManager::GetControllerInput()const
 {
 	if (controller != nullptr)
 	{
@@ -94,7 +94,7 @@ PadInput* InputManager::GetControllerInput()
 	return nullptr;
 }
 
-KeyboardInput* InputManager::GetKeyboardInput()
+const KeyboardInput* InputManager::GetKeyboardInput()const
 {
 	if (keyboard != nullptr)
 	{
@@ -103,7 +103,7 @@ KeyboardInput* InputManager::GetKeyboardInput()
 	return nullptr;
 }
 
-MouseInput* InputManager::GetMouseInput()
+const MouseInput* InputManager::GetMouseInput()const
 {
 	if(mouse!=nullptr)
 	{
@@ -114,7 +114,7 @@ MouseInput* InputManager::GetMouseInput()
 
 void InputManager::CreateInputData(const KeyConfigData& _data)
 {
-	auto it = inputData.find(_data.action);
+	const auto it = inputData.find(_data.action);
 	if (inputData.end() == it) {
 		inputData[_data.action] = _data;
 	
@@ -124,32 +124,34 @@ void InputManager::CreateInputData(const KeyConfigData& _data)
 	}
 }
 
-bool InputManager::KeyInputDown(std::string _name)
+const bool InputManager::KeyInputDown(const std::string& _name)const
 {
 	//Imguiで入力中なら入力を無視する
 	if (!IsInputCan()) {
 		return false;
 	}
-	bool data = IsData(_name);
-	if (!data) {//データが存在していないならキーを入力をしていないものとして返す
+	const bool keyData = IsData(_name);
+	if (!keyData) {//データが存在していないならキーを入力をしていないものとして返す
 		Debug::DebugLog("noAction");
 		return false;
 	}
-	PadInput* c = GetControllerInput();
-	KeyboardInput* k = GetKeyboardInput();
-	MouseInput* m = GetMouseInput();
+	const PadInput* c = GetControllerInput();
+	const KeyboardInput* k = GetKeyboardInput();
+	const MouseInput* m = GetMouseInput();
 	bool control = false;
 	bool key = false;
 	bool mouse = false;
 
-	if (c != nullptr && inputData[_name].padNumber >= 0) {
-		control = c->GetIsButtonPutNow(inputData[_name].padNumber);
+	const KeyConfigData& data = inputData.at(_name);
+
+	if (c != nullptr && data.padNumber >= 0) {
+		control = c->GetIsButtonPutNow(data.padNumber);
 	}
-	if (k != nullptr && inputData[_name].keyNumber >= 0) {
-		key = k->GetIsKeyboardPut(inputData[_name].keyNumber);
+	if (k != nullptr && data.keyNumber >= 0) {
+		key = k->GetIsKeyboardPut(data.keyNumber);
 	}
-	if (m != nullptr && inputData[_name].mouceNumber >= 0) {
-		mouse = m->GetMousePut(inputData[_name].mouceNumber);
+	if (m != nullptr && data.mouceNumber >= 0) {
+		mouse = m->GetMousePut(data.mouceNumber);
 	}
 	//どれかしらがInputされていたらtrue
 	if (control || key || mouse) {
@@ -159,32 +161,34 @@ bool InputManager::KeyInputDown(std::string _name)
 	return false;
 }
 
-bool InputManager::KeyInput(std::string _name)
+const bool InputManager::KeyInput(const std::string& _name)const
 {
 	//Imguiで入力中なら入力を無視する
 	if (!IsInputCan()) {
 		return false;
 	}
-	bool data = IsData(_name);
-	if (!data) { //データが存在していないならキーを入力をしていないものとして返す
+	const bool keyData = IsData(_name);
+	if (!keyData) { //データが存在していないならキーを入力をしていないものとして返す
 		Debug::DebugLog("noAction");
 		return false;
 	}
-	PadInput* c = GetControllerInput();
-	KeyboardInput* k = GetKeyboardInput();
-	MouseInput* m = GetMouseInput();
+	const PadInput* c = GetControllerInput();
+	const KeyboardInput* k = GetKeyboardInput();
+	const MouseInput* m = GetMouseInput();
 	bool control = false;
 	bool key = false;
 	bool mouse = false;
 
-	if (c != nullptr && inputData[_name].padNumber >= 0) {
-		control = c->GetIsButtonPushingNow(inputData[_name].padNumber);
+	const KeyConfigData& data = inputData.at(_name);
+
+	if (c != nullptr && data.padNumber >= 0) {
+		control = c->GetIsButtonPushingNow(data.padNumber);
 	}
-	if (k != nullptr && inputData[_name].keyNumber >= 0) {
-		key = k->GetIsKeyboardPushing(inputData[_name].keyNumber);
+	if (k != nullptr && data.keyNumber >= 0) {
+		key = k->GetIsKeyboardPushing(data.keyNumber);
 	}
-	if (m != nullptr && inputData[_name].mouceNumber >= 0) {
-		mouse = m->GetMousePushing(inputData[_name].mouceNumber);
+	if (m != nullptr && data.mouceNumber >= 0) {
+		mouse = m->GetMousePushing(data.mouceNumber);
 	}
 	//どれかしらがInputされていたらtrue
 	if (control || key || mouse) {
@@ -193,32 +197,34 @@ bool InputManager::KeyInput(std::string _name)
 	return false;
 }
 
-bool InputManager::KeyInputUp(std::string _name)
+const bool InputManager::KeyInputUp(const std::string& _name)const
 {
 	//Imguiで入力中なら入力を無視する
 	if (!IsInputCan()) {
 		return false;
 	}
-	bool data = IsData(_name);
-	if (!data) {//データが存在していないならキーを入力をしていないものとして返す
+	const bool keyData = IsData(_name);
+	if (!keyData) {//データが存在していないならキーを入力をしていないものとして返す
 		Debug::DebugLog("noAction");
 		return false;
 	}
-	PadInput* c = GetControllerInput();
-	KeyboardInput* k = GetKeyboardInput();
-	MouseInput* m = GetMouseInput();
+	const PadInput* c = GetControllerInput();
+	const KeyboardInput* k = GetKeyboardInput();
+	const MouseInput* m = GetMouseInput();
 	bool control = false;
 	bool key = false;
 	bool mouse = false;
 
-	if (c != nullptr && inputData[_name].padNumber >= 0) {
-		control = c->GetIsButtonReleaseNow(inputData[_name].padNumber);
+	const KeyConfigData& data = inputData.at(_name);
+
+	if (c != nullptr && data.padNumber >= 0) {
+		control = c->GetIsButtonReleaseNow(data.padNumber);
 	}
-	if (k != nullptr && inputData[_name].keyNumber >= 0) {
-		key = k->GetIsKeyboardRelease(inputData[_name].keyNumber);
+	if (k != nullptr && data.keyNumber >= 0) {
+		key = k->GetIsKeyboardRelease(data.keyNumber);
 	}
-	if (m != nullptr && inputData[_name].mouceNumber >= 0) {
-		mouse = m->GetMousePut(inputData[_name].mouceNumber);
+	if (m != nullptr && data.mouceNumber >= 0) {
+		mouse = m->GetMousePut(data.mouceNumber);
 	}
 	//どれかしらがInputされていたらtrue
 	if (control || key || mouse) {
@@ -227,7 +233,7 @@ bool InputManager::KeyInputUp(std::string _name)
 	return false;
 }
 
-bool InputManager::IsData(std::string _name)
+const bool InputManager::IsData(const std::string& _name)const
 {
 	auto it = inputData.find(_name);
 	if (inputData.end() == it) {//データが存在していないならfalse
@@ -238,9 +244,9 @@ bool InputManager::IsData(std::string _name)
 	}
 }
 
-bool InputManager::IsInputCan()
+const bool InputManager::IsInputCan()const
 {
-	ImGuiIO& io = ImGui::GetIO();
+	const ImGuiIO& io = ImGui::GetIO();
 	return !io.WantCaptureKeyboard;
 }
 

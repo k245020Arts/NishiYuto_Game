@@ -2,11 +2,11 @@
 #include <string>
 #include <assert.h>
 #include "../../../Library/time.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../../ImGui/imgui.h"
 #include "../Transform/Transform.h"
 #include <algorithm> 
-#include "../../Common/JsonReader.h"
+#include "../../Common/JsonReader/JsonReader.h"
 #include "../../Common/FileSystemUtils/FileSystemUtils.h"
 
 Animator::Animator()
@@ -55,7 +55,7 @@ void Animator::BaseModelSet(int _model, int _root)
 
 }
 
-void Animator::BaseModelSet(int _model, std::string _rootName)
+void Animator::BaseModelSet(int _model, const std::string& _rootName)
 {
     baseModel = _model;
     rootNum = MV1SearchFrame(_model, _rootName.c_str());
@@ -73,7 +73,7 @@ void Animator::Update()
         int a = 0;
     }*/
 
-    VECTOR3 beforePos = currentPosition;
+    const VECTOR3 beforePos = currentPosition;
     if (current.attachID >= 0)
     { // current
         const AnimFileInfo& f = fileInfos[current.fileID];
@@ -169,12 +169,11 @@ void Animator::Update()
     //前回のアニメーションが再生中なら、ブレンドする
    if (before.attachID >= 0)
    {
-       float rate = blendTime / blendTimeMax;
+       const float rate = blendTime / blendTimeMax;
 
        //ブレンド前とブレンド後を合成
        matrix = MAdd(beforeMatrix, MAdd(matrix, beforeMatrix * MGetScale(VOne * -1.0f)) * MGetScale(VOne* rate));
    }
-   obj;
 
    // 最後に行列セット（1回だけ）
    MV1SetFrameUserLocalMatrix(baseModel, rootNum, matrix);
@@ -213,7 +212,7 @@ void Animator::SetMaxFrame(ID::IDType id, float _maxTime)
 
 void Animator::Play(ID::IDType id, float margeTime)
 {
-    std::string str = ID::GetID(id);
+    const std::string str = ID::GetID(id);
     //文字列とファイルのIDが一致してなかったらリターン
     if (current.fileID == str)
     {  
@@ -263,17 +262,17 @@ void Animator::SetPlaySpeed(float speed)
     playSpeed = speed;
 }
 
-float Animator::GetPlaySpeed()
+float Animator::GetPlaySpeed()const
 {
     return playSpeed;
 }
 
-bool Animator::IsFinish()
+bool Animator::IsFinish()const
 {
     return finished;
 }
 
-std::string Animator::GetCurrentID()
+std::string Animator::GetCurrentID()const
 {
     return current.fileID;
 }
@@ -288,11 +287,11 @@ float Animator::GetCurrentBeforeFrame()const
     return current.beforeFrame;
 }
 
-float Animator::GetMaxFrame()
+float Animator::GetMaxFrame()const
 {
     if (current.attachID >= 0)
     {
-        return fileInfos[current.fileID].maxFrame;
+        return fileInfos.at(current.fileID).maxFrame;
     }
     return 0.0f;
 }
@@ -302,14 +301,14 @@ void Animator::SetBoneFrame(int _index)
     current.boneIndex = _index;
 }
 
-VECTOR3 Animator::BoneMovePositionAdd(VECTOR3 _position)
+VECTOR3 Animator::BoneMovePositionAdd(const VECTOR3& _position)
 {
     return _position + subPosition;
 }
 
 VECTOR3 Animator::BoneNowPosition()
 {
-    MATRIX matrix = MV1GetFrameLocalWorldMatrix(baseModel, current.boneIndex);
+    const MATRIX matrix = MV1GetFrameLocalWorldMatrix(baseModel, current.boneIndex);
 
    /* MV1SetMatrix(baseModel, matrix);
 
@@ -365,7 +364,7 @@ void Animator::AnimDataSaveAll()
     }
 }
 
-void Animator::AnimDataReSave(std::string _fileName)
+void Animator::AnimDataReSave(const std::string& _fileName)
 {
     nlohmann::json root;
 
@@ -448,17 +447,17 @@ void Animator::AnimDataLoad(const std::string& _charaID, const std::string _type
 //    }
 //}
 
-Animator::AnimFileInfo Animator::GetSelectFileInfo(std::string _fileName)
+Animator::AnimFileInfo Animator::GetSelectFileInfo(const std::string& _fileName)const
 {
-    return fileInfos[_fileName];
+    return fileInfos.at(_fileName);
 }
 
-void Animator::SetSelectFileInfo(AnimFileInfo _animFileInfo)
+void Animator::SetSelectFileInfo(const AnimFileInfo& _animFileInfo)
 {
     fileInfos[_animFileInfo.fileName] = _animFileInfo;
 }
 
-VECTOR3 Animator::BoneMovePositionAdd()
+VECTOR3 Animator::BoneMovePositionAdd()const
 {
     return subPosition;
 }

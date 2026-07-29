@@ -1,14 +1,14 @@
 #include "EffectManager.h"
 #include "../../Screen.h"
-#include "../ResourceLoader.h"
+#include "../ResourceLoader/ResourceLoader.h"
 #include "EffectBase.h"
 #include "../../Component/Transform/Transform.h"
 #include "../../Component/ComponentManager.h"
 #include "../../Component/Object/Object3D.h"
 
 namespace {
-	const float EFFECT_EDGE = -400.0f;
-	const float EFFECT_EDGE_PLUS = 400.0f;
+	constexpr float EFFECT_EDGE = -400.0f;
+	constexpr float EFFECT_EDGE_PLUS = 400.0f;
 }
 
 
@@ -49,6 +49,7 @@ EffectManager::EffectManager()
 	ResourceLoad::LoadEffect("playerAttackRock",			".efkefc",Effect_ID::PLAYER_ATTACK_ROCK,		50.0f,true);
 
 	ResourceLoad::LoadEffect("enemyCooperateAttack",		".efk",	  Effect_ID::COOPERATEATTACK,			50.0f, true);
+	ResourceLoad::LoadEffect("EnemySpown",					".efkefc",Effect_ID::ENEMY_SPOWN,				50.0f, true);
 	
 	//-----------------------------------------------------------------------------------------------------------------
 
@@ -97,7 +98,7 @@ void EffectManager::Draw()
 	DrawEffekseer2D();
 }
 
-BaseObject* EffectManager::CreateEffekseer(Transform _transform, BaseObject* _parent, Effect_ID::EFFECT_ID _id, float _time, bool effect3D)
+BaseObject* EffectManager::CreateEffekseer(const Transform& _transform, BaseObject* _parent, Effect_ID::EFFECT_ID _id, float _time, bool effect3D)
 {
 	//エフェクトの生成
 	Object3D* obj = new Object3D();
@@ -155,7 +156,7 @@ void EffectManager::AllStopEffekseer()
 	}
 }
 
-bool EffectManager::IsPlayIng(Effect_ID::EFFECT_ID _id)
+bool EffectManager::IsPlayIng(Effect_ID::EFFECT_ID _id)const
 {
 	for (auto e = effect.begin(); e != effect.end();) {
 
@@ -170,7 +171,7 @@ bool EffectManager::IsPlayIng(Effect_ID::EFFECT_ID _id)
 	return false;
 }
 
-void EffectManager::SetColor(Effect_ID::EFFECT_ID _id, Color::Rgb _rgb)
+void EffectManager::SetColor(Effect_ID::EFFECT_ID _id, Color::Rgb _rgb)const
 {
 	for (auto e = effect.begin(); e != effect.end();) {
 
@@ -185,7 +186,7 @@ void EffectManager::SetColor(Effect_ID::EFFECT_ID _id, Color::Rgb _rgb)
 	}
 }
 
-void EffectManager::ParentTransformRemove(BaseObject* _obj)
+void EffectManager::ParentTransformRemove(BaseObject* _obj)const
 {
 	for (auto e = effect.begin(); e != effect.end();) {
 		if (_obj == *e) { //オブジェクトが一致したら削除して関数終了(一個しか削除しない)

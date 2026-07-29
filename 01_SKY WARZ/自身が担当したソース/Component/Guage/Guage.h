@@ -44,13 +44,13 @@ public:
 	/// <param name="_image"></param>
 	/// <param name="_mode"></param>
 	/// <param name="_transfrom"></param>
-	void EdgeDrawReady(int _image, MeshRenderer2D::GraphMode _mode,Transform _transfrom);
+	void EdgeDrawReady(int _image, MeshRenderer2D::GraphMode _mode,const Transform& _transfrom);
 	/// <summary>
 	/// HPバーのダメージの部分を描画
 	/// </summary>
 	/// <param name="_image"></param>
 	/// <param name="_mode"></param>
-	void DamageGuageDrawReady(int _image, MeshRenderer2D::GraphMode _mode, Transform _transform);
+	void DamageGuageDrawReady(int _image, MeshRenderer2D::GraphMode _mode, const Transform& _transform);
 	/// <summary>
 	/// ゲージを描画する前に設定する
 	/// </summary>
@@ -81,7 +81,7 @@ public:
 	/// </summary>
 	/// <param name="_mode">ワールド座標をスクリーンモードならtrue</param>
 	/// <param name="_plusPos">位置の調整</param>
-	void WorldToScreenMode(bool _mode,VECTOR3 _plusPos);
+	void WorldToScreenMode(bool _mode,const VECTOR3& _plusPos);
 
 	/// <summary>
 	/// 加算合成モードかどうか

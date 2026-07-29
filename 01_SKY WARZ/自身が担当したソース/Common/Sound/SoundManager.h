@@ -31,12 +31,12 @@ public:
 	/// SEを再生させる
 	/// </summary>
 	/// <param name="_type"></param>
-	void PlaySe(Sound_ID::SOUND_ID _type);
+	void PlaySe(Sound_ID::SOUND_ID _type)const;
 	//BGMを再生させる
-	void PlayBGM(Sound_ID::SOUND_ID _type, bool _loop, bool firstPlay);
+	void PlayBGM(Sound_ID::SOUND_ID _type, bool _loop, bool firstPlay)const;
 	//BGMを止める
-	void StopBGM(Sound_ID::SOUND_ID _type);
-	void StopSE(Sound_ID::SOUND_ID _type);
+	void StopBGM(Sound_ID::SOUND_ID _type)const;
+	void StopSE(Sound_ID::SOUND_ID _type)const;
 	/// <summary>
 	/// データのハンドルを削除する
 	/// </summary>
@@ -48,23 +48,23 @@ public:
 	/// </summary>
 	/// <param name="_name">ファイルネーム(数字はのぞく)</param>
 	/// <param name="num">最大の数字</param>
-	void RandamSe(std::string _name, int num);
+	void RandamSe(const std::string& _name, const int num)const;
 
 	//音が再生させているかどうかを調べる
-	bool CheckSe(Sound_ID::SOUND_ID _id);
+	const bool CheckSe(Sound_ID::SOUND_ID _id)const;
 
 	/// <summary>
 	/// 音のフェードインの開始
 	/// </summary>
 	/// <param name="_id">フェードインさせたい音のSound_ID</param>
 	/// <param name="_time">時間</param>
-	void FeedInStart(Sound_ID::SOUND_ID _id,float _time);
+	void FeedInStart(const Sound_ID::SOUND_ID _id, const float _time);
 	/// <summary>
 	/// 音のフェードアウトの開始
 	/// </summary>
 	/// <param name="_id">フェードアウトさせたい音のSound_ID</param>
 	/// <param name="_time">時間</param>
-	void FeedInOut(Sound_ID::SOUND_ID _id, float _time);
+	void FeedInOut(const Sound_ID::SOUND_ID _id, const float _time);
 
 	void SetFeedInOutList(Sound* sound);
 
@@ -73,12 +73,12 @@ public:
 	/// </summary>
 	/// <param name="_id">ボリュームを変えたいID</param>
 	/// <param name="_change">音の大きさ</param>
-	void ChangeVolumeSound(Sound_ID::SOUND_ID _id,int _change);
+	void ChangeVolumeSound(const Sound_ID::SOUND_ID _id, const int _change)const;
 	/// <summary>
 	/// 設定したIDを初期に設定したボリュームに変更
 	/// </summary>
 	/// <param name="_id">元に戻したいID</param>
-	void BaseVolumeChange(Sound_ID::SOUND_ID _id);
+	void BaseVolumeChange(const Sound_ID::SOUND_ID _id)const;
 	/// <summary>
 	/// 3Dサウンドを使いたいときはこの関数を使う
 	/// </summary>
@@ -86,7 +86,7 @@ public:
 	/// <param name="_targetObj">ここから音が始まるもととなるObject</param>
 	/// <param name="_maxVolSize">音が聞こえる最大の距離、これより離れると音はならない</param>
 	/// <param name="_minVolSize">音の最大音量の距離、これより近づいても最大の音量で流れる。</param>
-	void Play3DSound(Sound_ID::SOUND_ID _id, BaseObject* _targetObj,float _minVolSize,float _maxVolSize);
+	void Play3DSound(const Sound_ID::SOUND_ID _id, const BaseObject* _targetObj, const float _minVolSize, const float _maxVolSize);
 	/// <summary>
 	/// 3DSoundの音の距離の基準点（大体の場合がプレイヤー)
 	/// </summary>
@@ -99,7 +99,7 @@ public:
 	/// <param name="_id">sound_id</param>
 	/// <param name="_ramdom">どれくらいの振幅か</param>
 	/// <param name="_baseFrequ">元となる周波数</param>
-	void PlayRamdomChangeFrequencySe(Sound_ID::SOUND_ID _id,int _ramdom,int _baseFrequ);
+	void PlayRamdomChangeFrequencySe(const Sound_ID::SOUND_ID _id, const int _ramdom, const int _baseFrequ);
 
 private:
 

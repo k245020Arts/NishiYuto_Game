@@ -3,7 +3,7 @@
 #include "../../../Component/Animator/Animator.h"
 #include "../../../State/StateManager.h"
 #include "../../../Player/Player.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Color/Color.h"
 
 T_EnemyDamage::T_EnemyDamage()

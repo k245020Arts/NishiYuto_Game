@@ -40,7 +40,7 @@ void ModelCollider::ModelColliderSet(const CollsionInfo& _info, const Transform&
 	ModelColliderSet(_info, _transform, _modelHandle, _funk,"");
 }
 
-void ModelCollider::ModelColliderSet(const CollsionInfo& _info, const Transform& _transform, int _modelHandle, std::function<void(const CollsionEventData&)> _funk, std::string _tag)
+void ModelCollider::ModelColliderSet(const CollsionInfo& _info, const Transform& _transform, int _modelHandle, std::function<void(const CollsionEventData&)> _funk, const std::string& _tag)
 {
 	ColliderBase::CollsionAdd(_info, _transform, _funk,_tag);
 

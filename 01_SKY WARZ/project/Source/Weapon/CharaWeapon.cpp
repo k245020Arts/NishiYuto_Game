@@ -1,6 +1,6 @@
 #include "CharaWeapon.h"
 #include "../Component/Transform/Transform.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../../ImGui/imgui.h"
 #include "../Component/ComponentManager.h"
 #include "../Component/MeshRenderer/MeshRenderer.h"

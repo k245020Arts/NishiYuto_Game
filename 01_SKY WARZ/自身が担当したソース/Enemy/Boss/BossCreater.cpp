@@ -7,7 +7,7 @@
 #include "../../Component/Physics/Physics.h"
 #include "../../Camera/Camera.h"
 #include "../../Component/Hierarchy/Hierarchy.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../Component/Collider/sphereCollider.h"
 #include "../../Component/Animator/Animator.h"
 #include "../../Weapon/WeaponManager.h"
@@ -18,7 +18,7 @@
 #include "../../Component/Collider/rayCollider.h"
 #include "../../Component/Collider/ModelCollider.h"
 #include "../../Component/Shadow/Shadow.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include "../../GameControler/GameControler.h"
 #include "../../State/StateManager.h"
 #include "../../Stage/StageSelectData.h"
@@ -265,7 +265,7 @@ void BossCreater::CreateBoss()
 	//FindGameObjectWithTag<Object3D>("CAMERA_OBJ")->Component()->GetComponent<Camera>()->TargetSet(*enemy.begin());
 }
 
-bool BossCreater::LoadBossParam(std::string _fileName)
+bool BossCreater::LoadBossParam(const std::string& _fileName)
 {
 	JsonReader jsonReader;
 	if (!jsonReader.Load(_fileName)) {

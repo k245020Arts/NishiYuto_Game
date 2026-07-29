@@ -15,6 +15,7 @@ PlayerStateBase::PlayerStateBase()
 	noStateChange	= false;
 	animId = ID::P_ANIM_IDOL;
 	blendSpeed = 0.1f;
+	stickInputTime = 0;
 }
 
 PlayerStateBase::~PlayerStateBase()
@@ -57,8 +58,39 @@ void PlayerStateBase::DefalutWalk()
 	if (InputManager::GetInstance()->KeyInputDown("attack")) {
 		p->playerCom.stateManager->ChangeState(StateID::PLAYER_ATTACK1_S);
 	}
-	if (InputManager::GetInstance()->KeyInputDown("heavyAttack")) {
-		p->playerCom.stateManager->ChangeState(StateID::PLAYER_HEAVY_CHARGE_S);
+	const int STICK_INPUT_TIME = 5; //これ以上の時間長押しをしたらチャージ攻撃へ移行
+	if (InputManager::GetInstance()->KeyInput("heavyAttack")) {
+		if (stickInputTime >= STICK_INPUT_TIME) {
+			p->playerCom.stateManager->ChangeState(StateID::PLAYER_HEAVY_CHARGE_S);
+			stickInputTime = 0;
+		}
+		else {
+			stickInputTime++;
+		}
+	}
+	else {
+		stickInputTime = 0;
+	}
+	if (InputManager::GetInstance()->KeyInputUp("heavyAttack")) {
+		if (stickInputTime >= STICK_INPUT_TIME) {
+			p->playerCom.stateManager->ChangeState(StateID::PLAYER_HEAVY_CHARGE_S);
+			stickInputTime = 0;
+		}
+		else {
+			const VECTOR2F stickAngle = InputManager::GetInstance()->GetControllerInput()->GetStickInput().leftStick;
+			const bool frontKey = InputManager::GetInstance()->GetKeyboardInput()->GetIsKeyboardPushing(KEY_INPUT_W);
+			const bool backKey = InputManager::GetInstance()->GetKeyboardInput()->GetIsKeyboardPushing(KEY_INPUT_S);
+			if (fabs(stickAngle.y) >= 0.8f || frontKey || backKey) {
+				p->playerCom.stateManager->ChangeState(StateID::PLAYER_HEAVY_ATTACK2_S);
+			}
+			else {
+				//5フレーム以下ならチャージ攻撃0で発動
+				p->attackLevel = 0;
+				p->HeavyAttackChangeParam(p->attackLevel);
+				p->playerCom.stateManager->ChangeState(StateID::PLAYER_HEAVY_ATTACK_S);
+			}
+			stickInputTime = 0;
+		}
 	}
 	if (InputManager::GetInstance()->KeyInputDown("SpecialAttack")) {
 		if (p->CanSpecialAttack()) {
@@ -67,4 +99,8 @@ void PlayerStateBase::DefalutWalk()
 		}
 		
 	}
+
+	
+
+
 }

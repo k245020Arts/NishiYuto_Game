@@ -22,7 +22,7 @@ public:
 	/// <param name="_rgb">色</param>
 	/// <param name="_scale">拡大率</param>
 	/// <param name="_size">フォントの基礎の大きさ</param>
-	void TextSetting(std::string _text, std::string _fileName, std::string _exten, const Color::Rgb& _rgb, int _size, Font_ID::Font_ID _id);
+	void TextSetting(const std::string& _text, const std::string& _fileName, const std::string& _exten, const Color::Rgb& _rgb, int _size, Font_ID::Font_ID _id);
 
 	/// <summary>
 	/// 色のセット
@@ -38,7 +38,7 @@ public:
 	/// テキストのセット
 	/// </summary>
 	/// <param name="_text"></param>
-	void SetText(std::string _text) { text = _text; }
+	void SetText(const std::string& _text) { text = _text; }
 
 	/// <summary>
 	/// テキストの長さを取得

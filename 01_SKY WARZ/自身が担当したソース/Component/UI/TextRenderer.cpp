@@ -40,7 +40,7 @@ void TextRenderer::Draw()
 }
 
 
-void TextRenderer::TextSetting(std::string _text, std::string _fileName, std::string _exten, const Color::Rgb& _rgb,int _size, Font_ID::Font_ID _id)
+void TextRenderer::TextSetting(const std::string& _text, const std::string& _fileName, const std::string& _exten, const Color::Rgb& _rgb,int _size, Font_ID::Font_ID _id)
 {
 	text = _text;
 	//position = _pos;

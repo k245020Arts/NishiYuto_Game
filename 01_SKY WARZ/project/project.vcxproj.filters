@@ -59,9 +59,6 @@
     <ClCompile Include="ImGui\imgui_node_editor.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common\BlurScreen.cpp">
-      <Filter>Common\BlurScreen</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Common\Debug\Debug.cpp">
       <Filter>Common\Debug</Filter>
     </ClCompile>
@@ -121,15 +118,6 @@
     </ClCompile>
     <ClCompile Include="Source\Common\ID\SoundID.cpp">
       <Filter>Common\ID</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Common\CsvReader.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Common\ResourceLoader.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Common\Random.cpp">
-      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\Component\Animator\Animator.cpp">
       <Filter>Component\Anim</Filter>
@@ -196,9 +184,6 @@
     </ClCompile>
     <ClCompile Include="Source\Component\Transform\Transform.cpp">
       <Filter>Component\Transform</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Component\Component.cpp">
-      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\Component\ComponentManager.cpp">
       <Filter>Component</Filter>
@@ -383,9 +368,6 @@
     <ClCompile Include="Source\Player\PlayerState\PlayerTurn.cpp">
       <Filter>PlayScene\Player\PlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common\JsonReader.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Camera\CameraEditorGui.cpp">
       <Filter>PlayScene\Camera</Filter>
     </ClCompile>
@@ -545,9 +527,6 @@
     <ClCompile Include="Source\Common\ShadowMap\ShadowMap.cpp">
       <Filter>Common\ShadowMap</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common\PostEffect\PostEffect.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Pause\PauseScreen.cpp">
       <Filter>PlayScene\Pause</Filter>
     </ClCompile>
@@ -580,6 +559,30 @@
     </ClCompile>
     <ClCompile Include="Source\Enemy\EnemyState\Attack\EnemyAttackBase.cpp">
       <Filter>PlayScene\Enemy\EnemyState\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\PostEffect\PostEffect.cpp">
+      <Filter>Common\PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\BlurScreen\BlurScreen.cpp">
+      <Filter>Common\BlurScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\CsvReader\CsvReader.cpp">
+      <Filter>Common\CsvReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\JsonReader\JsonReader.cpp">
+      <Filter>Common\JsonReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Random\Random.cpp">
+      <Filter>Common\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\ResourceLoader\ResourceLoader.cpp">
+      <Filter>Common\ResourceLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\PlayerState\AttackState\PlayerAttack6.cpp">
+      <Filter>PlayScene\Player\PlayerState\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player\PlayerState\AttackState\PlayerHeavyAttack2.cpp">
+      <Filter>PlayScene\Player\PlayerState\Attack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -720,22 +723,10 @@
     <ClInclude Include="Source\Common\ID\SoundID.h">
       <Filter>Common\ID</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Common\CsvReader.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Common\Easing.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Common\Function.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Common\ResourceLoader.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Common\MethodExec.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Common\Random.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\Component\Animator\Animator.h">
@@ -999,14 +990,8 @@
     <ClInclude Include="Source\Enemy\TrashEnemy\TrashEnemyState\T_EnemyDead.h">
       <Filter>PlayScene\Enemy\TrashEnemy\TrashEnemyState</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enemy\TrashEnemy\TrashEnemyState\T_EnemyStatus.h">
-      <Filter>PlayScene\Enemy\TrashEnemy\TrashEnemyState</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Enemy\Boss\BossState\BossThreat.h">
       <Filter>PlayScene\Enemy\Boss\BossState</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Common\BlurScreen.h">
-      <Filter>Common\BlurScreen</Filter>
     </ClInclude>
     <ClInclude Include="Source\Enemy\Boss\BossState\BossDamage.h">
       <Filter>PlayScene\Enemy\Boss\BossState</Filter>
@@ -1016,9 +1001,6 @@
     </ClInclude>
     <ClInclude Include="Source\Player\PlayerState\PlayerTurn.h">
       <Filter>PlayScene\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Common\JsonReader.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\UTFConverter.h">
       <Filter>Common</Filter>
@@ -1194,9 +1176,6 @@
     <ClInclude Include="Source\Common\ShadowMap\ShadowMap.h">
       <Filter>Common\ShadowMap</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Common\PostEffect\PostEffect.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Pause\PauseScreen.h">
       <Filter>PlayScene\Pause</Filter>
     </ClInclude>
@@ -1229,6 +1208,33 @@
     </ClInclude>
     <ClInclude Include="Source\Enemy\EnemyState\Attack\EnemyAttackBase.h">
       <Filter>PlayScene\Enemy\EnemyState\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\PostEffect\PostEffect.h">
+      <Filter>Common\PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\BlurScreen\BlurScreen.h">
+      <Filter>Common\BlurScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\CsvReader\CsvReader.h">
+      <Filter>Common\CsvReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Easing\Easing.h">
+      <Filter>Common\Easing</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\JsonReader\JsonReader.h">
+      <Filter>Common\JsonReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Random\Random.h">
+      <Filter>Common\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\ResourceLoader\ResourceLoader.h">
+      <Filter>Common\ResourceLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerState\AttackState\PlayerAttack6.h">
+      <Filter>PlayScene\Player\PlayerState\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player\PlayerState\AttackState\PlayerHeavyAttack2.h">
+      <Filter>PlayScene\Player\PlayerState\Attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1457,9 +1463,6 @@
     <Filter Include="PlayScene\Pause">
       <UniqueIdentifier>{78a54da2-5d5b-4a6d-b6fa-fdfd4de2bc47}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\TextRenderer">
-      <UniqueIdentifier>{05bc78ba-1382-4f9e-8ccf-47c35bdf5e4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlayScene\GuideWindow">
       <UniqueIdentifier>{16d2bc44-b9c7-4c8d-8cbc-598adc555995}</UniqueIdentifier>
     </Filter>
@@ -1468,6 +1471,24 @@
     </Filter>
     <Filter Include="PlayScene\Enemy\EnemyState\Attack">
       <UniqueIdentifier>{99ad09b1-3638-415a-aeaa-dd7bcd4677b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\CsvReader">
+      <UniqueIdentifier>{8966fef4-8a93-4e0b-89ae-f081c708d497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Easing">
+      <UniqueIdentifier>{49064d54-9030-434d-beff-731e7c0b71d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\JsonReader">
+      <UniqueIdentifier>{fdedcd41-fcdd-4f30-a0f6-5957d062f77a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\PostEffect">
+      <UniqueIdentifier>{41ea0f9b-4d7b-4eb5-92a3-fbfe0004fd42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Random">
+      <UniqueIdentifier>{092cf424-0125-4658-9372-19267a8b528f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\ResourceLoader">
+      <UniqueIdentifier>{ebf3067d-83a5-468c-a06b-5d8adec96e86}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

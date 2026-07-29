@@ -3,7 +3,7 @@
 #include "../Component/Shaker/Shaker.h"
 #include "cameraInformation.h"
 #include "../Common/ID/StateID.h"
-#include "../Common/JsonReader.h"
+#include "../Common/JsonReader/JsonReader.h"
 #include "../Camera/CameraBase.h"
 #include "../Component/Collider/CollsionInformation.h"
 
@@ -225,7 +225,7 @@ public:
 	/// </summary>
 	/// <param name="_name">ファイル名</param>
 	/// <param name="_cutScene">黒いボックスを出すかどうか</param>
-	void CutSceneChangeState(std::string _name,bool _cutScene);
+	void CutSceneChangeState(const std::string& _name,bool _cutScene);
 	/// <summary>
 	/// CutSceneを開始するための関数
 	/// ストップするため
@@ -233,7 +233,7 @@ public:
 	/// <param name="_name">ファイル名</param>
 	/// <param name="_cutScene">黒いボックスを出すかどうか</param>
 	/// <param name="_space">cutScene中に止めるべき対象、ビット演算にて判定、CutStopChara型のenumを使用</param>
-	void CutSceneChangeState(std::string _name, bool _cutScene, int _stop);
+	void CutSceneChangeState(const std::string& _name, bool _cutScene, int _stop);
 	
 	/// <summary>
 	/// カットシーン中かどうか

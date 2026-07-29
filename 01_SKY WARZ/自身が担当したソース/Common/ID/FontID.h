@@ -13,7 +13,7 @@ namespace Font_ID {
 
 	void DeleteFontID();
 
-	std::string GetFontID(Font_ID _type);
+	const std::string GetFontID(Font_ID _type);
 
 	void SetFontID(std::string _Font, Font_ID _type);
 

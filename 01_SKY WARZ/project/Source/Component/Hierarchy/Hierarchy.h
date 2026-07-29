@@ -33,7 +33,7 @@ public:
 	/// <summary>
 	/// 実際にパラメータとかを出しているところ、unityでいうところのインスペクターの描画
 	/// </summary>
-	void InspectorDraw();
+	void InspectorDraw()const;
 
 	/// <summary>
 	/// ヒエラルキーの要素を削除する

@@ -60,6 +60,7 @@ void PlayerJustAvoidAttack1::Update()
 		}
 		if (InputManager::GetInstance()->KeyInputDown("attack")) {
 			nextAttack = true;
+			normal = true;
 		}
 		dist = p->attackTargetTrans.position - p->playerCom.player->GetPlayerTransform()->position;
 		distSize = dist.Size();
@@ -163,6 +164,7 @@ void PlayerJustAvoidAttack1::Start()
 	runTimer = -1.0f;
 	normal = false;
 	special = false;
+	chargeAttack = false;
 	/*p->playerCom.anim->SetPlaySpeed(0.1f);
 	timer = 0.5f;
 	p->playerCom.shaker->ShakeStart(VECTOR3(30.0f, 10.0f, 10.0f), Shaker::HORIZONAL_SHAKE, false, 0.4f);*/

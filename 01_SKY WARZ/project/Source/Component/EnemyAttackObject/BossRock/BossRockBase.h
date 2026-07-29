@@ -27,7 +27,7 @@ public:
 	/// </summary>
 	/// <param name="_obj">今当たったオブジェクト</param>
 	/// <returns>過去に当たってたかどうか</returns>
-	bool HitObjects(BaseObject* _obj) {
+	bool HitObjects(BaseObject* _obj) const {
 		return (hitObjects.count(_obj) > 0);
 	}
 	/// <summary>
@@ -59,7 +59,7 @@ public:
 	/// </summary>
 	/// <param name="_attack">投擲物が持つデータ</param>
 	/// <param name="_handMatrix">手のマトリックスの情報、いらないならnullptrを入れる</param>
-	void Start(const EnemyAttackBase::ThrowObjectAttackData& _attack, MATRIX* _handMatrix);
+	void Start(const EnemyAttackBase::ThrowObjectAttackData& _attack, const MATRIX* _handMatrix);
 	/// <summary>
 	/// 投擲物を落とすときに使う
 	/// </summary>
@@ -88,7 +88,7 @@ public:
 	/// 空のオブジェクトなのかStartの関数を呼んだかどうかの判定
 	/// </summary>
 	/// <returns>trueならStartが呼ばれている。falseなら空のオブジェクト</returns>
-	bool GetThrowObjectStart() { return start; }
+	bool GetThrowObjectStart()const { return start; }
 	/// <summary>
 	/// カプセルコリジョンのポジション移動開始
 	/// </summary>
@@ -148,7 +148,7 @@ protected:
 	float flyCounter;
 	bool playerAttackHit;
 	bool velocityAdd;
-	MATRIX* handMatrix;
+	const MATRIX* handMatrix;
 	bool start;
 	VECTOR3 capsuleEndPos;
 	VECTOR3 capsuleJustAvoidEndPos;

@@ -5,7 +5,7 @@
 #include "../../Player.h"
 #include "../../../Component/Physics/Physics.h"
 #include "../../../Camera/Camera.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Shaker/Shaker.h"
 #include "../../../Common/Function.h"
 #include "../../../Common/InputManager/InputManager.h"

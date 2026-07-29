@@ -2,7 +2,7 @@
 #include "../Component/UI/UIManager/UIManager.h"
 #include "../Common/InputManager/InputManager.h"
 #include "../Common/InputManager/PadInput.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Component/UI/TextRenderer.h"
 #include "../Component/ComponentManager.h"
 #include "../Screen.h"

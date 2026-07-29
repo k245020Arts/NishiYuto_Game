@@ -21,7 +21,7 @@ private:
 	std::string bossID;
 	std::string	animID;
 	std::vector<std::string> bossAnimFileName;
-	bool LoadBossParam(std::string _fileName);
+	bool LoadBossParam(const std::string& _fileName);
 
 	Boss* bossComponentPtr;//関数ポインタ実行用
 

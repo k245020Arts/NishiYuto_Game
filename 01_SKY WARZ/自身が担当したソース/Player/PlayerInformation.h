@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Library/myDxLib.h"
 #include "../Component/Shaker/Shaker.h"
-#include "../Common/JsonReader.h"
+#include "../Common/JsonReader/JsonReader.h"
 #include "../Common/ID/StateID.h"
 
 class MeshRenderer;
@@ -85,7 +85,7 @@ namespace PlayerInformation {
 	/// <summary>
 	/// ジャスト回避をした時にどれくらい敵をスローさせるか
 	/// </summary>
-	static const float JUST_AVOID_ENEMY_TIME_SCALE = 0.3f;
+	static constexpr float JUST_AVOID_ENEMY_TIME_SCALE = 0.3f;
 
 	// チャージレベル1つ分のリアクションパラメータ
 	struct ChargeReactionLevelData

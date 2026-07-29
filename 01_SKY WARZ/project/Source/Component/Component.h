@@ -24,23 +24,23 @@ public:
 	//親のオブジェクトをここで持たせている。内部的にやっているので呼び出す必要性なし)
 	virtual void Init(BaseObject* _ob) { obj = _ob; }
 	//アクティブ状態を記録しておく（アクティブじゃなかったら削除)
-	bool IsActive() { return active; }
+	bool IsActive()const { return active; }
 	//Imguiでデバック表示したいときに使う関数。
 	virtual void ImguiDraw() {};
 	virtual void DebugDraw() {};
 	//タグを設定できるようにする「
 	virtual void SetTag(std::string name) { tag = name; }
-	virtual std::string GetTag() { return tag; }
+	virtual std::string GetTag()const { return tag; }
 	/// <summary>
 	/// ヒエラルキー用のdebugID
 	/// </summary>
 	/// <returns>debugID</returns>
-	int GetId() { return debugId; }
+	int GetId()const { return debugId; }
 	/// <summary>
 	/// 当たり判定用のタグを取得
 	/// </summary>
 	/// <returns>当たり判定用のタグ</returns>
-	std::string GetCollTag() { return colltag; }
+	std::string GetCollTag()const { return colltag; }
 	/// <summary>
 	/// 当たり判定用のタグをセット
 	/// </summary>
@@ -50,7 +50,7 @@ public:
 	/// コンポーネントの親オブジェクトの取得
 	/// </summary>
 	/// <returns></returns>
-	BaseObject* GetBaseObject() { my_null_assert(obj); return obj; }
+	BaseObject* GetBaseObject()const { my_null_assert(obj); return obj; }
 
 	//void SetSlowMode(bool _slow) { slowMode = _slow;}
 

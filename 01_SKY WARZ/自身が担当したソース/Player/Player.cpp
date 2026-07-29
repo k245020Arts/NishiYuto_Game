@@ -35,7 +35,7 @@
 #include "../Player/PlayerState/AttackState/playerAttack4.h"
 #include "../Player/PlayerState/AttackState/PlayerAttack5.h"
 #include "../Player/PlayerState/AttackState/PlayerSpecialAttack.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Enemy/TrashEnemy/TrashEnemy.h"
 #include "../Enemy/EnemyState/EnemyStateManager.h"
 //#include "../Enemy/TrashEnemy/EnemyState/AttackState/EnemyAttack1.h"
@@ -45,7 +45,7 @@
 #include "../Enemy/EnemyManager.h"
 #include "../Enemy/EnemyState/Attack/EnemyAttackBase.h"
 #include "../Enemy/Boss/BossState/AttackSorting.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 #include "../Component/UI/ButtonUI.h"
 #include "PlayerParamWindow.h"
 #include "../Common/Debug/DebugLogText.h"
@@ -396,7 +396,7 @@ void Player::Move(float _speed, float _speedMax)
 	}
 }
 
-void Player::RotationChange(VECTOR3 _angle,float _speed)
+void Player::RotationChange(const VECTOR3& _angle,float _speed)
 {
 	VECTOR3 forward = VECTOR3(0, 0, 1) * MGetRotY(playerTransform->rotation.y);
 	VECTOR3 right	= VECTOR3(1, 0, 0) * MGetRotY(playerTransform->rotation.y);
@@ -886,7 +886,7 @@ void Player::JustAvoidCollsionHit(BaseObject* _obj, CollsionInformation::Tag _ta
 	justAvoidColHit = true;
 }
 
-std::unordered_map<StateID::State_ID, PlayerInformation::PlayerReaction>& Player::GetReactionMap()
+std::unordered_map<StateID::State_ID, PlayerInformation::PlayerReaction>& Player::GetReactionMap()const
 {
 	return attackEffects;
 }

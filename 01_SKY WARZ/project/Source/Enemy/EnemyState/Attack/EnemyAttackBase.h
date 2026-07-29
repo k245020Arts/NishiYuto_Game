@@ -386,6 +386,34 @@ public:
 
 			useTrail = false;
 			trailRightHand = false;
+
+			// 雑魚敵召喚イベント
+			useEnemySpawnEvent = false;
+
+			meleeEnemySpawnNum = 0;
+			rangedEnemySpawnNum = 0;
+
+			enemySpawnPosition = VECTOR3();
+
+			enemySpawnStartFrame = 0.0f;
+
+			splitEnemySpawn = false;
+			enemySpawnInterval = 0.0f;
+			enemySpawnCount = 0;
+
+			useEnemyDeadEvent = false;
+
+			loopAnimation = false;
+
+			enemySpawnEffect = Effect_ID::EFFECT_ID();
+
+			enemyDeadLimitTime = 0.0f;
+
+			enemyDeadSuccessState = "";
+			enemyDeadFailState = "";
+
+			enemyDeadSuccessWaitTime = 0.0f;
+			enemyDeadFailWaitTime = 0.0f;
 		}
 
 		
@@ -495,6 +523,34 @@ public:
 
 		//サウンドイベント
 		std::vector<SoundEffectEvent> soundEvent;			//アニメーションフレーム
+
+		// 雑魚敵召喚イベント
+		bool useEnemySpawnEvent;							// 雑魚敵召喚イベントを使用するか
+
+		int meleeEnemySpawnNum;								// 近距離雑魚敵数
+		int rangedEnemySpawnNum;							// 遠距離雑魚敵数
+
+		VECTOR3 enemySpawnPosition;							// 雑魚敵出現座標
+
+		float enemySpawnStartFrame;							// アニメーションの何フレーム目から雑魚敵を出すか
+
+		bool splitEnemySpawn;								// 小分けして出現するか
+		float enemySpawnInterval;							// 小分けする間隔
+		int enemySpawnCount;								// 小分け回数
+
+		bool useEnemyDeadEvent;								// 雑魚敵殲滅イベントを使用するか
+
+		bool loopAnimation;									// アニメーションをループするか
+
+		Effect_ID::EFFECT_ID enemySpawnEffect;				// 出現エフェクトID
+
+		float enemyDeadLimitTime;							// 出現後何秒以内に殲滅する必要があるか
+
+		std::string enemyDeadSuccessState;							// 殲滅成功時の次状態
+		std::string enemyDeadFailState;								// 殲滅失敗時の次状態
+
+		float enemyDeadSuccessWaitTime;						// 全滅後の待機時間
+		float enemyDeadFailWaitTime;						// 殲滅失敗時の待機時間
 	};
 	
 	EnemyAttackBase();
@@ -514,7 +570,7 @@ public:
 	/// ダメージのパラメーターを取得
 	/// </summary>
 	/// <returns>ダメージのパラメーター</returns>
-	const BossAttackParam& GetDamageParam() { return attackParam; }
+	const BossAttackParam& GetDamageParam()const { return attackParam; }
 	/// <summary>
 	/// データのセーブをする関数
 	/// </summary>
@@ -533,14 +589,14 @@ public:
 	/// <param name="_modelId">モデルのEnum</param>
 	/// <param name="_modelFrame">光らせる場所のフレーム</param>
 	/// <param name="_voice">ボイスの名前</param>
-	void AttackFlash(ID::IDType _modelId, int _modelFrame, std::string _voice);
+	void AttackFlash(ID::IDType _modelId, int _modelFrame, const std::string& _voice);
 	/// <summary>
 	/// 攻撃をするときに手を光らせる処理
 	/// </summary>
 	/// <param name="_modelId">モデルのEnum</param>
 	/// <param name="_modelFrame">光らせる場所のフレーム</param>
 	/// <param name="_voice">ボイスの名前</param>
-	void AttackBeforeFrash(ID::IDType _modelId, int _modelFrame, std::string _voice);
+	void AttackBeforeFrash(ID::IDType _modelId, int _modelFrame, const std::string& _voice);
 	/// <summary>
 	/// 軌跡の表示
 	/// </summary>
@@ -557,12 +613,12 @@ public:
 	/// 攻撃のデータの受け渡し
 	/// </summary>
 	/// <param name="_param"></param>
-	void SetAttackParam(BossAttackParam _param);
+	void SetAttackParam(const BossAttackParam& _param);
 	/// <summary>
 	/// 今再生されてるアニメーションが攻撃アニメーションかどうかを判定する
 	/// </summary>
 	/// <returns></returns>
-	bool CurrentAttackAnim();
+	bool CurrentAttackAnim()const;
 	
 
 protected:

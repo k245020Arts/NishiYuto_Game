@@ -1,6 +1,6 @@
 ﻿#include "ResultUi.h"
 #include "../Component/Transform/Transform.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 #include "../Screen.h"
 #include "../Component/Color/Color.h"
 

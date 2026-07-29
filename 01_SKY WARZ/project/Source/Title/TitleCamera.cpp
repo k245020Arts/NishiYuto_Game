@@ -5,7 +5,7 @@
 #include <cmath>
 #include "../Component/ComponentManager.h"
 #include "../Component/Shaker/Shaker.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 #include "TitleScene.h"
 #include "TitleControl.h"
 

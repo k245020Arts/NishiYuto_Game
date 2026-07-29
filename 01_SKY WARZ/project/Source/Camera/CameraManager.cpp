@@ -6,7 +6,7 @@
 #include "../Component/Light/ComponentLight.h"
 #include "../Component/ComponentManager.h"
 #include "../Component/Collider/ModelCollider.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Component/Collider/SphereCollider.h"
 #include "../Component/Collider/RayCollider.h"
 #include "../../Source/Component/Physics/Physics.h"

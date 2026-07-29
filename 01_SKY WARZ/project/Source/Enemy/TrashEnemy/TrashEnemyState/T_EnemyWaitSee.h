@@ -18,6 +18,9 @@ public:
 private:
 	void Move(TrashEnemy* _enemy);
 
+	const float LeaderRange = 400.0f;
+	const float RangedRange = 200.0f;
+
 	VECTOR3 targetPos;
 	bool isLeader;
 	float attackCounter;

@@ -40,6 +40,7 @@ void PlayerParamWindow::PlayerParamWindowView()
 
             ImGui::DragFloat("StartTime", &data.collsionStartTime, 0.01f);
             ImGui::DragFloat("EndTime", &data.collsionFinishTime, 0.01f);
+            ImGui::DragFloat("attackSpeedChangeRate", &data.attackSpeedChangeRate, 0.1f);
 
             //トランスフォーム
             ImGui::DragFloat3("Pos", &data.collTrans.position.x, 1.0f);
@@ -66,7 +67,7 @@ void PlayerParamWindow::PlayerParamWindowView()
 
                     if (ImGui::TreeNode(lv.c_str()))
                     {
-                        ImGui::DragFloat("Damage", &level.hitDamage, 1.0f);
+                        ImGui::DragFloat("Damage", &level.hitDamage, 1.0f);           
                         ImGui::DragFloat3("MoveSpeed", &level.moveSpeed.x, 10.0f);
                         ImGui::DragFloat("AgainTimer", &level.againTimer, 0.01f);
                         ImGui::DragInt("AgainTimerFlag", &level.againTimerFlag, 1);
@@ -125,7 +126,7 @@ void PlayerParamWindow::PlayerParamWindowView()
                 {
                     auto& c = r.chargeLevels[i];
 
-                    std::string name = "Level " + std::to_string(i);
+                    const std::string name = "Level " + std::to_string(i);
 
                     if (ImGui::TreeNode(name.c_str()))
                     {

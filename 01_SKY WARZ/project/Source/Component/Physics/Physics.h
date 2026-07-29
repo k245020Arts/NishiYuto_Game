@@ -89,7 +89,7 @@ public:
 	/// ’n–Ê‚É‚Â‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è
 	/// </summary>
 	/// <returns>’n–Ê‚É‚Â‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©</returns>
-	bool GetGround() { return ground; }
+	bool GetGround()const { return ground; }
 
 private:
 

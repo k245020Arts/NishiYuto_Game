@@ -31,7 +31,7 @@ public:
 	friend class PlayerAttack5;
 	friend class PlayerAttack4;
 	friend class PlayerJustAvoidAttack4;
-	friend class PlayerAttack5;
+	friend class PlayerAttack6;
 	friend class PlayerJustAvoidAttack5;
 	friend class PlayerAttackStateBase;
 	friend class PlayerStateBase;
@@ -41,6 +41,7 @@ public:
 	friend class PlayerBossAppear;
 	friend class PlayerHeavyCharge;
 	friend class PlayerHeavyAttack;
+	friend class PlayerHeavyAttack2;
 	friend class PlayerLose;
 
 	Player();
@@ -60,7 +61,7 @@ public:
 	/// </summary>
 	/// <param name="_angle">強制する角度</param>
 	/// <param name="_speed">速度</param>
-	void RotationChange(VECTOR3 _angle,float _speed);
+	void RotationChange(const VECTOR3& _angle,float _speed);
 	/// <summary>
 	/// プレイヤーの回転を滑らかに行うために行っている関数,、デフォルト値ver
 	/// </summary>
@@ -119,7 +120,7 @@ public:
 	/// プレイヤーのオブジェクトを取得
 	/// </summary>
 	/// <returns>プレイヤーのオブジェクトを取得</returns>
-	BaseObject* GetPlayerObj() { return obj; }
+	BaseObject* GetPlayerObj()const { return obj; }
 	/// <summary>
 	/// カメラのターゲットをセットする関数
 	/// </summary>
@@ -242,7 +243,7 @@ public:
 	/// 現在攻撃の溜めが行われているかどうか
 	/// </summary>
 	/// <returns></returns>
-	bool GetCharge() { return charge; }
+	bool GetCharge()const { return charge; }
 
 	/// <summary>
 	///　攻撃が岩に当たった時に処理する
@@ -260,7 +261,7 @@ public:
 	/// リアクションの取得
 	/// </summary>
 	/// <returns></returns>
-	std::unordered_map<StateID::State_ID, PlayerInformation::PlayerReaction>& GetReactionMap();
+	std::unordered_map<StateID::State_ID, PlayerInformation::PlayerReaction>& GetReactionMap()const;
 	/// <summary>
 	/// プレイヤーの攻撃のデータを取得
 	/// </summary>
@@ -284,7 +285,7 @@ public:
 	void CollsionAttackEvent(const CollsionEventData& _data);
 
 	void HitObjectInsert(BaseObject* _base) { hitObjects.insert(_base); }
-	bool IsHitObject(BaseObject* _base) { return hitObjects.count(_base) > 0; }
+	bool IsHitObject(BaseObject* _base)const { return hitObjects.count(_base) > 0; }
 
 private:
 	PlayerInformation::CharaComponent playerCom;

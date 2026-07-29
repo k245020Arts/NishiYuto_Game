@@ -91,7 +91,7 @@ namespace Sound_ID {
 
 	void InitID();
 	void DeleteSoundID();
-	std::string GetSoundID(SOUND_ID _type);
+	const std::string GetSoundID(SOUND_ID _type);
 
 	void SetSoundId(std::string	_sound, SOUND_ID _type);
 

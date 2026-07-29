@@ -30,4 +30,5 @@ protected:
 	bool firstColl;
 	bool nextAttack;
 	float blendSpeed;
+	int stickInputTime;
 };

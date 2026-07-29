@@ -16,13 +16,13 @@ public:
 	/// <param name="_rotate">回転</param>
 	/// <param name="_scale">大きさ</param>
 	/// <param name="name">オブジェクトの名前</param>
-	void Init(const VECTOR2F& _pos, const VECTOR2F& _rotate, const VECTOR2F& _scale, std::string name);
+	void Init(const VECTOR2F& _pos, const VECTOR2F& _rotate, const VECTOR2F& _scale, const std::string& name);
 	/// <summary>
 	/// 初期化処理2Dならこっちを使うのを推奨
 	/// </summary>
 	/// <param name="_transform">トランスフォーム</param>
 	/// <param name="name">オブジェクトの名前</param>
-	void Init(const Transform& _transform, std::string name);
+	void Init(const Transform& _transform, const std::string& name);
 
 	//void AnimSetting(float _speed, int num);
 

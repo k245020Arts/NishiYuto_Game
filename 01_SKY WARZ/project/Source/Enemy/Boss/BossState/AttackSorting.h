@@ -4,6 +4,31 @@
 #include "Attack/BossAttackJsonParse.h"
 #include "Attack/BossAttack.h"
 
+struct AttackSelectData
+{
+	float priority;
+	int normalParam;
+	int comboParam;
+	AttackSelectData()
+	{
+		priority = 0;
+		normalParam = 0;
+		comboParam = 0;
+	}
+};
+struct AttackComboData
+{
+	int priority;
+	int weight;
+
+	std::vector<std::string> id;
+	AttackComboData()
+	{
+		priority = 0;
+		weight = 0;
+	}
+};
+
 struct ActionParam
 {
 	std::string id;
@@ -11,11 +36,12 @@ struct ActionParam
 	int priority;     // プライオリティ
 	int weight;       // 重さ
 	int maxAction;    // 連続で何回行動できるか
-
 	float distance = 0; // 距離によってその技が出やすいかどうか
+
 	int addWeight = 0;  // 数字変動
 
-	ActionParam() {
+	ActionParam() 
+	{
 		id = "";
 		attackState = false;
 		priority = 1;
@@ -57,6 +83,19 @@ inline void from_json(const JSON& j, ActionParam& p)
 		j.at("addWeight").get_to(p.addWeight);
 }
 
+inline void from_json(const JSON& j, AttackSelectData& data)
+{
+	j.at("priority").get_to(data.priority);
+	j.at("normal").get_to(data.normalParam);
+	j.at("combo").get_to(data.comboParam);
+}
+
+inline void from_json(const JSON& j, AttackComboData& data)
+{
+	j.at("priority").get_to(data.priority);
+	j.at("weight").get_to(data.weight);
+	j.at("Conbo").get_to(data.id);
+}
 
 class AttackSorting :public EnemyStateBase
 {
@@ -72,14 +111,14 @@ public:
 	/// 強制的に次の攻撃のStateの決定をする
 	/// </summary>
 	/// <param name="_attackID"></param>
-	void ForcedAttackStart(std::string _attackID);
+	void ForcedAttackStart(const std::string& _attackID);
 
 	/// <summary>
 	/// 攻撃情報のロードをする
 	/// </summary>
 	/// <param name="_bossName">ボスのID</param>
 	/// <param name="_boss">ボスのポインタ</param>
-	void Load(std::string _bossName, Boss* _boss);
+	void Load(const std::string& _bossName, Boss* _boss);
 	/// <summary>
 	/// 攻撃の終了
 	/// </summary>
@@ -93,63 +132,78 @@ public:
 	/// 攻撃抽選情報のセーブ
 	/// </summary>
 	/// <param name="_bossName">ボスのID</param>
-	void SaveSorthing(std::string _bossName);
+	void SaveSorthing(const std::string& _bossName);
 	/// <summary>
 	/// 攻撃抽選情報のロード
 	/// </summary>
 	/// <param name="_bossName">ボスのID</param>
-	void LoadSorting(std::string _bossName);
+	void LoadSorting(const std::string& _bossName);
 	/// <summary>
 	/// 攻撃抽選情報の取得
 	/// </summary>
 	/// <returns></returns>
-	std::vector<ActionParam> GetActionParam();
+	const std::vector<ActionParam> GetActionParam()const;
 	/// <summary>
 	/// 攻撃情報の取得
 	/// </summary>
 	/// <returns></returns>
-	std::unordered_map<std::string, EnemyAttackBase::BossAttackParam> GetAttackParam();
+	const std::unordered_map<std::string, EnemyAttackBase::BossAttackParam> GetAttackParam()const;
 	/// <summary>
 	/// 攻撃の追加
 	/// </summary>
 	/// <param name="_param">攻撃情報</param>
 	/// <param name="_boss">ボスのポインタ</param>
-	void AddAttack(EnemyAttackBase::BossAttackParam _param, Boss* _boss);
+	void AddAttack(const EnemyAttackBase::BossAttackParam& _param, Boss* _boss);
 	/// <summary>
 	/// 攻撃の追加
 	/// </summary>
 	/// <param name="_param">攻撃情報</param>
 	/// <param name="_boss">ボスのポインタ</param>
 	/// <param name="_attackID">攻撃のID</param>
-	void AddAttack(EnemyAttackBase::BossAttackParam _param,Boss* _boss,std::string _attackID);
+	void AddAttack(const EnemyAttackBase::BossAttackParam& _param,Boss* _boss, const std::string& _attackID);
 	/// <summary>
 	/// 攻撃情報のリロードをする
 	/// </summary>
 	/// <param name="_param"></param>
 	/// <param name="_reLoadID"></param>
-	void ReloadParam(EnemyAttackBase::BossAttackParam _param,std::string _reLoadID);
-
+	void ReloadParam(const EnemyAttackBase::BossAttackParam& _param, const std::string& _reLoadID);
+	/// <summary>
+	/// jsonデータのロード
+	/// </summary>
+	/// <param name="_fileName">コンボか攻撃をするか決めるjsonデータのファイル名を入れる</param>
+	/// <param name="_atkCombo">コンボのjsonデータのファイル名を入れる</param>
+	void LoodAttackSelect(const std::string& _fileName, const std::string& _atkCombo);
 	//void StateImguiDraw()override;
 
 private:
 	const float COOLTIME = 0.5f;
+	const float ComboDistance = 2000.0f;
 
 	void NormalAttackSelect();
+	//攻撃の処理
 	void AttackStart();
-
-	
-	
-	//int AttackPriority();
-	
+		
 	/// <summary>
 	/// 行動を決める
 	/// </summary>
 	/// <param name="_priority">今のボスの状況を入れる</param>
 	void BuildTable(int _priority);
+	//コンボ関数
+	void SelectNextComboAction(int _priority);
+	//攻撃を選択する関数
+	void SelectNextAction(int _priority);
+
 	//変動させた値をすべてゼロにする
 	void AllAddWeightZero();
 
-	float coolTime;
+	//攻撃振り分けパラメーターの設定
+	std::vector<ActionParam> actions;
+	//コンボか通常の数値のデータを保存する
+	std::vector<AttackSelectData> selectData;
+	//コンボのデータを保持する
+	std::vector<AttackComboData> atkComboData;
+	//コンボの順番などを保存する
+	std::vector<std::string> comboIdSave;
 
 	Boss::HP_RATE hp;
 
@@ -157,15 +211,6 @@ private:
 	int kind;
 	int attackNum;
 	bool nextAttack;
-
-	/*struct ActionRange
-	{
-		int min;
-		int max;
-		StateID::State_ID id;
-		ActionRange();
-	};
-	std::vector<ActionRange> table;*/
 
 	int bossPriority;//
 	std::string nextState;
@@ -175,7 +220,9 @@ private:
 	int moveCounter;
 	bool forceAttack;
 
-	VECTOR3 vec;
+	VECTOR3 pVec;
+	//bool isComboAtk;
+
 	std::unordered_map<std::string, std::shared_ptr<BossAttack>> attacks; //攻撃のポインターの保持
 	std::unordered_map<std::string, EnemyAttackBase::BossAttackParam> attackParam; ///攻撃のパラメーターの保持
 };

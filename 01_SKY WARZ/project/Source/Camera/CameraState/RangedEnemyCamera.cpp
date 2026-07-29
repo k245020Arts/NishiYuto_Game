@@ -2,7 +2,7 @@
 #include "../Camera.h"
 #include "../../Enemy/TrashEnemy/TrashEnemyManager.h"
 #include "../../Player/player.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 
 RangedEnemyCamera::RangedEnemyCamera()
 {

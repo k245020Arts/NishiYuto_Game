@@ -21,7 +21,7 @@ CollsionEvent::~CollsionEvent()
 }
 #define CollsionEventPtrMode
 
-void CollsionEvent::Event(ColliderBase* _coll1, ColliderBase* _coll2, Pushback& resolver, const VECTOR3& _hitPos)
+void CollsionEvent::Event(ColliderBase* _coll1, ColliderBase* _coll2, const Pushback& resolver, const VECTOR3& _hitPos)
 {
 	using namespace CollsionInformation;
 
@@ -60,9 +60,9 @@ void CollsionEvent::Event(ColliderBase* _coll1, ColliderBase* _coll2, Pushback& 
 
 	
 }
-CollsionEventData CollsionEvent::SetEventData(ColliderBase* _myCollObj, ColliderBase* _targetCollObj, Pushback& _pushInfo, const VECTOR3& _hitPos)
+CollsionEventData CollsionEvent::SetEventData(ColliderBase* _myCollObj, ColliderBase* _targetCollObj, const Pushback& _pushInfo, const VECTOR3& _hitPos)
 {
-	CollsionEventData eventData;
+	CollsionEventData eventData = CollsionEventData(_pushInfo.GetPushInfo());
 
 	eventData.myTransform = _myCollObj->GetBaseObject()->GetTransform();
 	eventData.myShape = _myCollObj->GetShape();
@@ -76,7 +76,6 @@ CollsionEventData CollsionEvent::SetEventData(ColliderBase* _myCollObj, Collider
 	eventData.targetObject = _targetCollObj->GetBaseObject();
 	eventData.targetColliderBase = _targetCollObj;
 
-	eventData.pushes = _pushInfo.GetPushInfo();
 	eventData.hitPos = _hitPos;
 	
 

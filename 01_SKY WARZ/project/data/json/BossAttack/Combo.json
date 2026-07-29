@@ -1,0 +1,24 @@
+{
+  "BossAttackSelect": [
+    {
+      "priority": 10,
+      "normal": 100,
+      "combo": 0
+    },
+    {
+      "priority": 30,
+      "normal": 80,
+      "combo": 20
+    },
+    {
+      "priority": 50,
+      "normal": 50,
+      "combo": 50
+    },
+    {
+      "priority": 80,
+      "normal": 20,
+      "combo": 80
+    }
+  ]
+}

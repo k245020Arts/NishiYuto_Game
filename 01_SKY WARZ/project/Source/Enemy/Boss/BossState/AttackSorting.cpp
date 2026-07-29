@@ -2,62 +2,16 @@
 #include "../Boss.h"
 #include "../../../State/StateManager.h"
 #include "BossStatus.h"
-#include "../../../Common/Random.h"
+#include "../../../Common/Random/Random.h"
 #include "../../../Common/FileSystemUtils/FileSystemUtils.h"
-#include "../../../Common/ResourceLoader.h"
+#include "../../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../../../ImGui/imgui.h"
 #include "../../../Stage/StageSelectData.h"
 #include "../../../Component/Animator/Animator.h"
 
-
 namespace {
-	const int ATTACK_KIND_MAX		= 6;
-	const int COMBO_ATTACK_KIND_MAX = 3;
-	/*enum COMBO_ATTACK
-	{
-		NORMAL_COMBO1,
-		NORMAL_COMBO2,
-		JUMP_COMBO,
-		RUN_COMBO,
-	};
-	std::vector<COMBO_ATTACK> comboKind{
-		{NORMAL_COMBO1},
-		{NORMAL_COMBO2},
-		{JUMP_COMBO},
-		{RUN_COMBO},
-	};*/
-	//単発攻撃の種類
-	std::vector<StateID::State_ID> attackKind{
-		{StateID::BOSS_NORMAL_ATTACK1_S},
-		{StateID::BOSS_NORMAL_ATTACK2_S},
-		{StateID::BOSS_NORMAL_ATTACK3_S},
-		{StateID::BOSS_SPECIAL_ATTACK1_S},
-		{StateID::BOSS_SPECIAL_SMALL_ATTACK1_S},
-		{StateID::BOSS_SPECIAL_ATTACK2_S},
-		{StateID::BOSS_NORMAL_ATTACK4_S},
-		{StateID::BOSS_NORMAL_ATTACK5_S},
-		{StateID::BOSS_NORMAL_ATTACK6_S},
-	};
-	
-	
-
-	//攻撃振り分けパラメーターの設定
-	std::vector<ActionParam> actions;
-
-	/*{
-		{"BossWalk",				false,10, 40, 0},
-		{"BossNormalAttack1",		true,10, 10, 1},
-		{"BossNormalAttack2",		true,10, 10, 1},
-		{"BossNormalAttack3",		true,10, 10, 1},
-		{"BossNormalAttack4",		true,10, 10, 1},
-		{"BossNormalAttack5",		true,30, 10, 1},
-		{"BossNormalAttack6",		true,30, 10, 1},
-		{"BossNormalAttack7",		true,10, 10, 0, 2000},
-		{"BossSpecialAttack1",		true,50, 30, 1},
-		{"BossSpecialSmallAttack1",	true,50, 30, 1},
-		{"BossSpecialAttack2",		true,50, 0,  1, 2000},
-		{"BossBackStep",			false,50, 30, 0},
-	};*/
+	constexpr int ATTACK_KIND_MAX		= 6;
+	constexpr int COMBO_ATTACK_KIND_MAX = 3;
 
 	//通常攻撃の重み
 	const std::vector<std::vector<double>> normalAttackParam{
@@ -66,25 +20,10 @@ namespace {
 		{ 0.1,	0.1,	0.5,	0.7,	1.0,	0.1,	0.5,	0.5,	0.5  },
 		{ 0.05,	0.05,	1.0,	0.5,	0.9,	0.1,	0.5,	0.5,	0.5  },
 	};
-	//コンボ攻撃の重み
-	const std::vector<std::vector<double>> comboAttackParam{
-		{ 1.0,	0.5,	0.0,	0.0},
-		{ 0.8,	0.7,	0.2,	0.0},
-		{ 0.5,	1.0,	0.5,	0.1},
-		{ 0.2,	0.5,	0.7,	0.1},
-	};
-	//コンボ攻撃の順番
-	const std::vector<std::vector<StateID::State_ID>> comboOrder{
-		{StateID::BOSS_NORMAL_ATTACK1_S,		StateID::BOSS_NORMAL_ATTACK2_S,			StateID::BOSS_NORMAL_ATTACK3_S},
-		{StateID::BOSS_NORMAL_ATTACK4_S,		StateID::BOSS_NORMAL_ATTACK5_S,			StateID::BOSS_NORMAL_ATTACK6_S},
-		{StateID::BOSS_SPECIAL_SMALL_ATTACK1_S, StateID::BOSS_SPECIAL_SMALL_ATTACK1_S,	StateID::BOSS_SPECIAL_ATTACK1_S },
-		{StateID::BOSS_SPECIAL_ATTACK2_S,		StateID::BOSS_SPECIAL_ATTACK2_S,		StateID::BOSS_SPECIAL_ATTACK2_S,	StateID::BOSS_SPECIAL_ATTACK2_S}
-	};
 }
 
 AttackSorting::AttackSorting()
 {
-	coolTime	= 0;
 	string		= Function::GetClassNameC<AttackSorting>();
 	hp			= Boss::MAX;
 	attackNum	= 0;
@@ -97,9 +36,7 @@ AttackSorting::AttackSorting()
 
 	copyState = StateID::STATE_MAX;
 
-	
-
-	vec = VZero;
+	pVec = VZero;
 	forceAttack = false;
 	nextAttack = false;
 }
@@ -109,43 +46,54 @@ AttackSorting::~AttackSorting()
 
 }
 
-//#define NORMAL_MODE
-
 void AttackSorting::Update()
 {
 	Boss* b = GetBase<Boss>();
-	coolTime += Time::DeltaTimeRate();
-	if (coolTime <= COOLTIME)
-		return;
-
-	if (b->maxAttack != -1)
-		b->enemyBaseComponent.state->ChangeState(comboOrder[kind][attackNum - b->maxAttack]);
-#ifdef NORMAL_MODE
-	else 
-		b->enemyBaseComponent.state->ChangeState(nextState/*attackKind[kind]*/);
-
-#else
-	else {
-		if (nextAttack) {
-			if (attacks[nextState] == nullptr) {
-				//次の状態が何も入ってなかったら攻撃ステートを終了
-				b->BossAttackStateChange();
-				return;
-			}
-			attacks[nextState]->Update();
+	if (b->isComboAttack)
+	{
+		if (attacks[nextState]->isFinishAttack())
+		{
+			AttackFinish();
+			b->enemyBaseComponent.anim->Play(ID::B_IDOL);
+			nextAttack = false;
 		}
-		else {
-			if (nextState == "") {
-				//次の状態が何も入ってなかったらもう一度抽選
-				BuildTable(bossPriority);
-				return;
-			}
-			b->enemyBaseComponent.state->ChangeState(StateID::StringToID(nextState));
-		}
-	
 	}
+		
+	if (nextAttack)
+	{
+		if (attacks[nextState] == nullptr)
+		{
+			//次の状態が何も入ってなかったら攻撃ステートを終了
+			b->BossAttackStateChange();
+			return;
+		}
+		attacks[nextState]->Update();
+	}
+	else
+	{
+		if (nextState == "")
+		{
+			//次の状態が何も入ってなかったらもう一度抽選
+			BuildTable(bossPriority);
+			return;
+		}
+		else if (comboIdSave.size() != 0)
+		{
+			nextState = comboIdSave[0];
+			AttackStart();
+			//保存したコンボの先頭を削除して次の技を0に保存する
+			comboIdSave.erase(comboIdSave.begin());
+			nextAttack = true;
+			return;
+		}
+		else if (b->isComboAttack)//コンボ攻撃が終了したとき
+		{
+			b->BossAttackStateChange();
+			return;
+		}
 
-#endif
+		b->enemyBaseComponent.state->ChangeState(StateID::StringToID(nextState));
+	}
 }
 
 void AttackSorting::Start()
@@ -153,16 +101,7 @@ void AttackSorting::Start()
 	animId = ID::B_IDOL;
 	EnemyStateBase::Start();
 	Boss* b = GetBase<Boss>();
-	/*if (b->maxAttack >= 0) {
-		b->maxAttack--;
-		if (b->maxAttack == -1) {
-			NormalAttackSelect();
-		}
-		b->comboFirstAttack = false;
-		return;
-	}*/
-	/*int maxAttack = b->bs->GetStatus().maxAttack;
-	int randam = GetRand(1);*/
+	
 	hp = b->Hp();
 	//コンボ攻撃をするか決める
 	float comboAttackRate = 0.0f;
@@ -186,39 +125,24 @@ void AttackSorting::Start()
 		bossPriority = 80;
 		break;
 	}
-	vec = b->enemyBaseComponent.playerObj->GetTransform()->position - b->GetEnemyObj()->GetTransform()->position;
+
+	pVec = b->enemyBaseComponent.playerObj->GetTransform()->position - b->GetEnemyObj()->GetTransform()->position;
 	BuildTable(bossPriority);
-	/*bool combo = Random::GetBernoulli(comboAttackRate);
-	if (combo) {
-		std::vector<double> rand = comboAttackParam[hp];
-		VECTOR3 dist = b->obj->GetTransform()->position - b->enemyBaseComponent.playerObj->GetTransform()->position;
-		float size = dist.Size();
-		if (size >= 5000.0f) {
-			rand[3] += 2.0f;
-		}
-		kind = Random::GetWeightedIndex(rand);
-		b->maxAttack = (int)comboOrder[kind].size() - 1;
-		attackNum = b->maxAttack;
-		b->comboFirstAttack = true;
-	}
-	else {
-		NormalAttackSelect();
-	}*/
-
+	
 	b->comboFirstAttack = true;
-
-	coolTime = 0;
 }
 
 void AttackSorting::Finish()
 {
+	Boss* boss = GetBase<Boss>();
 	copyState = nextState;
 	moveCounter++;
 	AttackFinish();
 	forceAttack = false;
+	boss->isComboAttack = false;
 }
 
-void AttackSorting::ForcedAttackStart(std::string _attackID)
+void AttackSorting::ForcedAttackStart(const std::string& _attackID)
 {
 	nextState = _attackID;
 	nextAttack = true;
@@ -227,28 +151,33 @@ void AttackSorting::ForcedAttackStart(std::string _attackID)
 	forceAttack = true;
 }
 
+void AttackSorting::LoodAttackSelect(const std::string& _fileName, const std::string& _atkCombo)
+{
+	JsonReader json;
+	json.Load(_fileName);
+
+	auto& j = json.Data();
+
+	for (const auto& copy : j["BossAttackSelect"])
+	{
+		selectData.push_back(copy);
+	}
+
+	JsonReader json2;
+	json2.Load(_atkCombo);
+
+	auto& j2 = json2.Data();
+	
+	for (int i = 0; i < j2.size(); i++)
+	{
+		atkComboData.push_back(j2.at("Combo" + std::to_string(i)).get<AttackComboData>());
+	}
+}
+
 void AttackSorting::NormalAttackSelect()
 {
 	Boss* b = GetBase<Boss>();
 	std::vector<double> rand = normalAttackParam[hp];
-	/*switch (hp)
-	{
-	case AttackSorting::MAX:
-		rand = 
-		break;
-		break;
-	case AttackSorting::EIGHT:
-		rand = 
-		break;
-	case AttackSorting::FIVE:
-		
-		break;
-	case AttackSorting::THREE:
-		
-		break;
-	default:
-		break;
-	}*/
 	
 	VECTOR3 dist = b->obj->GetTransform()->position - b->enemyBaseComponent.playerObj->GetTransform()->position;
 	float size = dist.Size();
@@ -271,62 +200,26 @@ void AttackSorting::NormalAttackSelect()
 
 void AttackSorting::BuildTable(int _priority)
 {
-	if (forceAttack) {
+	if (forceAttack) 
 		return;
-	}
-	int totalWeight = 0;
-	
-	for (auto& itr : actions)
+
+	int c = 0;
+	int n = 0;
+	for (int i = 0; i < selectData.size(); i++)
 	{
-		if (itr.id == copyState)//一個前の行動と同じとき
+		if (bossPriority <= selectData[i].priority)
 		{
-			if (itr.maxAction < moveCounter)//指定した行動
-			{
-				copyPriority = itr.priority;
-				itr.priority = 0;
-				continue;
-			}
-		}
-		else
-			moveCounter = 0;
-
-		if (itr.priority > _priority)
-			continue;
-		else
-		{
-			if (itr.distance!=0.0f&&vec.Size() > itr.distance)
-				itr.addWeight = 3000;
-
-			totalWeight += itr.weight + itr.addWeight;
-		}
-			
-	}
-
-	//打てる技の合計からランダムな数字をだす
-	int rand = GetRand(totalWeight - 1);
-
-	for (auto& itr : actions)
-	{
-		if (itr.priority == 0)
-		{
-			itr.priority = copyPriority;
-			continue;
-		}
-		else if(itr.priority > _priority)//プライオリティを超えてるとき
-			continue;
-
-		rand -= itr.weight + itr.addWeight;
-	
-		if (rand < 0)
-		{
-			//AttackFinish();
-			nextState = itr.id;
-			nextAttack = itr.attackState;
-			AllAddWeightZero();
-			AttackStart();
+			c = selectData[i].comboParam;
+			n = selectData[i].normalParam;
 			break;
 		}
 	}
+	//距離が離れてるときにコンボ攻撃を選択するとその場で攻撃するようになる
+	int p = GetRand(c + n);
+	if (p - c < 0 && pVec.Size() < ComboDistance && atkComboData.size()!=0)
+		SelectNextComboAction(_priority);
+	else
+		SelectNextAction(_priority);
 }
 
 void AttackSorting::AllAddWeightZero()
@@ -340,11 +233,8 @@ void AttackSorting::AllAddWeightZero()
 	}
 }
 
-
-void AttackSorting::Load(std::string _bossName,Boss* _boss) 
+void AttackSorting::Load(const std::string& _bossName,Boss* _boss)
 {
-	//int attackNum = FileSystemUtils::GetDirectoryCount("data/json/BossAttack/" + _bossName);
-
 	std::string filePath = "data/json/BossAttack/" + _bossName;
 
 	for (const auto& entry : std::filesystem::directory_iterator(filePath)) {
@@ -397,9 +287,7 @@ void AttackSorting::Load(std::string _bossName,Boss* _boss)
 		t.second->SetComponent<Boss>(_boss);
 	}
 
-	//Save(_bossName);
 	LoadSorting(_bossName);
-
 }
 
 void AttackSorting::AttackStart() 
@@ -409,6 +297,107 @@ void AttackSorting::AttackStart()
 		return;
 	}
 	attacks[nextState]->Start();
+}
+
+void AttackSorting::SelectNextComboAction(int _priority)
+{
+	Boss* boss = GetBase<Boss>();
+	boss->isComboAttack = true;
+	float totalWeight = 0;
+	for (auto& itr : atkComboData)
+	{
+		if (itr.priority > _priority)
+			continue;
+		else
+		{
+			totalWeight += itr.weight;
+		}
+	}
+	
+	//打てる技の合計からランダムな数字をだす
+	int rand = GetRand((int)totalWeight - 1);
+
+	for (auto& itr : atkComboData)
+	{
+		if (itr.priority == 0)//上で制御した行動を戻す代わりに選出されないようにした
+		{
+			itr.priority = copyPriority;
+			continue;
+		}
+		else if (itr.priority > _priority)//プライオリティを超えて技をださないようにする
+			continue;
+
+		rand -= (int)itr.weight;
+
+		if (rand < 0)
+		{
+			for (auto& id : itr.id)
+			{
+				comboIdSave.push_back(id);
+				nextAttack = false;
+			}
+			nextState = comboIdSave[0];
+			break;
+		}
+	}
+}
+
+void AttackSorting::SelectNextAction(int _priority)
+{
+	int totalWeight = 0;
+	//距離が離れていて選択されやすい攻撃をするときにどれだけ出やすくするか
+	float _addWeight = 0;
+
+	for (auto& itr : actions)
+	{
+		if (itr.id == copyState)//一個前の行動と同じとき
+		{
+			if (itr.maxAction < moveCounter)//指定した行動
+			{
+				//同じ行動を取らないためにプライオリティをコピーしてから0を代入して選ばれないようにしている(後で戻すためにコピーしてる)
+				copyPriority = itr.priority;
+				itr.priority = 0;
+				continue;
+			}
+		}
+		else
+			moveCounter = 0;
+
+		if (itr.priority > _priority)
+			continue;
+		else
+		{
+			if (itr.distance != 0.0f && pVec.Size() > itr.distance)
+				itr.addWeight = 3000;
+
+			totalWeight += itr.weight + itr.addWeight;
+		}
+	}
+
+	//打てる技の合計からランダムな数字をだす
+	int rand = GetRand(totalWeight - 1);
+
+	for (auto& itr : actions)
+	{
+		if (itr.priority == 0)//上で制御した行動を戻す代わりに選出されないようにした
+		{
+			itr.priority = copyPriority;
+			continue;
+		}
+		else if (itr.priority > _priority)//プライオリティを超えて技をださないようにする
+			continue;
+
+		rand -= itr.weight + itr.addWeight;
+
+		if (rand < 0)
+		{
+			nextState = itr.id;
+			nextAttack = itr.attackState;
+			AllAddWeightZero();
+			AttackStart();
+			break;
+		}
+	}
 }
 
 void AttackSorting::AttackFinish() 
@@ -425,7 +414,7 @@ std::shared_ptr<EnemyAttackBase> AttackSorting::GetNowAttackState()
 	return attacks[nextState];
 }
 
-void AttackSorting::SaveSorthing(std::string _bossName)
+void AttackSorting::SaveSorthing(const std::string& _bossName)
 {
 	std::string filePath = std::string("data/json/BossAttack/" + _bossName + "/Sorting") + "/AttackSort" + ".json";
 
@@ -442,11 +431,10 @@ void AttackSorting::SaveSorthing(std::string _bossName)
 		root["AttackSort"][key] = attack;
 	}
 
-
 	json.Save(filePath, root);
 }
 
-void AttackSorting::LoadSorting(std::string _bossName)
+void AttackSorting::LoadSorting(const std::string& _bossName)
 {
 	JsonReader json;
 	std::string filePath = std::string("data/json/BossAttack/" + _bossName + "/Sorting") + "/AttackSort" + ".json";
@@ -458,26 +446,24 @@ void AttackSorting::LoadSorting(std::string _bossName)
 		j.get_to(action);
 		actions.push_back(action);
 	}
-
-	
 }
 
-std::vector<ActionParam> AttackSorting::GetActionParam()
+const std::vector<ActionParam> AttackSorting::GetActionParam()const
 {
 	return actions;
 }
 
-std::unordered_map<std::string, EnemyAttackBase::BossAttackParam> AttackSorting::GetAttackParam()
+const std::unordered_map<std::string, EnemyAttackBase::BossAttackParam> AttackSorting::GetAttackParam()const
 {
 	return attackParam;
 }
 
-void AttackSorting::AddAttack(EnemyAttackBase::BossAttackParam _param, Boss* _boss)
+void AttackSorting::AddAttack(const EnemyAttackBase::BossAttackParam& _param, Boss* _boss)
 {
 	AddAttack(_param,_boss, _param.attackID);
 }
 
-void AttackSorting::AddAttack(EnemyAttackBase::BossAttackParam _param, Boss* _boss, std::string _attackID)
+void AttackSorting::AddAttack(const EnemyAttackBase::BossAttackParam& _param, Boss* _boss, const std::string& _attackID)
 {
 	std::string key = _attackID;	
 	if (attacks[key] != nullptr) { //攻撃がすでにあったら追加しない
@@ -491,14 +477,9 @@ void AttackSorting::AddAttack(EnemyAttackBase::BossAttackParam _param, Boss* _bo
 	attacks[key]->SetAttackParam(attackParam[key]);
 }
 
-void AttackSorting::ReloadParam(EnemyAttackBase::BossAttackParam _param,std::string _reLoadID)
+void AttackSorting::ReloadParam(const EnemyAttackBase::BossAttackParam& _param, const std::string& _reLoadID)
 {
 	//設定のし直し
 	attackParam[_reLoadID] = _param;
 	attacks[_reLoadID]->SetAttackParam(attackParam[_reLoadID]);
 }
-
-//void AttackSorting::StateImguiDraw()
-//{
-//	/*ImGui::Text(nextState.c_str());*/
-//}

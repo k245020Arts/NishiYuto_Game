@@ -96,7 +96,7 @@ void ID::DeleteID()
 	delete modelId;
 }
 
-std::string ID::GetID(IDType _type)
+const std::string ID::GetID(IDType _type)
 {
 	int type = (int)_type;
 	if (type < 0 && type >= (int)ID_MAX) {

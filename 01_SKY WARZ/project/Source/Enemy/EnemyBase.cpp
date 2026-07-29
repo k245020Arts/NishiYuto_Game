@@ -9,7 +9,7 @@
 #include "../Player/PlayerState/AttackState/PlayerAttack2.h"
 #include "../Common/Memory/MemoryCount.h"
 #include "EnemyManager.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Component/UI/EnemyDamageUI.h"
 #include "../Component/ComponentManager.h"
 #include "../Camera/Camera.h"
@@ -31,7 +31,8 @@ EnemyBase::EnemyBase()
 	damageFlash = 0.0f;
 	specialAttackHit = false;
 	justAvoidCollTime = 0.0f;
-
+	damageNum = 0;
+	name = "";
 }
 
 EnemyBase::~EnemyBase()
@@ -63,9 +64,7 @@ void EnemyBase::Update()
 			enemyBaseComponent.color->setRGB(Color::Rgb(255.0f, 255.0f, 255.0f, 255.0f));
 		}
 	}
-	if (CheckHitKey(KEY_INPUT_G)) {
-		obj->GetTransform()->position = EnemyInformation::BASE_POS;
-	}
+	
 	//多段ヒットの処理
 	if (loopNum >= 0) {
 		hitCounter -= Time::DeltaTimeRate();
@@ -115,7 +114,19 @@ void EnemyBase::DrawTrail() {
 void EnemyBase::EnemyDamageMove(const EnemyDamage::EnemyDamageInfo& _info)
 {
 	//敵がダメージを受けた時の吹っ飛ばし量の設定
-	enemyBaseComponent.physics->SetVelocity(_info.speed * MGetRotY(enemyBaseComponent.playerObj->GetTransform()->rotation.y));
+	VECTOR3 finalSpeed = VZero;
+	if (_info.playerFrontMode) {
+		finalSpeed = _info.playerFrontModeSpeed * MGetRotY(enemyBaseComponent.playerObj->GetTransform()->rotation.y);
+	}
+	else {
+		VECTOR3 pPos = enemyBaseComponent.playerObj->GetTransform()->position;
+		VECTOR3 dist = obj->GetTransform()->position - pPos;
+
+		finalSpeed = dist.Normalize() * _info.speed;
+	}
+	
+
+	enemyBaseComponent.physics->SetVelocity(finalSpeed);
 }
 
 float EnemyBase::DamageCalculation(const VECTOR3& _pos, float _damage,float _defense, float deviation)

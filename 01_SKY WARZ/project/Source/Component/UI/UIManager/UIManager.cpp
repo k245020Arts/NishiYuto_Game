@@ -3,7 +3,7 @@
 #include "../../Object/BaseObject.h"
 #include "../../Transform/Transform.h"
 #include "../../ComponentManager.h"
-#include "../../../Common/ResourceLoader.h"
+#include "../../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../../Common/Debug/Debug.h"
 #include "../../../Common/Debug/DebugLogText.h"
 #include "../../Color/Color.h"

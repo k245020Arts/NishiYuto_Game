@@ -3,7 +3,7 @@
 #include "ObjectManager.h"
 #include "Time.h"
 #include <DxLib.h>
-#include "../Source/Common/ResourceLoader.h"
+#include "../Source/Common/ResourceLoader/ResourceLoader.h"
 #include "../Source/Common/Singleton/SingleTonUpdater.h"
 #include "../Source/Common/PostEffect/PostEffect.h"
 

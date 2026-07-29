@@ -96,7 +96,7 @@ private:
 	bool stop;
 
 	void ShakePower();
-	VECTOR3 GetShake(const VECTOR3& _shake);
+	VECTOR3 GetShake(const VECTOR3& _shake)const;
 
 	VECTOR3 shakePos;
 

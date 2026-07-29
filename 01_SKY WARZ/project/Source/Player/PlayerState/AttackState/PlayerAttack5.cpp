@@ -66,8 +66,22 @@ void PlayerAttack5::Update()
 			avoidReady = true; //回避状態に移行
 			//noStateChange = true;
 		}
+		float frame = p->playerCom.anim->GetCurrentFrame();
 		if (InputManager::GetInstance()->KeyInputDown("attack")) {
-			nextAttack = true; //次の攻撃状態に移行
+			//アニメーション一定フレーム以降なら
+			if (playerAttackData.attackInputStartTime <= frame) {
+				nextAttack = true;
+				normal = true;
+				special = false;
+			}
+		}
+		if (InputManager::GetInstance()->KeyInputDown("heavyAttack")) {
+			//アニメーション一定フレーム以降なら
+			if (playerAttackData.attackInputStartTime <= frame) {
+				nextAttack = true;
+				special = true;
+				normal = false;
+			}
 		}
 		timer -= Time::DeltaTimeRate();
 		if (p->playerCom.physics->GetGravity().y <= -30000.0f) {

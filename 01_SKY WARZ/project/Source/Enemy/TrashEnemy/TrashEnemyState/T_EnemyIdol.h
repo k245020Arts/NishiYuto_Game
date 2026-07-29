@@ -16,6 +16,8 @@ private:
 	void NormalMove();
 
 	const float RANGESPEED = 60.0f;
+	const float Gravity = -1000.0f;
+	const int RandMax = 500;
 	//プレイヤーの探知範囲を少しずつあげる
 	float detectionRange;
 

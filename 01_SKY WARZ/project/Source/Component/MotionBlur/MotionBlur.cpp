@@ -2,7 +2,7 @@
 #include "../Animator/Animator.h"
 #include "../ComponentManager.h"
 #include "../Transform/Transform.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 
 MotionBlur::MotionBlur()
 {

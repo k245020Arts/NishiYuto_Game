@@ -21,7 +21,7 @@ public:
    
 
 private:
-    Transform* PlayerEnemyWorldToPos(std::string _name);
+    const Transform* PlayerEnemyWorldToPos(const std::string& _name)const;
     struct CutPositionInformation
     {
         CutPositionInformation() {

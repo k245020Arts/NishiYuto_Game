@@ -5,13 +5,13 @@
 #include "../../../Component/Shadow/Shadow.h"
 #include "../../../Enemy/Boss/Boss.h"
 #include "../../../State/StateManager.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Shaker/Shaker.h"
 #include "../../../Enemy/Boss/BossState/BossStatus.h"
 #include "../../../Camera/Camera.h"
-#include "../../../Common/Random.h"
+#include "../../../Common/Random/Random.h"
 #include "../../MeshRenderer/MeshRenderer.h"
-#include "../../../Common/ResourceLoader.h"
+#include "../../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../../Common/Effect/EffectManager.h"
 #include "../../../Weapon/CharaWeapon.h"
 #include "../../../Common/Debug/DebugNew.h"
@@ -179,13 +179,17 @@ void BossRockManager::AppearThrowObject(BossRockBase* _rock, int _index, int _to
 		rockComp->SetCanBlast(true);
 	}*/
 	BossRockBase* rock = throwObject->Component()->GetComponent<BossRockBase>();
-	CharaWeapon* chara = throwObject->Component()->GetComponent<CharaWeapon>();
+	const CharaWeapon* chara = throwObject->Component()->GetComponent<CharaWeapon>();
 	MATRIX* matrix = nullptr;
 	if (chara != nullptr) {
-		matrix = chara->GetMatrixPtr();
+		const MATRIX* matrix = chara->GetMatrixPtr();
+		rock->Start(_data, matrix);
+	}
+	else {
+		rock->Start(_data, nullptr);
 	}
 	
-	rock->Start(_data, matrix);
+	
 	
 }
 
@@ -203,9 +207,9 @@ void BossRockManager::CreateThrowObject(const std::vector<EnemyAttackBase::Throw
 	}
 }
 
-VECTOR3 BossRockManager::GetPushCollSize(const EnemyAttackBase::ThrowObjectAttackData& _data)
+VECTOR3 BossRockManager::GetPushCollSize(const EnemyAttackBase::ThrowObjectAttackData& _data)const
 {
-	return throwObjectsData[_data.throwObjectID].pushTransform.scale;
+	return throwObjectsData.at(_data.throwObjectID).pushTransform.scale;
 }
 
 void BossRockManager::PushList(BossRockBase* _obj)
@@ -226,7 +230,7 @@ void BossRockManager::RemoveList(BossRockBase* _obj)
 	}
 }
 
-bool BossRockManager::IsFreePos(const VECTOR3& _pos, float _minDist)
+bool BossRockManager::IsFreePos(const VECTOR3& _pos, float _minDist)const
 {
 	for (auto rock : rocks) {
 		VECTOR3 diff = rock->GetBaseObject()->GetTransform()->position - _pos;
@@ -252,7 +256,7 @@ void BossRockManager::DropRockStart()
 	}
 }
 
-VECTOR3 BossRockManager::GetRockPos(const VECTOR3& _pos)
+VECTOR3 BossRockManager::GetRockPos(const VECTOR3& _pos)const
 {
 	VECTOR3 pos = VECTOR3(INFINITY, INFINITY, INFINITY);
 
@@ -266,7 +270,7 @@ VECTOR3 BossRockManager::GetRockPos(const VECTOR3& _pos)
 	return pos;
 }
 
-std::list<VECTOR3> BossRockManager::GetAllRockPos()
+std::list<VECTOR3> BossRockManager::GetAllRockPos()const
 {
 	std::list<VECTOR3> _pos;
 

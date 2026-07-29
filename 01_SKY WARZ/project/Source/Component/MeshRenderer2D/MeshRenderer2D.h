@@ -69,12 +69,12 @@ public:
 	/// 画像の大きさを取得
 	/// </summary>
 	/// <returns></returns>
-	VECTOR2I GetImageSize() { return imageSize; }
+	VECTOR2I GetImageSize()const { return imageSize; }
 	/// <summary>
 	/// 画像の大きさをセットしている関数
 	/// </summary>
 	/// <param name="_pos">大きさ</param>
-	void SetDrawImageSize(VECTOR2I _size);
+	void SetDrawImageSize(const VECTOR2I& _size);
 	/// <summary>
 	/// 文字の描画をしたいときに文字をセットした分の文字が数字で描画されるようにする
 	/// </summary>
@@ -131,9 +131,9 @@ private:
 
 	bool draw;
 
-	void DrawNum();
-	void NormalDraw(const Transform& transform);
-	void AddDraw(const Transform& transform);
+	void DrawNum()const;
+	void NormalDraw(const Transform& transform)const;
+	void AddDraw(const Transform& transform)const;
 
 	bool addMode; //加算合成モードかどうか
 	bool xAnim; //アニメーションのTextureが横に伸びているかどうか

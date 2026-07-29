@@ -1,5 +1,5 @@
 #include "CameraBase.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 
 CameraBase::CameraBase()
 {
@@ -32,13 +32,13 @@ void CameraBase::Draw()
 {
 }
 
-void CameraBase::CameraShake(VECTOR3 _power, Shaker::ShakePattern _pattern, bool _stop, float _second)
+void CameraBase::CameraShake(const VECTOR3& _power, Shaker::ShakePattern _pattern, bool _stop, float _second)const
 {
 	//ƒJƒƒ‰‚ðk‚í‚¹‚é‚Æ‚«‚Í‚±‚ê‚ðŽg‚¤
 	cameraComponent.shaker->ShakeStart(_power, _pattern, _stop, _second, cameraComponent.cameraTransform);
 }
 
-void CameraBase::CameraShakeStop()
+void CameraBase::CameraShakeStop()const 
 {
 	cameraComponent.shaker->ShakeFinish();
 }

@@ -4,7 +4,7 @@
 #include "../../../State/StateManager.h"
 #include "../../../Component/Collider/ModelCollider.h"
 #include "../../../Component/Collider/SphereCollider.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Color/Color.h"
 #include "../../EnemyManager.h"
 
@@ -38,10 +38,10 @@ void T_EnemyDead::Update()
 	{
 		fadeCounter -= Time::DeltaTimeRate();
 		float reet = fadeCounter / FADE_SPEED;
-		float alph = Easing::EaseIn(0.0f, 255.0f, reet);
 
-		float color = 255.0f;
-		enemy->enemyBaseComponent.color->setRGB(Color::Rgb(255, 255, 255, alph));
+		const float Color_Rgb = 255.0f;
+		float alph = Easing::EaseIn(0.0f, Color_Rgb, reet);
+		enemy->enemyBaseComponent.color->setRGB(Color::Rgb(Color_Rgb, Color_Rgb, Color_Rgb, alph));
 		if (fadeCounter <= 0)
 			enemy->active = false;
 	}

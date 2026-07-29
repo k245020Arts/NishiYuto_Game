@@ -2,7 +2,7 @@
 #include "../Component/Object/Object3D.h"
 #include "../Component/MeshRenderer/MeshRenderer.h"
 #include "../Component/ComponentManager.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Component/Transform/Transform.h"
 
 Sky::Sky()

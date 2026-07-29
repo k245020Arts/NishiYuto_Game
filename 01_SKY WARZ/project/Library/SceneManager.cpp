@@ -4,7 +4,7 @@
 #include <DxLib.h>
 #include "../Source/Common/Memory/MemoryCount.h"
 #include "../Source/Common/Debug/Debug.h"
-#include "../Source/Common/ResourceLoader.h"
+#include "../Source/Common/ResourceLoader/ResourceLoader.h"
 #include "../Source/Common/ID/EffectID.h"
 #include "../Source/Common/ID/ID.h"
 #include "../Source/Common/ID/SoundID.h"

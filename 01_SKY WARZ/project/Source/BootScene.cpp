@@ -1,13 +1,13 @@
 #include "BootScene.h"
 #include "../Source/Common/InputManager/InputManager.h"
-#include "../Source/Common/ResourceLoader.h"
+#include "../Source/Common/ResourceLoader/ResourceLoader.h"
 #include "../Source/Component/Collider/CollsionManager.h"
 #include "../Source/Common/Sound/SoundManager.h"
 #include "../Source/Common/Effect/EffectManager.h"
 #include "../Source/Common/Debug/Debug.h"
 #include "../Source/Common/Transitor/TransitorManager.h"
 #include "../Source/Common/Transitor/FadeTransitor.h"
-#include "Common/Random.h"
+#include "Common/Random/Random.h"
 #include "../Source/Common/Fead/Fead.h"
 
 BootScene::BootScene()

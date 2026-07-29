@@ -1,11 +1,10 @@
 #include "CooperateAttack2.h"
 #include "../TrashEnemy.h"
-#include "T_EnemyStatus.h"
 #include "../../../Component/Physics/Physics.h"
 #include "../../../State/StateManager.h"
 #include "../../../Component/Animator/Animator.h"
 #include "../../../Component/Collider/ColliderBase.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Common/InputManager/PadInput.h"
 #include "../../../Common/InputManager/InputManager.h"
 #include "../../../Camera/Camera.h"
@@ -18,7 +17,6 @@ CooperateAttack2::CooperateAttack2()
 	collTrans = Transform(VECTOR3(0, 0, -100), VZero, VECTOR3(480.0f, 0.0f, 0.0f));
 	attackParam.damagePattern = EnemyAttackBase::BACK;
 
-	attackParam.hitDamage = 50;
 	attackParam.useFlash = true;
 	attackParam.attackFlashStartTime = 0.7f;
 	attackParam.slowAmout = 0.1f;
@@ -60,9 +58,10 @@ void CooperateAttack2::Start()
 	TrashEnemy* enemy = GetBase<TrashEnemy>();
 
 	firstColl = true;
+	attackParam.hitDamage = enemy->GetStatus().C_Attack2Damage;
 
 	EnemyAttackBase::collTrans.position	= CollPos;
-	EnemyAttackBase::collTrans.scale		= Collscale;
+	EnemyAttackBase::collTrans.scale	= Collscale;
 
 	enemy->isMovingToPlayer = true;
 
@@ -114,7 +113,6 @@ void CooperateAttack2::RangedMove(TrashEnemy* _enemy)
 		return;
 	}
 
-	const float ROTY = -_enemy->enemyBaseComponent.playerObj->GetTransform()->rotation.y - 0.5f * DX_PI_F;
 	dir = VNorm(pPos - enePos);
 	
 	_enemy->GetEnemyObj()->GetTransform()->position += dir * Speed; 
@@ -128,21 +126,23 @@ void CooperateAttack2::RangedMove(TrashEnemy* _enemy)
 void CooperateAttack2::DamageMove(TrashEnemy* _enemy)
 {
 	const float CounterMax = 1.0f;
-
+	const float VecSpeed = 60.0f;
+	//攻撃を食らったときにカメラのステートを変える
 	//_enemy->enemyBaseComponent.camera->ChangeStateCamera(StateID::R_ENEMY_FINISH_CAMERA_S);
 
 	hitStopCounter += Time::DeltaTimeRate();
 
 	if (hitStopCounter < CounterMax)
 	{
-		_enemy->GetEnemyObj()->GetTransform()->position += sinf(hitStopCounter * 60) * VECTOR3(10, 0, 10);
+		_enemy->GetEnemyObj()->GetTransform()->position += sinf(hitStopCounter * VecSpeed) * VECTOR3(10, 0, 10);
 		return;
 	}
 	
 	const VECTOR3 enePos = _enemy->GetPos();
 	const VECTOR3 targetPos = _enemy->cooperateWayPoint;
-	VECTOR3 dir = VNorm(targetPos - enePos);
 	const float Speed = 100.0f;
+
+	VECTOR3 dir = VNorm(targetPos - enePos);
 	
 	speedDownCounter += Time::DeltaTimeRate();
 

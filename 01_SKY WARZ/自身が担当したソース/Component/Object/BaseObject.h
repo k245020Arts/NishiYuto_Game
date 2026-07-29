@@ -34,7 +34,7 @@ public:
 	/// objectごとのスピードの重みをセットする関数
 	/// </summary>
 	/// <returns>objectごとのスピードをセット</returns>
-	float GetObjectTimeRate() { return objectTimeRate * Time::DeltaTimeRate(); }
+	float GetObjectTimeRate()const { return objectTimeRate * Time::DeltaTimeRate(); }
 	
 	/// <summary>
 	/// オブジェクトごとのidの取得
@@ -84,12 +84,12 @@ public:
 	/// 親が子供のリストを取り出したい場合はこの関数を使う
 	/// </summary>
 	/// <returns></returns>
-	std::list<BaseObject*> GetChildren() { return children; }
+	std::list<BaseObject*> GetChildren()const { return children; }
 	/// <summary>
 	/// 子が親の情報をとりたい場合はこの関数を使うととれる
 	/// </summary>
 	/// <returns></returns>
-	BaseObject* GetParent() { return parent; }
+	BaseObject* GetParent()const { return parent; }
 
 	/// <summary>
 	/// 基準のスピードを再設定する

@@ -37,9 +37,9 @@ struct KeyConfigData
 namespace
 {
 	//何フレーム前の入力まで覚えておくか
-	const int SAVE_FRAME_MAX = 600;
+	constexpr int SAVE_FRAME_MAX = 600;
 	//スティック入力の最大値
-	const int STICK_INPUT_MAX = 32767;
+	constexpr int STICK_INPUT_MAX = 32767;
 	
 }
 
@@ -67,30 +67,30 @@ public:
 	///<summary>指定したキーボードのキーかコントローラーのボタンを押して離し始めた1F目のみTrueを返す</summary>
 	//bool GetIsKeyOrButtonReleaseNow(int _key, int _button);
 
-	PadInput* GetControllerInput();
-	KeyboardInput* GetKeyboardInput();
-	MouseInput* GetMouseInput();
+	const PadInput* GetControllerInput()const;
+	const KeyboardInput* GetKeyboardInput()const;
+	const MouseInput* GetMouseInput()const;
 	/// <summary>
 	/// キーコンフィグ用データを生成する。
 	/// </summary>
 	/// <param name="_data"></param>
 	void CreateInputData(const KeyConfigData& _data);
 	//キーコンフィグ用のボタンの種類
-	bool KeyInputDown(std::string _name);//最初の一回のみ
-	bool KeyInput(std::string _name);//入力し続けている間
-	bool KeyInputUp(std::string _name);//話した瞬間
+	const bool KeyInputDown(const std::string& _name)const;//最初の一回のみ
+	const bool KeyInput(const std::string& _name)const;//入力し続けている間
+	const bool KeyInputUp(const std::string& _name)const;//話した瞬間
 
 	/// <summary>
 	/// データが存在しているかどうか
 	/// </summary>
 	/// <param name="_name">登録名</param>
 	/// <returns>登録しているかどうか</returns>
-	bool IsData(std::string _name);
+	const bool IsData(const std::string& _name)const;
 	/// <summary>
 	/// ImguiのInput系でinputされているかどうか
 	/// </summary>
 	/// <returns>通常入力が出来るならtrue</returns>
-	bool IsInputCan();
+	const bool IsInputCan()const;
 
 private:
 

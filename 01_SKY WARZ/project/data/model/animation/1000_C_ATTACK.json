@@ -1,7 +1,7 @@
 {
   "Animator": {
-    "eventFinishTime": 35.0,
-    "eventStartTime": 25.0,
+    "eventFinishTime": 30.0,
+    "eventStartTime": 20.0,
     "fileName": "1000_C_ATTACK",
     "id": "1000_C_ATTACK",
     "loop": false,

@@ -1,10 +1,10 @@
 #include "Shadow.h"
 #include "../../Common/ID/ID.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 #include "../MeshRenderer/MeshRenderer.h"
 #include "../Color/Color.h"
 #include "../ComponentManager.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include "../Transform/Transform.h"
 
 Shadow::Shadow()

@@ -13,7 +13,7 @@ void StateID::DeleteStateID()
 	stateId.clear();
 }
 
-std::string StateID::GetID(State_ID _type)
+const std::string StateID::GetID(State_ID _type)
 {
 	int type = (int)_type;
 	if (type < 0 && type >= (int)STATE_MAX) {

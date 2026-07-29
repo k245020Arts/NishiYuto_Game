@@ -1,0 +1,74 @@
+{
+  "BossNomalAttack10": {
+    "animID": "2000_ATTACK10",
+    "animNum": 12,
+    "attackBeforeAnimID": "",
+    "attackCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "attackCollsionEndTime": 0.0,
+    "attackCollsionStartTime": 0.0,
+    "attackFlashStartTime": 0.0,
+    "attackPositionFrameNum": 0,
+    "attackSoundStartTime": 0.0,
+    "bossID": "",
+    "damagePattern": "NONE",
+    "enemyDeadFailState": "",
+    "enemyDeadFailWaitTime": 0.0,
+    "enemyDeadLimitTime": 0.0,
+    "enemyDeadSuccessState": "",
+    "enemyDeadSuccessWaitTime": 0.0,
+    "enemySpawnEffect": 0,
+    "enemySpawnPosition": {
+      "x": 0.0,
+      "y": 200.0,
+      "z": 0.0
+    },
+    "enemySpawnStartTime": 20.0,
+    "hitDamage": 0.0,
+    "justAvoidCollTransform": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "justAvoidCollsionEndTime": 0.0,
+    "justAvoidCollsionStartTime": 0.0,
+    "loopAnimation": false,
+    "meleeEnemySpawnNum": 10,
+    "rangedEnemySpawnNum": 0,
+    "slowAmout": 0.0,
+    "slowTime": 0.0,
+    "speedUpMotionSpeed": 0.0,
+    "splitEnemySpawn": false,
+    "useEnemyDeadEvent": false,
+    "useEnemySpawnEvent": true,
+    "useFlash": false,
+    "voiceName": ""
+  }
+}

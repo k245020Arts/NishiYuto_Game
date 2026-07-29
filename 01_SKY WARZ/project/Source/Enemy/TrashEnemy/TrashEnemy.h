@@ -6,7 +6,23 @@
 class StateManager;
 class EnemyStateManager;
 class CharaWeapon;
-class T_EnemyStatus;
+
+struct EnemyStatus
+{
+	float normalAttack1;	//攻撃１のダメージ数値
+	float C_Attack1Damage;
+	float C_Attack2Damage;
+	float maxHp;			//最大HP
+	float defense;			//防御力
+	float coolTime;			//一段目の攻撃までの時間
+	float runSpeed;			//移動速度
+	float idelRange;		//idelとrunの切り替わり
+	float runRange;			//runと様子見の切り替わり
+	float atkRange;			//攻撃してもいい範囲
+	float playerRange;
+	float chaseRange;		//プレイヤーと離れたときに切り替わる
+	float cooperateRange;
+};
 
 struct DeadData
 {
@@ -91,13 +107,18 @@ public:
 	int GetPointNumber()const { return pointNumber; }
 	bool GetCooperateDamageMove()const { return cooperateDamageMove; }
 	float MaxHp()const { return maxHp; }
-	float GetNowHp()const { return hp; }
+	float GetCurrentHp()const { return hp; }
 
 	VECTOR3 TargetPoint()const { return targetPoint; }
 
 	bool GetDeadMove()const{return deadMove;}
 
 	bool GetCAttack()const { return cAttack; }
+	//敵のパラメーターを返す
+	EnemyStatus GetStatus()const { return eStatus; }
+	//様子見行動を取ってるか
+	bool IsAtkStandby() {return isAtkStandby;}
+
 	//プレイヤーが必殺中に止まる処理
 	bool IsPlayerSpecialMove();
 
@@ -127,7 +148,6 @@ public:
 		if (_set->instance == nullptr) {
 			CollsionInfo info = CharaBase::CollsionInstant<T>(_set, _trans);
 			info.tag = _set->tag;
-			//collName = _set->collName;
 			_set->instance->CollsionAdd(info, _trans,_func, _set->collName);
 		};
 		return static_cast<T*>(_set->instance);
@@ -135,10 +155,9 @@ public:
 
 	void DamageCollsionEvent(const CollsionEventData& _data);
 	
-
 private:
 	CharaWeapon* chara;
-	T_EnemyStatus* eStatus;
+	EnemyStatus eStatus;
 
 	DeadData deadPreset;
 	std::vector<DeadData> deadPresets
@@ -172,9 +191,7 @@ private:
 	bool isMovingToPlayer;
 	//プレイヤーに攻撃する
 	bool cAttack;
-	
-	//移動速度
-	float speed;
+
 	//防御力
 	float defense;
 
@@ -205,4 +222,7 @@ private:
 	std::function<void(const CollsionEventData&)> justAvoidAttackFunk;
 
 	Object2D* guage;
+
+	bool playerCloser;
+	bool isAtkStandby;
 };

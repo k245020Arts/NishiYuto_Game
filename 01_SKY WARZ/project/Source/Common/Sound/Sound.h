@@ -16,14 +16,14 @@ public:
 	/// <param name="_volume">ボリューム</param>
 	void SoundData(int _soundHandle,int _volume);
 	//通常再生
-	void PlaySe();
+	void PlaySe()const;
 	//bgmの再生
-	void PlayBGM(bool _loop,bool firstPlay);
+	void PlayBGM(bool _loop,bool firstPlay)const;
 
 	//サウンドを止める
-	void StopBGM();
+	void StopBGM()const;
 	//サウンドを止める
-	void StopSE();
+	void StopSE()const;
 	/// <summary>
 	/// BGMのFeedIn開始
 	/// </summary>
@@ -39,22 +39,22 @@ public:
 	/// 音のデータを使うかどうか
 	/// </summary>
 	/// <returns>音のデータを使うかどうか</returns>
-	bool IsActive() { return active; }
+	bool IsActive()const { return active; }
 	/// <summary>
 	/// Volumeを途中で変える時に使う
 	/// </summary>
 	/// <param name="_volume">音のボリューム</param>
-	void ChangeVolumeSound(int _volume);
+	void ChangeVolumeSound(int _volume)const;
 	/// <summary>
 	/// 最初に設定したボリュームに戻す
 	/// </summary>
-	void BaseChangeVolumeSound();
+	void BaseChangeVolumeSound()const;
 
 	/// <summary>
 	/// ボリュームを取得
 	/// </summary>
 	/// <returns>ボリューム</returns>
-	const int GetVolumn() { return volume; }
+	const int GetVolumn()const { return volume; }
 
 	/// <summary>
 	/// 音の周波数を変える
@@ -67,7 +67,6 @@ private:
 
 	int soundHandle;
 	int volume;
-	bool loop;
 	bool firstPlay;
 	int lastPlayintBgm;
 

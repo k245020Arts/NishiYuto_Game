@@ -20,18 +20,17 @@ T_Evade::~T_Evade()
 
 void T_Evade::Update()
 {
-	//このステートを呼ぶタイミングと戻すタイミングを作る
 	TrashEnemy* enemy = GetBase<TrashEnemy>();
 	const VECTOR3 ePos = enemy->GetEnemyObj()->GetTransform()->position;
+	const float VecRange = enemy->GetStatus().idelRange;
 
-	if (VSize(enemy->enemyBaseComponent.playerObj->GetTransform()->position - ePos) >= 2000 && VSize(copyePos - ePos) >= 2000)
+	if (VSize(enemy->enemyBaseComponent.playerObj->GetTransform()->position - ePos) >= VecRange && VSize(copyePos - ePos) >= VecRange)
 	{
 		if (!isIdolAmim)
 		{
 			enemy->enemyBaseComponent.anim->Play(ID::TE_IDOL);
 			isIdolAmim = true;
 		}
-		
 		return;
 	}
 
@@ -40,7 +39,7 @@ void T_Evade::Update()
 		enemy->enemyBaseComponent.anim->Play(ID::TE_STANCE);
 		isIdolAmim = false;
 	}
-		
+	
 	//正面べく
 	VECTOR3 frontVec = VECTOR3(0, 0, 1) * MGetRotY(targetRotY);
 	//プレイヤーとのベクトル

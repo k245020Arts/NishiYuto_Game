@@ -12,7 +12,7 @@ class BossAttackDataSerializer
 {
 public:
 	BossAttackDataSerializer();
-	BossAttackDataSerializer(std::shared_ptr<AttackSorting> _sort,Boss* _boss,std::string _bossName);
+	BossAttackDataSerializer(std::shared_ptr<AttackSorting> _sort,Boss* _boss, const std::string& _bossName);
 	~BossAttackDataSerializer();
 
 	void SetAnim(Animator* anim);
@@ -31,8 +31,8 @@ private:
 	char newAnimFile[128];
 
 	void ActionsSave();
-	void AttackSave(std::string _attackID);
-	void DrawAttackParamEditor(std::string _selectID);
+	void AttackSave(const std::string& _attackID);
+	void DrawAttackParamEditor(const std::string& _selectID);
 	void DrawTransform(const char* label, Transform& t);
 	void CopyParam(std::string _selectID);
 	void DrawThrowObjectEditor(std::vector<EnemyAttackBase::ThrowObjectAttackData>& list, const std::map<std::string, BossRockManager::BossThrowObjectData>& throwObjectsData);

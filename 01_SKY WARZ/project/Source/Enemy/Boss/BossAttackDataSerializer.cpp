@@ -4,7 +4,7 @@
 #include "BossState/AttackSorting.h"
 #include <iostream>
 #include "../../../Source/Common/FileSystemUtils/FileSystemUtils.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../../Source/Component/EnemyAttackObject/BossRock/BossRockBase.h"
 
 #define ANIM_FILE
@@ -13,7 +13,7 @@ BossAttackDataSerializer::BossAttackDataSerializer() : BossAttackDataSerializer(
 {
 }
 
-BossAttackDataSerializer::BossAttackDataSerializer(std::shared_ptr<AttackSorting> _sort, Boss* _boss, std::string _bossName)
+BossAttackDataSerializer::BossAttackDataSerializer(std::shared_ptr<AttackSorting> _sort, Boss* _boss, const std::string& _bossName)
 {
 	windowMode = false;
 	BossName = _bossName;
@@ -29,7 +29,7 @@ BossAttackDataSerializer::BossAttackDataSerializer(std::shared_ptr<AttackSorting
 	currentSelectAnimInfos = Animator::AnimFileInfo();
 
 
-	std::string filePath = "data/model/animation";
+	const std::string filePath = "data/model/animation";
 
 	for (const auto& entry : std::filesystem::directory_iterator(filePath)) {
 		// フォルダはスキップ
@@ -51,7 +51,7 @@ BossAttackDataSerializer::BossAttackDataSerializer(std::shared_ptr<AttackSorting
 	boss = _boss;
 	isEffect = false;
 
-	std::string soundPath = "data/sound";
+	const std::string soundPath = "data/sound";
 	//サウンドデータのファイル名一覧取得
 	for (const auto& entry : std::filesystem::directory_iterator(soundPath))
 	{
@@ -60,7 +60,7 @@ BossAttackDataSerializer::BossAttackDataSerializer(std::shared_ptr<AttackSorting
 			continue;
 		}
 		//サウンドファイル名の取得
-		std::string name = entry.path().stem().string();
+		const std::string name = entry.path().stem().string();
 		soundFileNames.push_back(name);
 	}
 }
@@ -80,7 +80,7 @@ void BossAttackDataSerializer::SetThrowManager(BossRockManager* _data)
 	throwObjectsData = rockManager->GetThrowObjectsData();
 
 	throwObjectKeys.clear();
-	for (auto& [key, _] : throwObjectsData)
+	for (const auto& [key, _] : throwObjectsData)
 	{
 		throwObjectKeys.push_back(key);
 	}
@@ -117,14 +117,14 @@ void BossAttackDataSerializer::Update()
 		change = ImGui::Combo("AttackSelect", &currentIndex, items.data(), (int)items.size());
 	}
 	if (change) {
-		std::string selectedID = attackKeys[currentIndex];
-		auto& param = attackParam[selectedID];
+		const std::string selectedID = attackKeys[currentIndex];
+		const auto& param = attackParam[selectedID];
 		currentSelectAnimInfos = bossAnim->GetSelectFileInfo(param.animFileName);
 	}
 	//選択中の攻撃取得
 	if (!attackKeys.empty())
 	{
-		std::string selectedID = attackKeys[currentIndex];
+		const std::string selectedID = attackKeys[currentIndex];
 		if (ImGui::BeginTabBar("EditTabs")) {
 			//攻撃のソートの調整
 			if (ImGui::BeginTabItem("AttackSort")) {
@@ -283,7 +283,7 @@ void BossAttackDataSerializer::Update()
 
 	//バリデーション
 	bool canAdd = true;
-	std::string idStr = newAttackID;
+	const std::string idStr = newAttackID;
 
 	// 空チェック
 	if (idStr.empty()) {
@@ -316,7 +316,7 @@ void BossAttackDataSerializer::Update()
 
 	if (ImGui::Button("AddAttack"))
 	{
-		std::string newID = newAttackID;
+		const std::string newID = newAttackID;
 
 		// AttackParam追加（ローカル）
 		EnemyAttackBase::BossAttackParam newParam;
@@ -385,7 +385,7 @@ void BossAttackDataSerializer::Update()
 
 void BossAttackDataSerializer::ActionsSave()
 {
-	std::string filePath = std::string("data/json/BossAttack/" + BossName + "/Sorting") + "/AttackSort" + ".json";
+	const std::string filePath = std::string("data/json/BossAttack/" + BossName + "/Sorting") + "/AttackSort" + ".json";
 
 	JsonReader json;
 	json.Load(filePath);
@@ -404,7 +404,7 @@ void BossAttackDataSerializer::ActionsSave()
 	json.Save(filePath, root);
 }
 
-void BossAttackDataSerializer::AttackSave(std::string _attackID)
+void BossAttackDataSerializer::AttackSave(const std::string& _attackID)
 {
 	JSON root;
 
@@ -415,7 +415,7 @@ void BossAttackDataSerializer::AttackSave(std::string _attackID)
 	jsonReader.Save("data/json/BossAttack/" + BossName + "/" + _attackID + ".json", root);
 }
 
-void BossAttackDataSerializer::DrawAttackParamEditor(std::string _selectID)
+void BossAttackDataSerializer::DrawAttackParamEditor(const std::string& _selectID)
 {
 	auto& param = attackParam[_selectID];
 
@@ -593,11 +593,86 @@ void BossAttackDataSerializer::DrawAttackParamEditor(std::string _selectID)
 	}
 
 	//サウンドイベント
-	if (ImGui::CollapsingHeader("Sound Event"))
+	if (ImGui::CollapsingHeader("SoundEvent"))
 	{
 		DrawSoundEventEditor(param.soundEvent);
 	}
 
+	//雑魚敵イベント
+	if (ImGui::CollapsingHeader("TrashEnemyEvent"))
+	{
+		ImGui::Checkbox("Enable##TrashEnemyEvent", &param.useEnemySpawnEvent);
+		if (param.useEnemySpawnEvent) {
+			ImGui::Separator();
+
+			// 敵数設定
+			ImGui::InputInt("MeleeEnemyCount", &param.meleeEnemySpawnNum);
+			ImGui::InputInt("RangedEnemyCount", &param.rangedEnemySpawnNum);
+
+			// 出現座標
+			ImGui::DragFloat3("EnemySpawnPosition",&param.enemySpawnPosition.x,0.1f);
+
+			// 出現タイミング
+			ImGui::DragFloat("SpawnStartFrame",&param.enemySpawnStartFrame,0.1f);
+
+			// 分割出現
+			ImGui::Checkbox("SpawnEnemiesinGroups",&param.splitEnemySpawn);
+
+			if (param.splitEnemySpawn)
+			{
+				ImGui::DragFloat("SpawnInterval",&param.enemySpawnInterval,0.1f);
+
+				ImGui::DragInt("SpawnGroupCount",&param.enemySpawnCount,1);
+			}
+
+
+			// 殲滅イベント
+			ImGui::Checkbox("EnableEnemyDefeatEvent",&param.useEnemyDeadEvent);
+
+			// アニメーションループ
+			ImGui::Checkbox("LoopAnimation",&param.loopAnimation);
+
+
+			// エフェクトID
+			int effectID = static_cast<int>(param.enemySpawnEffect);
+
+			if (ImGui::InputInt("SpawnEffectID", &effectID))
+			{
+				param.enemySpawnEffect =
+					static_cast<Effect_ID::EFFECT_ID>(effectID);
+			}
+
+
+			// 制限時間
+			ImGui::DragFloat("EnemyDefeatTimeLimit",&param.enemyDeadLimitTime,0.1f);
+
+
+			// 成功・失敗時ステート
+			char successState[256];
+
+			strncpy_s(successState,param.enemyDeadSuccessState.c_str(),sizeof(successState));
+
+			if (ImGui::InputText("DefeatSuccessNextState",successState,sizeof(successState)))
+			{
+				param.enemyDeadSuccessState = successState;
+			}
+
+
+			char failState[256];
+			
+			strncpy_s(failState,param.enemyDeadFailState.c_str(),sizeof(failState));
+
+			if (ImGui::InputText("DefeatFailNextState",failState,sizeof(failState)))
+			{
+				param.enemyDeadFailState = failState;
+			}
+
+			// 待機時間
+			ImGui::DragFloat("SuccessWaitTimeAfterDefeat", &param.enemyDeadSuccessWaitTime, 0.1f);
+
+			ImGui::DragFloat("FailWaitTimeAfterDefeat", &param.enemyDeadFailWaitTime, 0.1f);
+		}
+	}
 	CopyParam(_selectID);
 
 	//保存
@@ -749,7 +824,7 @@ void BossAttackDataSerializer::DrawThrowObjectEditor(std::vector<EnemyAttackBase
 	//リスト
 	for (int i = 0; i < list.size(); i++)
 	{
-		std::string label = std::to_string(i) + " : " + list[i].throwObjectID;
+		const std::string label = std::to_string(i) + " : " + list[i].throwObjectID;
 
 		if (ImGui::Selectable(label.c_str(), selectIndex == i))
 		{
@@ -1101,7 +1176,7 @@ void BossAttackDataSerializer::CopyParam(std::string _selectID)
 	static bool copyCamera = false;
 	static bool copyTrail = false;
 	static bool copySound = false;
-
+	static bool copyTrashEnemy = false;
 
 	// チェックボックス
 	ImGui::Checkbox("Move", &copyMove);
@@ -1123,23 +1198,23 @@ void BossAttackDataSerializer::CopyParam(std::string _selectID)
 	ImGui::Checkbox("Trail", &copyTrail);
 	ImGui::SameLine();
 	ImGui::Checkbox("Sound", &copySound);
+	ImGui::SameLine();
+	ImGui::Checkbox("TrashEnemy", &copyTrashEnemy);
 
 	// 一括ON/OFF
 	if (ImGui::Button("All ON"))
 	{
 		copyMove = copyFollow = copyRush = copyRotate =
-			copyJump = copyShock = copyThrow = copyCamera = copyTrail = true;
+			copyJump = copyShock = copyThrow = copyCamera = copyTrail = copySound = copyTrashEnemy = true;
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("All OFF"))
 	{
 		copyMove = copyFollow = copyRush = copyRotate =
-			copyJump = copyShock = copyThrow = copyCamera = copyTrail = false;
+			copyJump = copyShock = copyThrow = copyCamera = copyTrail = copySound = copyTrashEnemy  = false;
 	}
 
-	//========================
-	// ■ コピー実行
-	//========================
+	//コピー実行
 	if (ImGui::Button("Copy Selected Events"))
 	{
 		//移動
@@ -1235,6 +1310,35 @@ void BossAttackDataSerializer::CopyParam(std::string _selectID)
 		}
 		if (copySound) {
 			param.soundEvent = src.soundEvent;
+		}
+		if (copyTrashEnemy)
+		{
+			param.useEnemySpawnEvent = src.useEnemySpawnEvent;
+
+			param.meleeEnemySpawnNum = src.meleeEnemySpawnNum;
+			param.rangedEnemySpawnNum = src.rangedEnemySpawnNum;
+
+			param.enemySpawnPosition = src.enemySpawnPosition;
+
+			param.enemySpawnStartFrame = src.enemySpawnStartFrame;
+
+			param.splitEnemySpawn = src.splitEnemySpawn;
+			param.enemySpawnInterval = src.enemySpawnInterval;
+			param.enemySpawnCount = src.enemySpawnCount;
+
+			param.useEnemyDeadEvent = src.useEnemyDeadEvent;
+
+			param.loopAnimation = src.loopAnimation;
+
+			param.enemySpawnEffect = src.enemySpawnEffect;
+
+			param.enemyDeadLimitTime = src.enemyDeadLimitTime;
+
+			param.enemyDeadSuccessState = src.enemyDeadSuccessState;
+			param.enemyDeadFailState = src.enemyDeadFailState;
+
+			param.enemyDeadSuccessWaitTime = src.enemyDeadSuccessWaitTime;
+			param.enemyDeadFailWaitTime = src.enemyDeadFailWaitTime;
 		}
 	}
 }

@@ -51,6 +51,9 @@ namespace ID {
 		P_ANIM_ATTACK3,
 		P_ANIM_ATTACK4,
 		P_ANIM_ATTACK_5,
+		P_ANIM_ATTACK_6,
+		P_ANIM_ATTACK_7,
+		P_ANIM_ATTACK_8,
 		P_DAMAGE,
 		P_BLOWAWAY,
 		P_FALL,
@@ -137,6 +140,9 @@ namespace ID {
 		DAMAGE_UI_BUTTON,
 		P_LEG_UP,
 		P_HEAVY_ATTACK,
+		P_HEAVY_ATTACK2,
+		P_HEAVY_ATTACK3,
+		P_HEAVY_ATTACK4,
 		P_HEAVY_CHARGE,
 
 		THROW_OBJECT_1,
@@ -161,6 +167,7 @@ namespace ID {
 		B_BUTTONIMAGE,
 		GAME_GUIDE_CONTROLER,
 		GAME_GUIDE_KEY,
+		UI_BACK_GRAPH,
 
 		ID_MAX,
 	};
@@ -169,7 +176,7 @@ namespace ID {
 	void Init();
 	void DeleteID();
 
-	std::string GetID(IDType _type);
+	const std::string GetID(IDType _type);
 	void SetID(std::string _model, IDType _type);
 
 	IDType StringToID(std::string _str);

@@ -1,6 +1,6 @@
 #pragma once
 #include "../Component.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 
 class UIManager;
 

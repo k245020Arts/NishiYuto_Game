@@ -7,6 +7,10 @@ ComponentLight::ComponentLight()
 	lightHandle = -1;
 	debugId = 5;
 	tag = Function::GetClassNameC<ComponentLight>();
+
+	kind = NONE;
+	lightTransform = nullptr;
+	rangeHalf = 0.0f;
 }
 
 ComponentLight::~ComponentLight()
@@ -47,7 +51,7 @@ void ComponentLight::Start()
 {
 }
 
-void ComponentLight::PointLightHandleStart(VECTOR position, float range, float attan1, float attan2, float attan3)
+void ComponentLight::PointLightHandleStart(const VECTOR3& position, float range, float attan1, float attan2, float attan3)
 {
 	lightTransform = new Transform(position, VZero, VZero);
 	lightTransform->SetParent(obj->GetTransform());
@@ -56,7 +60,7 @@ void ComponentLight::PointLightHandleStart(VECTOR position, float range, float a
 	kind = POINT;
 }
 
-void ComponentLight::SpotLightHandleStart(VECTOR position, VECTOR direction, float outAngle, float inAngle, float range, float atten0, float atten1, float atten2)
+void ComponentLight::SpotLightHandleStart(const VECTOR3& position, const VECTOR3& direction, float outAngle, float inAngle, float range, float atten0, float atten1, float atten2)
 {
 	lightTransform = new Transform(position, VZero, VZero);
 	lightTransform->SetParent(obj->GetTransform());
@@ -74,7 +78,7 @@ void ComponentLight::ImguiDraw()
 	ImGui::TreePop();
 }
 
-void ComponentLight::SpotUpdate()
+void ComponentLight::SpotUpdate()const
 {
 	//スポットライトの設定
 	SetLightPositionHandle(lightHandle, lightTransform->WorldTransform().position);
@@ -82,7 +86,7 @@ void ComponentLight::SpotUpdate()
 	SetLightDirectionHandle(lightHandle, obj->GetTransform()->WorldTransform().rotation);
 }
 
-void ComponentLight::PointUpdate()
+void ComponentLight::PointUpdate()const
 {
 	//ポイントライトの設定
 	SetLightPositionHandle(lightHandle, lightTransform->WorldTransform().position);

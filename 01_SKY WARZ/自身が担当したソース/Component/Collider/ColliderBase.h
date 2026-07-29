@@ -31,33 +31,33 @@ public:
 	/// 当たり判定の形を取得
 	/// </summary>
 	/// <returns>当たり判定の形</returns>
-	CollsionInformation::Shape GetShape() { return shape; }
+	CollsionInformation::Shape GetShape()const { return shape; }
 	/// <summary>
 	/// 当たり判定のタグを取得
 	/// </summary>
 	/// <returns>当たり判定のタグ</returns>
-	CollsionInformation::Tag GetCollTag() { return collTag; }
+	CollsionInformation::Tag GetCollTag()const { return collTag; }
 
 	/// <summary>
 	/// 当たり判定のトランスフォーム
 	/// </summary>
 	/// <returns>当たり判定の取得</returns>
-	Transform* GetTransform() { return collTransform; }
+	Transform* GetTransform()const { return collTransform; }
 	/// <summary>
 	/// 半径の取得
 	/// </summary>
 	/// <returns>当たり判定の半径</returns>
-	float GetRadius() { return radius * collTransform->scale.x; }
+	float GetRadius()const { return radius * collTransform->scale.x; }
 	/// <summary>
 	/// 一回だけ当てるかどうかの取得
 	/// </summary>
 	/// <returns>一回だけ当てるかどうか</returns>
-	bool GetOneColl() { return oneColl; }
+	bool GetOneColl() const { return oneColl; }
 	/// <summary>
 	/// 当たり判定が終了しているかどうか
 	/// </summary>
 	/// <returns>当たり判定が終了ならtrue</returns>
-	bool GetFinish() { return finish; }
+	bool GetFinish()const { return finish; }
 
 	/// <summary>
 	/// 当たり判定をもう無視したい場合は個の関数を呼ぶ
@@ -67,9 +67,9 @@ public:
 	/// 当たり判定を復活させたいならこの処理を呼ぶ
 	/// </summary>
 	void CollsionRespown() { finish = false; }
-	BaseObject* GetObj() { return obj; }
+	BaseObject* GetObj()const { return obj; }
 
-	std::function<void(const CollsionEventData&)> GetEventFunc() { return  collsionEventFunction; }
+	std::function<void(const CollsionEventData&)> GetEventFunc()const { return  collsionEventFunction; }
 
 protected:
 	CollsionInformation::Shape shape; //当たり判定の形

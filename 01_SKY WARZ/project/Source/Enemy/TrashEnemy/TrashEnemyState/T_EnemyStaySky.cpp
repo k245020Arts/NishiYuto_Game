@@ -89,15 +89,13 @@ void T_EnemyStaySky::RangedMove(TrashEnemy* _enemy)
 	const VECTOR3 enePos = _enemy->GetPos();
 	const VECTOR3 targetPos = _enemy->cooperateWayPoint;
 	VECTOR3 dir = VZero;
-	float speed = 0.0f;
+	const float MaxSpeed = 30.0f;
 
 	//ƒŠ[ƒ_[‚ÌŽü‚è‚ÉˆÚ“®
-	if (VSize(targetPos - enePos) >= 30 && !_enemy->isStandby)
+	if (VSize(targetPos - enePos) >= MaxSpeed && !_enemy->isStandby)
 	{
 		dir = VNorm(targetPos - enePos);
-		speed = 30.0f;
-
-		_enemy->GetEnemyObj()->GetTransform()->position += dir * speed;
+		_enemy->GetEnemyObj()->GetTransform()->position += dir * MaxSpeed;
 	}
 	else
 		_enemy->isStandby = true;

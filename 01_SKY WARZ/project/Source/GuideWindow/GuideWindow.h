@@ -54,4 +54,12 @@ private:
 	int bButtonImage;
 	bool buttonPut;
 	bool controler;
+	/// <summary>
+	/// ‘€ìà–¾‚Ì•`‰æ
+	/// </summary>
+	void GuideDraw()const;
+	/// <summary>
+	/// ƒKƒCƒh‚Ì‰Šú‰»
+	/// </summary>
+	void TextInit();
 };

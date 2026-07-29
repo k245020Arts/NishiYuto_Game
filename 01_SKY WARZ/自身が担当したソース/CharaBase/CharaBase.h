@@ -3,7 +3,7 @@
 #include "../Component/Collider/ColliderBase.h"
 #include "../Component/ComponentManager.h"
 #include "../Component/Transform/Transform.h"
-#include "../Common/JsonReader.h"
+#include "../Common/JsonReader/JsonReader.h"
 
 class SphereCollider;
 
@@ -68,7 +68,7 @@ public:
 	/// 最大hpの取得
 	/// </summary>
 	/// <returns></returns>
-	const float GetMaxHp(){return maxHp;}
+	const float GetMaxHp()const{return maxHp;}
 
 	/// <summary>
 	/// 最終ターゲットかどうかを取得する関数
@@ -99,7 +99,7 @@ public:
 	/// 最大hpの取得
 	/// </summary>
 	/// <returns></returns>
-	const float GetMaxSpecialAttackGuage() { return specialAttackBarMax; }
+	const float GetMaxSpecialAttackGuage()const { return specialAttackBarMax; }
 	/// <summary>
 	/// スペシャル攻撃をだせるかどうかの判定
 	/// </summary>

@@ -1,10 +1,10 @@
 #include "SoundManager.h"
 #include "Sound.h"
-#include "../ResourceLoader.h"
+#include "../ResourceLoader/ResourceLoader.h"
 #include "../Debug/Debug.h"
 #include "../../Component/Object/BaseObject.h"
 #include "../../Component/Transform/Transform.h"
-#include "../Easing.h"
+#include "../Easing/Easing.h"
 #include "../../Stage/StageSelectData.h"
 
 SoundManager::SoundManager()
@@ -158,24 +158,24 @@ void SoundManager::CommonSceneLoad()
 {
 }
 
-void SoundManager::PlaySe(Sound_ID::SOUND_ID _type)
+void SoundManager::PlaySe(Sound_ID::SOUND_ID _type)const
 {
-	sound[Sound_ID::GetSoundID(_type)]->PlaySe();
+	sound.at(Sound_ID::GetSoundID(_type))->PlaySe();
 }
 
-void SoundManager::PlayBGM(Sound_ID::SOUND_ID _type, bool _loop, bool firstPlay)
+void SoundManager::PlayBGM(Sound_ID::SOUND_ID _type, bool _loop, bool firstPlay)const
 {
-	sound[Sound_ID::GetSoundID(_type)]->PlayBGM(_loop,firstPlay);
+	sound.at(Sound_ID::GetSoundID(_type))->PlayBGM(_loop,firstPlay);
 }
 
-void SoundManager::StopBGM(Sound_ID::SOUND_ID _type)
+void SoundManager::StopBGM(Sound_ID::SOUND_ID _type)const
 {
-	sound[Sound_ID::GetSoundID(_type)]->StopBGM();
+	sound.at(Sound_ID::GetSoundID(_type))->StopBGM();
 }
 
-void SoundManager::StopSE(Sound_ID::SOUND_ID _type)
+void SoundManager::StopSE(Sound_ID::SOUND_ID _type)const
 {
-	sound[Sound_ID::GetSoundID(_type)]->StopSE();
+	sound.at(Sound_ID::GetSoundID(_type))->StopSE();
 }
 
 void SoundManager::AllDeleteSound()
@@ -188,9 +188,9 @@ void SoundManager::AllDeleteSound()
 	Base3DSoundObj = nullptr;
 }
 
-void SoundManager::RandamSe(std::string _name, int num)
+void SoundManager::RandamSe(const std::string& _name, const int num)const
 {
-	int randomNum = GetRand(num - 1) + 1;
+	const int randomNum = GetRand(num - 1) + 1;
 
 	std::string value = std::to_string(randomNum);
 
@@ -200,22 +200,22 @@ void SoundManager::RandamSe(std::string _name, int num)
 	if (itr == sound.end()) {
 		Debug::DebugLog("このファイルは存在しません。");
 	}
-	sound[cats]->PlaySe();
+	sound.at(cats)->PlaySe();
 
 }
 
-bool SoundManager::CheckSe(Sound_ID::SOUND_ID _id)
+const bool SoundManager::CheckSe(Sound_ID::SOUND_ID _id)const
 {
 	return CheckSoundMem(ResourceLoad::GetSoundHandle(_id));
 }
 
-void SoundManager::FeedInStart(Sound_ID::SOUND_ID _id, float _time)
+void SoundManager::FeedInStart(const Sound_ID::SOUND_ID _id, const float _time)
 {
 	sound[Sound_ID::GetSoundID(_id)]->BGMFeedIn(_time);
 	SetFeedInOutList(sound[Sound_ID::GetSoundID(_id)]);
 }
 
-void SoundManager::FeedInOut(Sound_ID::SOUND_ID _id, float _time)
+void SoundManager::FeedInOut(const Sound_ID::SOUND_ID _id, const float _time)
 {
 	sound[Sound_ID::GetSoundID(_id)]->BGMFeedOut(_time);
 	SetFeedInOutList(sound[Sound_ID::GetSoundID(_id)]);
@@ -234,22 +234,22 @@ void SoundManager::SetFeedInOutList(Sound* sound)
 	feedInOutList.push_back(sound);
 }
 
-void SoundManager::ChangeVolumeSound(Sound_ID::SOUND_ID _id, int _change)
+void SoundManager::ChangeVolumeSound(const Sound_ID::SOUND_ID _id, const int _change)const
 {
-	sound[Sound_ID::GetSoundID(_id)]->ChangeVolumeSound(_change);
+	sound.at(Sound_ID::GetSoundID(_id))->ChangeVolumeSound(_change);
 }
 
-void SoundManager::BaseVolumeChange(Sound_ID::SOUND_ID _id)
+void SoundManager::BaseVolumeChange(const Sound_ID::SOUND_ID _id)const
 {
-	sound[Sound_ID::GetSoundID(_id)]->BaseChangeVolumeSound();
+	sound.at(Sound_ID::GetSoundID(_id))->BaseChangeVolumeSound();
 }
 
-void SoundManager::Play3DSound(Sound_ID::SOUND_ID _id, BaseObject* _targetObj, float _minVolSize, float _maxVolSize)
+void SoundManager::Play3DSound(const Sound_ID::SOUND_ID _id, const BaseObject* _targetObj, const float _minVolSize, const float _maxVolSize)
 {
-	Transform*  targetTransform = _targetObj->GetTransform();
-	Transform* base3DTransfom = Base3DSoundObj->GetTransform();
+	const Transform*  targetTransform = _targetObj->GetTransform();
+	const Transform* base3DTransfom = Base3DSoundObj->GetTransform();
 	VECTOR3 dist = targetTransform->position - base3DTransfom->position;
-	float size = dist.Size();
+	const float size = dist.Size();
 
 	int vol = 0;
 	//最低音量の距離より離れたら音量をなくす
@@ -273,7 +273,7 @@ void SoundManager::Base3DSoundObject(BaseObject* _base)
 	Base3DSoundObj = _base;
 }
 
-void SoundManager::PlayRamdomChangeFrequencySe(Sound_ID::SOUND_ID _id, int _ramdom, int _baseFrequ)
+void SoundManager::PlayRamdomChangeFrequencySe(const Sound_ID::SOUND_ID _id, const int _ramdom, const int _baseFrequ)
 {
 	sound[Sound_ID::GetSoundID(_id)]->PlayRamdomChangeFrequencySe(_ramdom,_baseFrequ);
 }

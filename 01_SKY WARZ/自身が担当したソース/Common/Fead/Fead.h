@@ -1,6 +1,6 @@
 #pragma once
 #include "../../../Library/GameObject.h"
-#include "../Easing.h"
+#include "../Easing/Easing.h"
 
 class Color;
 

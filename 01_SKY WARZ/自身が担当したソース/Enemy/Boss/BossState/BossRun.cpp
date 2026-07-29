@@ -27,6 +27,9 @@ BossRun::~BossRun()
 void BossRun::Update()
 {
 	Boss* b = GetBase<Boss>();
+	if (b->hp <= 0) { //ボスのHPが死んでいる状態になったら走らない
+		return;
+	}
 	b->LookPlayer(targetPos, 0.1f);
 	HitLine();
 
@@ -35,16 +38,6 @@ void BossRun::Update()
 		bs = b->bs;
 		speed = bs->GetStatus().runSpeed;
 	}
-
-	//rotation = b->obj->GetTransform()->rotation;
-	//const float ROTY = -rotation.y - 0.5f * DX_PI_F;
-
-	////移動の計算
-	//velocity.x = speed * cosf(ROTY);
-	//velocity.z = speed * sinf(ROTY);
-
-	////計算したものをボスのポジションに足す
-	//b->obj->GetTransform()->position += velocity;
 
 	float speed = 0.0f;
 	float max	= 0.0f;
@@ -77,6 +70,9 @@ void BossRun::Draw()
 void BossRun::Start()
 {
 	Boss* b = GetBase<Boss>();
+	if (b->hp <= 0) { //ボスのHPが死んでいる状態になったら走らない
+		return;
+	}
 	//ボスのHPが半分を切ったらモーションを変える
 	if (b->hpRate == Boss::FIVE || b->hpRate == Boss::THREE) {
 		animId = ID::B_DUSH_ANIM;
@@ -99,7 +95,7 @@ void BossRun::HitLine()
 	Boss* b = GetBase<Boss>();
 	VECTOR3 rockPos = VECTOR3(INFINITY, INFINITY, INFINITY);
 	VECTOR3 pPos = b->enemyBaseComponent.playerObj->GetTransform()->position;
-	float size = 1500;
+	const float size = 1500;
 	counter += Time::DeltaTimeRate();
 
 	if (VSize(targetPos - b->GetEnemyObj()->GetTransform()->position) < 400 || counter >= 1.0f)

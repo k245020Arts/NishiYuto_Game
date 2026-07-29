@@ -2,7 +2,7 @@
 #include "../Component/Transform/Transform.h"
 #include "../Component/Object/Object3D.h"
 #include "../Common/Effect/EffectManager.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 #include "../../ImGui/imgui.h"
 
 Wall::Wall()

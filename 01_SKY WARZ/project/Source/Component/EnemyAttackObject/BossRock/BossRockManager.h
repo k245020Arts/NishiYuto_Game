@@ -1,7 +1,7 @@
 #pragma once
 #include "../../../../Library/GameObject.h"
 #include "../../../Enemy/EnemyState/Attack/EnemyAttackBase.h"
-#include "../../../Common/JsonReader.h"
+#include "../../../Common/JsonReader/JsonReader.h"
 
 class BossRockBase;
 class Boss;
@@ -42,7 +42,7 @@ public:
 	/// </summary>
 	/// <param name="_data">投擲物のデータ</param>
 	/// <returns></returns>
-	VECTOR3 GetPushCollSize(const EnemyAttackBase::ThrowObjectAttackData& _data);
+	VECTOR3 GetPushCollSize(const EnemyAttackBase::ThrowObjectAttackData& _data)const;
 
 	/// <summary>
 	/// リストに追加する関数、投擲物クラスから減速呼んでいるので特にいじる必要なし
@@ -59,7 +59,7 @@ public:
 	/// 投擲物のリストのサイズを取得
 	/// </summary>
 	/// <returns></returns>
-	size_t GetSize() { return rocks.size(); }
+	size_t GetSize() const { return rocks.size(); }
 
 	/// <summary>
 	/// カメラを震わせるときに使う関数
@@ -72,12 +72,12 @@ public:
 	void DropRockStart();
 
 	//指定されたポジションから一番近い岩のポジションを返す
-	VECTOR3 GetRockPos(const VECTOR3& _pos);
+	VECTOR3 GetRockPos(const VECTOR3& _pos)const;
 	/// <summary>
 	/// すべての投擲物の位置を返す
 	/// </summary>
 	/// <returns>投擲物のPosition</returns>
-	std::list<VECTOR3> GetAllRockPos();
+	std::list<VECTOR3> GetAllRockPos()const;
 
 	struct BossThrowObjectData
 	{
@@ -101,7 +101,7 @@ public:
 	/// 投擲物のデータを渡す
 	/// </summary>
 	/// <returns>投擲物のデータの配列</returns>
-	std::map<std::string, BossThrowObjectData> GetThrowObjectsData() { return throwObjectsData; }
+	std::map<std::string, BossThrowObjectData> GetThrowObjectsData()const { return throwObjectsData; }
 
 	/// <summary>
 	/// 投擲物データの追加
@@ -144,7 +144,7 @@ private:
 	int modelNum;
 	int effectNum;
 
-	bool IsFreePos(const VECTOR3& _pos, float _minDist);
+	bool IsFreePos(const VECTOR3& _pos, float _minDist)const;
 	void SetRockComponent(Object3D* _base,const VECTOR3& _gravity, const VECTOR3& _fir,const EnemyAttackBase::ThrowObjectAttackData& _data);
 
 	void LoadEffect(BossThrowObjectData& _data);

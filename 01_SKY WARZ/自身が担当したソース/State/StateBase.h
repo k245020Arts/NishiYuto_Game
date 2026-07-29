@@ -63,7 +63,7 @@ public:
 	/// <typeparam name="T">親のオブジェクトのクラス名</typeparam>
 	/// <returns>親のオブジェクトのポインタ</returns>
 	template<typename T> 
-	T* GetBase() {
+	T* GetBase()const {
 		return static_cast<T*>(com);
 	}
 	/// <summary>

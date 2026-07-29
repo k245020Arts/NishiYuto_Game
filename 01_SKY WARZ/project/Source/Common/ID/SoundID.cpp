@@ -19,7 +19,7 @@ void Sound_ID::DeleteSoundID()
 	delete soundId;
 }
 
-std::string Sound_ID::GetSoundID(SOUND_ID _type)
+const std::string Sound_ID::GetSoundID(SOUND_ID _type)
 {
 	int type = (int)_type;
 	if (type < 0 && type >= (int)SOUND_MAX) {

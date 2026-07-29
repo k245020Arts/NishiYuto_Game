@@ -6,7 +6,7 @@
 #include "../../Player.h"
 #include "../../../Component/Physics/Physics.h"
 #include "../../../Camera/Camera.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../Component/Shaker/Shaker.h"
 #include "../../../Common/Function.h"
 #include "../../../Common/InputManager/InputManager.h"
@@ -69,11 +69,12 @@ void PlayerHeavyCharge::Update()
 			p->attackLevel = 1;
 			p->playerCom.shaker->SetShakePower(VECTOR3(10, 10, 10));
 			InputManager::GetInstance()->GetControllerInput()->ControlVibrationStartFrame(100, -1);
+			//チャージの音がなっていないならまた再生
 			if (!EffectManager::GetInstance()->IsPlayIng(Effect_ID::PLAYER_CHARGE_SECOND)) {
 				EffectManager::GetInstance()->CreateEffekseer(Transform(), obj, Effect_ID::PLAYER_CHARGE_SECOND, 1.0f);
 			}
 			baseFrequ = 80000;
-			//
+			//チャージの音がなっていないならまた再生
 			if (!SoundManager::GetInstance()->CheckSe(Sound_ID::PLAYER_CHARGE)) {
 				SoundManager::GetInstance()->PlayRamdomChangeFrequencySe(Sound_ID::PLAYER_CHARGE, 0, baseFrequ);
 			}

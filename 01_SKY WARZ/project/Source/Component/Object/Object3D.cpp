@@ -32,7 +32,7 @@ void Object3D::Draw()
 	BaseObject::Draw();
 }
 
-void Object3D::Init(const VECTOR3& _pos, const VECTOR3& _rotate, const VECTOR3& _scale,std::string name)
+void Object3D::Init(const VECTOR3& _pos, const VECTOR3& _rotate, const VECTOR3& _scale, const std::string& name)
 {
 	BaseObject::Init(name);
 	transform = Component()->AddComponent<Transform>();
@@ -41,7 +41,7 @@ void Object3D::Init(const VECTOR3& _pos, const VECTOR3& _rotate, const VECTOR3& 
 	transform->scale = _scale;
 }
 
-void Object3D::Init(const Transform& _transform, std::string name)
+void Object3D::Init(const Transform& _transform, const std::string& name)
 {
 	Init(_transform.position, _transform.rotation, _transform.scale, name);
 }

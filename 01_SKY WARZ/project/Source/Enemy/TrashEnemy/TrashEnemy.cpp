@@ -20,10 +20,9 @@
 #include "../../Player/PlayerState/AttackState/PlayerAttackStateBase.h"
 #include "../../Weapon/SwordEffect.h"
 #include "../../Weapon/CharaWeapon.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 #include "../../Player/PlayerState/AttackState/PlayerSpecialAttack.h"
 
-#include "TrashEnemyState/T_EnemyStatus.h"
 #include "TrashEnemyState/T_EnemyIdol.h"
 #include "TrashEnemyState/T_EnemyRun.h"
 #include "TrashEnemyState/T_EnemyAttack.h"
@@ -36,17 +35,21 @@
 #include "TrashEnemyState/T_EnemyStaySky.h"
 #include "TrashEnemyState/T_EvadeState.h"
 
-namespace
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
+namespace EnemyTable
 {
 	const std::unordered_map<StateID::State_ID, EnemyInformation::EnemyReaction> enemyTable = {
 
 	{ StateID::PLAYER_ATTACK1_S,
 		EnemyInformation::EnemyReaction(
 			StateID::PLAYER_ATTACK1_S,
-			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,1500), VECTOR3(100,100,100), 0.15f, 0.8f),
+			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,0), VECTOR3(100,100,100), 0.15f, 0.8f),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::Normal,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			10, 10,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -63,10 +66,10 @@ namespace
 	{ StateID::PLAYER_ATTACK2_S,
 		EnemyInformation::EnemyReaction(
 			StateID::PLAYER_ATTACK2_S,
-			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,1500), VECTOR3(100,100,100), 0.25f, 0.8f),
+			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,0), VECTOR3(100,100,100), 0.25f, 0.8f),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::Normal,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			40, 30,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -83,10 +86,10 @@ namespace
 	{ StateID::PLAYER_ATTACK3_S,
 		EnemyInformation::EnemyReaction(
 			StateID::PLAYER_ATTACK3_S,
-			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,1500), VECTOR3(100,100,100), 0.35f, 0.8f),
+			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,0), VECTOR3(100,100,100), 0.35f, 0.8f),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::Normal,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			10, 10,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -103,10 +106,10 @@ namespace
 	{ StateID::PLAYER_ATTACK4_S,
 		EnemyInformation::EnemyReaction(
 			StateID::PLAYER_ATTACK4_S,
-			EnemyDamage::EnemyDamageInfo(VECTOR3(0,400,0), VECTOR3(200,200,200), 0.85f, 1.0f),
+			EnemyDamage::EnemyDamageInfo(VECTOR3(0,10,0), VECTOR3(200,200,200), 0.85f, 1.0f),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::Normal,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			50, 50,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -126,7 +129,7 @@ namespace
 			EnemyDamage::EnemyDamageInfo(),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::LoopCombo,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			0, 0,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -143,10 +146,10 @@ namespace
 	{ StateID::PLAYER_ATTACK5_S,
 		EnemyInformation::EnemyReaction(
 			StateID::PLAYER_ATTACK5_S,
-			EnemyDamage::EnemyDamageInfo(VECTOR3(0,-2000,-2000), VECTOR3(200,200,200), 0.2f, 0.8f),
+			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,0), VECTOR3(200,200,200), 0.2f, 0.8f),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::Normal,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			70, 40,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -160,13 +163,33 @@ namespace
 		)
 	},
 
+	{ StateID::PLAYER_ATTACK6_S,
+	EnemyInformation::EnemyReaction(
+		StateID::PLAYER_ATTACK6_S,
+		EnemyDamage::EnemyDamageInfo(VECTOR3(0,000,4000), VECTOR3(200,200,200), 0.2f, 0.8f,false,4000.0f),
+		EnemyBlowAway::EnemyBlowAwayInfo(),
+		EnemyInformation::EnemyReaction::Type::Normal,
+		StateID::T_ENEMY_DAMAGE,
+		70, 40,
+		Effect_ID::HIT_EFFECT,
+		EnemyInformation::HIT_EFFECT_TIME,
+		EnemyInformation::HIT_EFFECT_SCALE_RATE,
+		true,
+		90.0f * DegToRad,
+		Effect_ID::PLAYER_SLASH_ATTACK,
+		true,
+		-1,
+		0.0f
+	)
+	},
+
 	{ StateID::PLAYER_SPECIAL_ATTACK_S,
 		EnemyInformation::EnemyReaction(
 			StateID::PLAYER_SPECIAL_ATTACK_S,
 			EnemyDamage::EnemyDamageInfo(VECTOR3(0,0,1500), VECTOR3(100,100,100), 0.15f, 0.8f),
 			EnemyBlowAway::EnemyBlowAwayInfo(),
 			EnemyInformation::EnemyReaction::Type::Special,
-			StateID::B_THREAT_S,
+			StateID::STATE_MAX,
 			10, 10,
 			Effect_ID::HIT_EFFECT,
 			EnemyInformation::HIT_EFFECT_TIME,
@@ -186,7 +209,7 @@ namespace
 		EnemyDamage::EnemyDamageInfo(VECTOR3(0,-2000,-2000), VECTOR3(200,200,200), 0.2f, 0.8f),
 		EnemyBlowAway::EnemyBlowAwayInfo(),
 		EnemyInformation::EnemyReaction::Type::Normal,
-		StateID::B_THREAT_S,
+		StateID::STATE_MAX,
 		70, 40,
 		Effect_ID::HIT_EFFECT,
 		EnemyInformation::HIT_EFFECT_TIME,
@@ -199,6 +222,25 @@ namespace
 		0.0f
 	)
 	},
+	{ StateID::PLAYER_HEAVY_ATTACK2_S,
+	EnemyInformation::EnemyReaction(
+	StateID::PLAYER_HEAVY_ATTACK2_S,
+	EnemyDamage::EnemyDamageInfo(VECTOR3(0,000,3000), VECTOR3(200,200,200), 0.2f, 0.8f,false,4000.0f),
+	EnemyBlowAway::EnemyBlowAwayInfo(),
+	EnemyInformation::EnemyReaction::Type::Normal,
+	StateID::STATE_MAX,
+	70, 40,
+	Effect_ID::HIT_EFFECT,
+	EnemyInformation::HIT_EFFECT_TIME,
+	EnemyInformation::HIT_EFFECT_SCALE_RATE,
+	true,
+	180.0f * DegToRad,
+	Effect_ID::PLAYER_SLASH_ATTACK,
+	true,
+	-1,
+	0.0f
+)
+	},
 
 	};
 }
@@ -206,11 +248,26 @@ namespace
 TrashEnemy::TrashEnemy()
 {
 	tag = Function::GetClassNameC<TrashEnemy>();
-	eStatus = new T_EnemyStatus;
+	
+	std::ifstream file("data/json/TrashEnemyData.json");
+	json json;
+	file >> json;
+	eStatus.normalAttack1	= json["normalAttack1"];
+	eStatus.C_Attack1Damage = json["CooperateAttack1"];
+	eStatus.C_Attack2Damage = json["CooperateAttack2"];
+	eStatus.maxHp			= json["maxHp"];
+	eStatus.defense			= json["defense"];
+	eStatus.coolTime		= json["coolTime"];
+	eStatus.runSpeed		= json["runSpeed"];
+	eStatus.idelRange		= json["range"];
+	eStatus.runRange		= json["runRange"];
+	eStatus.atkRange		= json["atkRange"];
+	eStatus.playerRange		= json["playerRange"];
+	eStatus.chaseRange		= json["chaseRange"];
+	eStatus.cooperateRange	= json["cooperateRange"];
 
 	chara = nullptr;
 
-	speed = 0;
 	defense = 0;
 
 	isAttack = false;
@@ -247,12 +304,12 @@ TrashEnemy::TrashEnemy()
 
 	leaderRotY = 0;
 	guage = nullptr;
+
+	isAtkStandby = false;
 }
 
 TrashEnemy::~TrashEnemy()
 {
-	delete eStatus;
-	eStatus = nullptr;
 	guage = nullptr;
 }
 
@@ -269,12 +326,10 @@ void TrashEnemy::Update()
 	{
 		enemyBaseComponent.state->ChangeState(StateID::T_ENEMY_DEAD);
 		deadMove = true;
-		if (guage != nullptr) {
+		if (guage != nullptr)
 			guage->DestroyMe();
-		}
-		
 	}
-		
+	
 	if (CheckHitKey(KEY_INPUT_9))
 	{
 		hp -= maxHp;
@@ -351,31 +406,30 @@ void TrashEnemy::CreateTrashEnemy(VECTOR3 _pos, int kinds, int _number)
 	obj->GetTransform()->position = _pos;
 	pointNumber = _number;
 
-	const float MAX = 1.5f;
-	const float MID = 1.25f;
-	const float MIN = 1.0f;
+	const float MAX = 1.8f;
+	const float MID = 1.6f;
+	const float MIN = 1.4f;
+
+	//EffectManager::GetInstance()->CreateEffekseer(Transform(), obj, Effect_ID::ENEMY_SPOWN, 2.0f);
 
 	switch (kinds)
 	{
 	case 0://すばしっこい敵
-		hp = eStatus->GetStatus().maxHp * MIN;
+		hp = eStatus.maxHp * MIN;
 		maxHp = hp;
-		speed = eStatus->GetStatus().runSpeed * MAX;
-		defense = eStatus->GetStatus().defense * MIN;
+		defense = eStatus.defense * MIN;
 		GetEnemyObj()->GetTransform()->scale = GetEnemyObj()->GetTransform()->scale * MIN;
 		
 		break;
 	case 1:
-		hp = eStatus->GetStatus().maxHp * MID;
+		hp = eStatus.maxHp * MID;
 		maxHp = hp;
-		speed = eStatus->GetStatus().runSpeed * MID;
-		defense = eStatus->GetStatus().defense * MID;
+		defense = eStatus.defense * MID;
 		break;
 	default://重い敵
-		hp = eStatus->GetStatus().maxHp * MAX;
+		hp = eStatus.maxHp * MAX;
 		maxHp = hp;
-		speed = eStatus->GetStatus().runSpeed * MIN;
-		defense = eStatus->GetStatus().defense * MAX;
+		defense = eStatus.defense * MAX;
 		GetEnemyObj()->GetTransform()->scale = GetEnemyObj()->GetTransform()->scale * MAX;
 		break;
 	}
@@ -496,9 +550,9 @@ void TrashEnemy::Trail()
 void TrashEnemy::PlayerHit(const CollsionEventData& _data)
 {
 	Player* player = pState->GetBaseObject()->Component()->GetComponent<Player>();
-	if (player->IsHitObject(_data.myObject)) {
+	if (player->IsHitObject(_data.myObject)) 
 		return;
-	}
+
 	StateID::State_ID attackID = pState->GetState<PlayerStateBase>()->GetID();
 	float damage = 0;
 	if (pState->GetState<PlayerAttackStateBase>() != nullptr)
@@ -526,8 +580,8 @@ void TrashEnemy::PlayerHit(const CollsionEventData& _data)
 	bool lastAttack = false;
 	bool lastBeforeAttack = false;
 
-	auto param = enemyTable.find(attackID);
-	if (param != enemyTable.end())
+	auto param = EnemyTable::enemyTable.find(attackID);
+	if (param != EnemyTable::enemyTable.end())
 	{
 		const auto& e = param->second;
 		switch (e.attackType)
@@ -538,6 +592,7 @@ void TrashEnemy::PlayerHit(const CollsionEventData& _data)
 			EffectManager::GetInstance()->CreateEffekseer(Transform(VOne * VECTOR3(0, 100, 0), VOne * VECTOR3(0, 0, e.slashAngleRad), VOne), obj, e.slashEffectID, 1.0f);
 			hit = true;
 			deadPreset = deadPresets[1];
+			dInfo = e.dInfo;
 			break;
 		case EnemyInformation::EnemyReaction::Type::BlowAway:
 
@@ -615,12 +670,13 @@ void TrashEnemy::PlayerHit(const CollsionEventData& _data)
 		}
 	}
 	EnemyDamageMove(dInfo);
+	enemyBaseComponent.shaker->ShakeStart(VECTOR3(30.0f, 80.0f, 30.0f), Shaker::HEIGHT_SHAKE, false, 0.15f);
 	//連携攻撃のときは耐性を付与
 	if (isCooperateAtk)
 		damage = damage / 5;
 	VECTOR3 a = VECTOR3((float)GetRand(100), (float)(500 + GetRand(100)), (float)GetRand(100));
-	hp -= DamageCalculation(a, damage, eStatus->GetStatus().defense,30);
-
+	hp -= DamageCalculation(a, damage, eStatus.defense,30);
+	
 	//ダメージか吹っ飛ばしの状態になっていたらダメージのパラメーターをいれる。
 	std::shared_ptr<EnemyDamage> eD = enemyBaseComponent.state->GetState<EnemyDamage>();
 	std::shared_ptr <EnemyBlowAway> eB = enemyBaseComponent.state->GetState<EnemyBlowAway>();
@@ -652,6 +708,14 @@ void TrashEnemy::ChangeState(StateID::State_ID _id)
 
 void TrashEnemy::AttackCommand()
 {
+	if (VSize(enemyBaseComponent.playerObj->GetTransform()->position - obj->GetTransform()->position) >= eStatus.atkRange)
+	{
+		playerCloser = false;
+	}
+	else
+	{
+		playerCloser = true;
+	}
 	enemyBaseComponent.state->ChangeState(StateID::T_ENEMY_ATTACK_S);
 }
 

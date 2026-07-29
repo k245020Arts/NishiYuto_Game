@@ -12,7 +12,7 @@ void Effect_ID::DeleteEffectID()
 	effectId.clear();
 }
 
-std::string Effect_ID::GetEffectID(EFFECT_ID _type)
+const std::string Effect_ID::GetEffectID(EFFECT_ID _type)
 {
 	int type = (int)_type;
 	if (type < 0 && type >= (int)EFFECT_MAX) {

@@ -30,7 +30,7 @@ public:
 	/// •KE‹Z‚Ìó‘Ô‚Ìæ“¾
 	/// </summary>
 	/// <returns></returns>
-	PLAYER_SPECIAL_ATTACK_STATE GetSpecialAttackState() { return state; }
+	PLAYER_SPECIAL_ATTACK_STATE GetSpecialAttackState()const { return state; }
 	/// <summary>
 	/// UŒ‚—Í‚Ìæ“¾
 	/// </summary>

@@ -102,7 +102,7 @@ public:
 	/// <typeparam name="T">指定する型</typeparam>
 	/// <returns>指定したコンポーネントのポインタ</returns>
 	template <typename T>
-	T* GetComponent() {
+	T* GetComponent()const {
 		for (Component* c:component) {
 			if (typeid(*c) == typeid(T)) {
 				return dynamic_cast<T*>(c);
@@ -116,7 +116,7 @@ public:
 	/// <typeparam name="T">指定する型</typeparam>
 	/// <returns>指定したコンポーネントのポインタ</returns>
 	template <typename T>
-	std::list<T*> GetComponents() {
+	std::list<T*> GetComponents()const {
 		std::list<T*> list;
 		for (Component* c : component) {
 			if (typeid(*c) == typeid(T)) {
@@ -132,7 +132,7 @@ public:
 	/// <param name="_tag">取りたいタグ</param>
 	/// <returns>指定したコンポーネントのポインタ</returns>
 	template <typename T>
-	T* GetComponentWithTag(std::string _tag) {
+	T* GetComponentWithTag(std::string _tag)const {
 		for (Component* c:component) {
 			if (c->GetTag() == _tag) {
 				if (typeid(*c) == typeid(T)) {
@@ -149,7 +149,7 @@ public:
 	/// <param name="_tag">取りたいタグ</param>
 	/// <returns>指定したコンポーネントのポインタのリスト</returns>
 	template <typename T>
-	std::list<T*> GetComponentsWithTag(std::string _tag) {
+	std::list<T*> GetComponentsWithTag(std::string _tag)const {
 		std::list<T*> list;
 		for (Component* c : component) {
 			if (c->GetTag() == _tag) {
@@ -165,7 +165,7 @@ public:
 	/// すべてのリストのコンポーネントを取得
 	/// </summary>
 	/// <returns></returns>
-	const std::list<Component*>& GetAllComponent() {
+	const std::list<Component*>& GetAllComponent() const {
 		return component;
 	}
 

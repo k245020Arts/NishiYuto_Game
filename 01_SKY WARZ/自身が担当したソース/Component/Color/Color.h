@@ -90,12 +90,10 @@ public:
 
     Rgb GetRgb() const { return rgb; }
 
-    COLOR_F GetColorF() {
-        return colorfRgb;
-    }
+    COLOR_F GetColorF()const {return colorfRgb;}
 
     //rgbÇCOLOR_Få^Ç…ïœä∑Ç≈Ç´ÇÈÅB
-    COLOR_F ChangeColorF() {
+    COLOR_F ChangeColorF()const {
         COLOR_F color;
         color.r = (rgb.r) / 255.0f;
         color.g = (rgb.g) / 255.0f;

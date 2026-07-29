@@ -1,5 +1,5 @@
 #include "BossBackStep.h"
-#include "../../../Common/Easing.h"
+#include "../../../Common/Easing/Easing.h"
 #include "../../../State/StateManager.h"
 
 BossBackStep::BossBackStep()

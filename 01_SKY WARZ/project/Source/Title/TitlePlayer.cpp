@@ -26,9 +26,9 @@
 #include "../Common/Effect/EffectManager.h"
 #include "../Weapon/WeaponManager.h"
 #include "../Component/MotionBlur/MotionBlur.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Common/Transitor/FadeTransitor.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 
 TitlePlayer::TitlePlayer()
 {

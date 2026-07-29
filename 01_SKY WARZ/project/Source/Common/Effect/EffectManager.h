@@ -24,7 +24,7 @@ public:
 	/// <param name="_time">エフェクトの発生させる時間</param>
 	/// <param name="effect3D">エフェクト3Dにするか2Dにするかデフォルトは3D</param>
 	/// <returns></returns>
-	BaseObject* CreateEffekseer(Transform _transform, BaseObject* _parent, Effect_ID::EFFECT_ID _id,float _time,bool effect3D = true);
+	BaseObject* CreateEffekseer(const Transform& _transform, BaseObject* _parent, Effect_ID::EFFECT_ID _id,float _time,bool effect3D = true);
 	/// <summary>
 	/// エフェクトの再生を止める
 	/// </summary>
@@ -45,19 +45,19 @@ public:
 	/// </summary>
 	/// <param name="_id">エフェクトID</param>
 	/// <returns>再生されているか</returns>
-	bool IsPlayIng(Effect_ID::EFFECT_ID _id);
+	bool IsPlayIng(Effect_ID::EFFECT_ID _id)const;
 	/// <summary>
 	/// エフェクトの色を変えたいときに使う。
 	/// 主にalphaで使うことが多いかも？
 	/// </summary>
 	/// <param name="_id">エフェクトID</param>
 	/// <param name="_rgb">RGBの構造体</param>
-	void SetColor(Effect_ID::EFFECT_ID _id, Color::Rgb _rgb);
+	void SetColor(Effect_ID::EFFECT_ID _id, Color::Rgb _rgb)const;
 	/// <summary>
 	///　親のトランスフォームを外すための関数
 	/// </summary>
 	/// <param name="_obj">今親になっているObject</param>
-	void ParentTransformRemove(BaseObject* _obj);
+	void ParentTransformRemove(BaseObject* _obj)const;
 
 	/// <summary>
 	/// 引数で指定したエフェクトのデータを削除

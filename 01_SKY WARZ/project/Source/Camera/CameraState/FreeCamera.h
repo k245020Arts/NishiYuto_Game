@@ -24,5 +24,5 @@ private:
 	void EnemyChangeDir();
 	void StickMove();
 
-	float AnglePI(float _current, float _target);
+	float AnglePI(float _current, float _target)const;
 };

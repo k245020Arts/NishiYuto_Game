@@ -38,7 +38,7 @@ public:
 	/// “–‚½‚è”»’è‚Ìî•ñ‚Ì•t—^
 	/// </summary>
 	/// <returns></returns>
-	const AABBInfo& GetAABBInfo() { return aabbInfo; }
+	const AABBInfo& GetAABBInfo()const { return aabbInfo; }
 
 private:
 	AABBInfo aabbInfo;

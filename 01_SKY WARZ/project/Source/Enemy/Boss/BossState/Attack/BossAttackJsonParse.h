@@ -622,6 +622,48 @@ inline void to_json(JSON& j, const EnemyAttackBase::BossAttackParam& p)
 		j["soundEvent"] = p.soundEvent;
 	}
 
+	// =========================
+	// éGãõìGè¢ä´ÉCÉxÉìÉg
+	// =========================
+	if (p.useEnemySpawnEvent)
+	{
+		j["useEnemySpawnEvent"] = p.useEnemySpawnEvent;
+
+		j["meleeEnemySpawnNum"] = p.meleeEnemySpawnNum;
+		j["rangedEnemySpawnNum"] = p.rangedEnemySpawnNum;
+
+		j["enemySpawnPosition"] = p.enemySpawnPosition;
+
+		j["enemySpawnStartTime"] = p.enemySpawnStartFrame;
+
+
+		j["splitEnemySpawn"] = p.splitEnemySpawn;
+
+		if (p.splitEnemySpawn)
+		{
+			j["enemySpawnInterval"] = p.enemySpawnInterval;
+			j["enemySpawnCount"] = p.enemySpawnCount;
+		}
+
+
+		j["useEnemyDeadEvent"] = p.useEnemyDeadEvent;
+
+		j["loopAnimation"] = p.loopAnimation;
+
+		j["enemySpawnEffect"] = static_cast<int>(p.enemySpawnEffect);
+
+
+		j["enemyDeadLimitTime"] = p.enemyDeadLimitTime;
+
+
+		j["enemyDeadSuccessState"] = p.enemyDeadSuccessState;
+		j["enemyDeadFailState"] = p.enemyDeadFailState;
+
+
+		j["enemyDeadSuccessWaitTime"] = p.enemyDeadSuccessWaitTime;
+		j["enemyDeadFailWaitTime"] = p.enemyDeadFailWaitTime;
+	}
+
 }
 
 inline void from_json(const JSON& j, EnemyAttackBase::BossAttackParam& p)
@@ -839,4 +881,72 @@ inline void from_json(const JSON& j, EnemyAttackBase::BossAttackParam& p)
 
 	if(j.contains("soundEvent"))
 		if (j.contains("soundEvent")) j.at("soundEvent").get_to(p.soundEvent);
+
+	// =========================
+	// éGãõìGè¢ä´ÉCÉxÉìÉg
+	// =========================
+	if (j.contains("useEnemySpawnEvent"))
+	{
+		j.at("useEnemySpawnEvent").get_to(p.useEnemySpawnEvent);
+
+		if (j.contains("meleeEnemySpawnNum"))
+			j.at("meleeEnemySpawnNum").get_to(p.meleeEnemySpawnNum);
+
+		if (j.contains("rangedEnemySpawnNum"))
+			j.at("rangedEnemySpawnNum").get_to(p.rangedEnemySpawnNum);
+
+		if (j.contains("enemySpawnPosition"))
+			j.at("enemySpawnPosition").get_to(p.enemySpawnPosition);
+
+		if (j.contains("enemySpawnStartTime"))
+			j.at("enemySpawnStartTime").get_to(p.enemySpawnStartFrame);
+
+		if (j.contains("splitEnemySpawn"))
+		{
+			j.at("splitEnemySpawn").get_to(p.splitEnemySpawn);
+
+			if (p.splitEnemySpawn)
+			{
+				if (j.contains("enemySpawnInterval"))
+					j.at("enemySpawnInterval").get_to(p.enemySpawnInterval);
+
+				if (j.contains("enemySpawnCount"))
+					j.at("enemySpawnCount").get_to(p.enemySpawnCount);
+			}
+		}
+
+		if (j.contains("useEnemyDeadEvent"))
+			j.at("useEnemyDeadEvent").get_to(p.useEnemyDeadEvent);
+
+		if (j.contains("loopAnimation"))
+			j.at("loopAnimation").get_to(p.loopAnimation);
+
+		if (j.contains("enemySpawnEffect"))
+		{
+			int effect;
+			j.at("enemySpawnEffect").get_to(effect);
+
+			p.enemySpawnEffect = static_cast<Effect_ID::EFFECT_ID>(effect);
+		}
+
+		if (j.contains("enemyDeadLimitTime"))
+			j.at("enemyDeadLimitTime").get_to(p.enemyDeadLimitTime);
+
+		if (j.contains("enemyDeadSuccessState"))
+			j.at("enemyDeadSuccessState").get_to(p.enemyDeadSuccessState);
+
+		if (j.contains("enemyDeadFailState"))
+			j.at("enemyDeadFailState").get_to(p.enemyDeadFailState);
+
+		if (j.contains("enemyDeadSuccessWaitTime"))
+			j.at("enemyDeadSuccessWaitTime").get_to(p.enemyDeadSuccessWaitTime);
+
+
+		if (j.contains("enemyDeadFailWaitTime"))
+			j.at("enemyDeadFailWaitTime").get_to(p.enemyDeadFailWaitTime);
+	}
+	else
+	{
+		p.useEnemySpawnEvent = false;
+	}
 }

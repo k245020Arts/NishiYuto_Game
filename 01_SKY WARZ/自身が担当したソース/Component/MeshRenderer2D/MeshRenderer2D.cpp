@@ -4,7 +4,7 @@
 #include "../../../ImGui/imgui.h"
 #include "../Animator/Anim2D.h"
 #include "../ComponentManager.h"
-#include "../../Common/Easing.h"
+#include "../../Common/Easing/Easing.h"
 #include "../Color/Color.h"
 
 MeshRenderer2D::MeshRenderer2D()
@@ -166,7 +166,7 @@ void MeshRenderer2D::AnimStart(float _speed, int _num)
 	AnimStart(_speed, _num, true);
 }
 
-void MeshRenderer2D::SetDrawImageSize(VECTOR2I _size)
+void MeshRenderer2D::SetDrawImageSize(const VECTOR2I& _size)
 {
 	drawImageSize = _size;
 }
@@ -183,7 +183,7 @@ void MeshRenderer2D::SetPosition(const VECTOR3& _position)
 	}
 }
 
-void MeshRenderer2D::NormalDraw(const Transform& transform)
+void MeshRenderer2D::NormalDraw(const Transform& transform)const
 {
 	switch (mode)
 	{
@@ -208,7 +208,7 @@ void MeshRenderer2D::NormalDraw(const Transform& transform)
 	}
 }
 
-void MeshRenderer2D::AddDraw(const Transform& transform)
+void MeshRenderer2D::AddDraw(const Transform& transform)const
 {
 	/*Transform copy = transform;
 	copy.scale = VZero;
@@ -247,7 +247,7 @@ void MeshRenderer2D::SetScale(const VECTOR3& _scale)
 	}
 }
 
-void MeshRenderer2D::DrawNum()
+void MeshRenderer2D::DrawNum()const
 {
 	Transform transform;
 	//Objectのtransformを使うかこのクラスにあるトランスフォームを使うかの判定

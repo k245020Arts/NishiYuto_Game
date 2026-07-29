@@ -4,33 +4,55 @@
 #include "../Enemy/Boss/BossCreater.h"
 #include "../GameControler/GameControler.h"
 #include "../Common/Fead/Fead.h"
+#include "../Stage/StageSelectData.h"
+#include "../Common/JsonReader/JsonReader.h"
 
 Wave::Wave()
 {
 	tEnemyManager = new TrashEnemyManager;
+	const StageData stageData = StageSelectData::GetInstance()->GetNowStageData();
+	stageNum = stageData.id;
+
+	JsonReader json; 
+	json.Load("data/json/WaveData.json");
 	
+	JSON jsonData = json.Data();
+
+	const auto& wave = jsonData["WaveEnemyData"][std::to_string(stageNum)];
+	stageMax = (int)wave.size();
+	SpawnData data;
+	for (int i = 0; i < stageMax; i++)
+	{
+		const std::string StageName = "Wave" + std::to_string((i + 1));
+		data.SetData(wave[StageName]["melee"], wave[StageName]["range"]);
+		spawnData.push_back(data);
+	}
+
 	waveNow = 0;
 	battleCounter = 0;
 	isCooperate = false;
 	bossCreate = true;
 	first = false;
 	bossWave = false;
+
+	spawnTimeCounter = 0;
+
+	gameControler = FindGameObject<GameControler>();
+
 }
 
 Wave::~Wave()
 {
+	tEnemyManager = nullptr;
+	spawnData.clear();
 }
 
 void Wave::Update()
 {
-	if (!first) {
+	if (!first)
 		return;
-	}
 	
 	EnemySpawn();
-	
-	CooperateAttack();
-	RangedCooperateAttack();
 }
 
 void Wave::Draw()
@@ -49,18 +71,24 @@ bool Wave::GetBossWave()
 
 void Wave::EnemySpawn()
 {
-	if (waveNow >= WAVE_MAX)
+	if (waveNow > stageMax)
 		return;
+
+	if (gameControler->GetStateNumber() == GameControler::PAUSE_SCENE) 
+		return; //操作説明ガイドが表示されているときにはこのクラスは通過しない
 
 	int _counter = tEnemyManager->GetActiveEnemy();
 	if (_counter <= 0)
 	{
+		spawnTimeCounter += Time::DeltaTimeRate();
+		if (spawnTimeCounter <= 1.0f)
+			return;
+
 		waveNow++;
 
-		if(waveNow <= WAVE_MAX - 1)
+		if(waveNow <= stageMax)
 			tEnemyManager->CreateEnemy(SPWNPOS, spawnData[waveNow - 1].MeleeEnemyCounter, spawnData[waveNow - 1].RangedEnemyCounter);
-		
-		if (waveNow == WAVE_MAX)
+		else
 			if (bossCreate)
 			{
 				FindGameObject<BossCreater>()->CreateBoss();
@@ -71,35 +99,7 @@ void Wave::EnemySpawn()
 				bossWave = true;
 			}
 		isCooperate = false;
+
+		spawnTimeCounter = 0;
 	}
-}
-
-void Wave::CooperateAttack()
-{
-	int counter = tEnemyManager->GetMeleeActiveEnemy();
-
-	if (counter > 4 || isCooperate)
-		return;
-
-	if (waveNow == 1)
-	{
-		tEnemyManager->Cooperate();
-		isCooperate = true;
-	}
-}
-
-void Wave::RangedCooperateAttack()
-{
-	if (waveNow != 2)
-		return;
-	int counter = tEnemyManager->GetMeleeActiveEnemy();
-
-	if (counter <= 5)
-		isCooperate = false;
-
-	if (counter > 10 || isCooperate)
-		return;
-
-	tEnemyManager->SetStartRangedAttack(true);
-	isCooperate = true;
 }

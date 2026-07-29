@@ -25,7 +25,7 @@
 #include "../../Player/PlayerState/AttackState/PlayerSpecialAttack.h"
 #include "../../Weapon/SwordEffect.h"
 #include "../../Weapon/CharaWeapon.h"
-#include "../../Common/ResourceLoader.h"
+#include "../../Common/ResourceLoader/ResourceLoader.h"
 #include "../Boss/BossState/AttackSorting.h"
 #include "../Boss/BossState/BossCoolTime.h"
 #include "../Boss/BossState/BossStatus.h"
@@ -38,8 +38,8 @@
 #include "../Boss/BossState/BossFear.h"
 #include "../Boss/BossState/BossBackStep.h"
 #include "../Boss/BossState/BossWin.h"
-#include "../TrashEnemy/TrashEnemyManager.h"//
-#include "../../Common/Random.h"
+#include "../TrashEnemy/TrashEnemyManager.h"
+#include "../../Common/Random/Random.h"
 #include "../../Component/UI/EnemyDamageUI.h"
 #include "../../Component/EnemyAttackObject/BossRock/BossRockManager.h"
 #include "../../Component/EnemyAttackObject/BossRock/BossRockBase.h"
@@ -85,7 +85,7 @@ Boss::Boss()
 	hp = bs->GetStatus().maxHp;
 	defense = 500.0f;
 	maxHp = hp;
-	//trashEnemy = FindGameObject< TrashEnemyManager>();
+	trashEnemy = FindGameObject< TrashEnemyManager>();
 	maxAttack = -1;
 	comboFirstAttack = false;
 	roaf = false;
@@ -104,6 +104,8 @@ Boss::Boss()
 
 	attackFunk = nullptr;
 	justAvoidAttackFunk = nullptr;
+
+	isComboAttack = false;
 }
 
 Boss::~Boss()
@@ -230,7 +232,7 @@ void Boss::Start(Object3D* _obj,const BossParam& _param)
 
 	const StageData stageData = StageSelectData::GetInstance()->GetNowStageData();
 
-	std::string charaID = "2";
+	const std::string charaID = "2";
 
 	bossID = stageData.bossID;
 
@@ -258,8 +260,11 @@ void Boss::Start(Object3D* _obj,const BossParam& _param)
 	enemyBaseComponent.state->CreateState<BossRun>("BossRun", StateID::BOSS_RUN_S);
 	enemyBaseComponent.state->CreateState<BossCoolTime>("BossCoolTime", StateID::BOSS_COOL_TIME_S);
 	std::shared_ptr<AttackSorting> attackSorting =  enemyBaseComponent.state->CreateState<AttackSorting>("AttackSorting", StateID::ATTACK_SORTING_S);
-	std::string folderName = "Boss" + std::to_string(bossID);
+	const std::string folderName = "Boss" + std::to_string(bossID);
 	attackSorting->Load(folderName,this);
+
+	std::string fileNamejson = "data/json/BossAttack/";
+	attackSorting->LoodAttackSelect(fileNamejson + "/Combo.json", fileNamejson + "/Boss" + std::to_string(bossID) + "/Sorting/AttackCombo.json");
 
 	enemyBaseComponent.state->CreateState<BossWalk>("BossWalk", StateID::BOSS_WALK);
 	/*enemyBaseComponent.state->CreateState<BossNormalAttack1>("BossNormalAttack1", StateID::BOSS_NORMAL_ATTACK1_S);
@@ -317,7 +322,9 @@ void Boss::Start(Object3D* _obj,const BossParam& _param)
 	//ボスの情報のセット
 	bossParam = _param;
 	hp = bossParam.hp;
+	maxHp = hp;
 	defense = bossParam.defense;
+	attackCoolTime = bossParam.attackCoolTime;
 	enemyBaseComponent.color->setRGB(Color::Rgb(255, 255, 255, 255));
 
 	bossHitCollider = obj->Component()->GetComponentsWithTag<SphereCollider>("BossHit");
@@ -338,6 +345,7 @@ void Boss::Start(Object3D* _obj,const BossParam& _param)
 	text->TextSetting(UTFConverter::Utf8ToSjis(bossParam.bossName), "MPlus2C", ".dft", WHITE, 4, Font_ID::UI_FONT);
 	bossName->GetTransform()->position.x -= text->GetTextWidth() / 2.0f;
 	text->UseDrawUI();
+
 	/*JsonReader json;
 	std::string filePath = std::string("data/json/BossAttack");
 
@@ -413,7 +421,7 @@ void Boss::LookPlayer(const VECTOR3& _target, float speed)
 
 void Boss::PlayerHit(const CollsionEventData& _data)
 {
-	Player* player = pState->GetBaseObject()->Component()->GetComponent<Player>();
+	const Player* player = pState->GetBaseObject()->Component()->GetComponent<Player>();
 	if (player->IsHitObject(_data.myObject)) {
 		return;
 	}
@@ -422,15 +430,11 @@ void Boss::PlayerHit(const CollsionEventData& _data)
 		int c = 0;
 	}
 
-	float damage = 0;;
-	if (pState->GetState<PlayerAttackStateBase>() != nullptr) {
+	const std::shared_ptr<PlayerAttackStateBase> attackState = pState->GetState<PlayerAttackStateBase>();
 
-		damage = pState->GetState<PlayerAttackStateBase>()->GetHitDamage();
-
-		
-
-	}
-	else {
+	//AttackStateがnullptrじゃなかったらDamageの値を挿入
+	const float damage = (attackState != nullptr) ? attackState->GetHitDamage() : 0.0f;
+	if (attackState == nullptr) {
 		loopNum = -1;
 	}
 	EnemyDamage::EnemyDamageInfo dInfo;
@@ -444,9 +448,9 @@ void Boss::PlayerHit(const CollsionEventData& _data)
 	float angleRan = 0.0f;
 	bool lastAttack = false;
 	bool lastBeforeAttack = false;
-	auto bossParam = enemyTable.find(attackID);
-	float angleRand = Random::GetFloat(0.0f, 360.0f);
-	std::shared_ptr<PlayerSpecialAttack> pSpecial = pState->GetState<PlayerSpecialAttack>();
+	const auto bossParam = enemyTable.find(attackID);
+	const float angleRand = Random::GetFloat(0.0f, 360.0f);
+	const std::shared_ptr<PlayerSpecialAttack> pSpecial = pState->GetState<PlayerSpecialAttack>();
 	Object2D* damageNum = nullptr;
 	if (bossParam != enemyTable.end()) {
 		const auto& e = bossParam->second;
@@ -564,13 +568,13 @@ void Boss::Drail(bool _right)
 Boss::HP_RATE Boss::Hp()
 {
 	//HPの状態を取得
-	if (hp >= bs->GetStatus().maxHp * 0.8f) {
+	if (hp >= maxHp * 0.8f) {
 		hpRate = Boss::MAX;
 	}
-	else if (hp >= bs->GetStatus().maxHp * 0.5f) {
+	else if (hp >= maxHp * 0.5f) {
 		hpRate = Boss::EIGHT;
 	}
-	else if (hp >= bs->GetStatus().maxHp * 0.3f) {
+	else if (hp >= maxHp * 0.3f) {
 		hpRate = Boss::FIVE;
 	}
 	else {
@@ -598,62 +602,60 @@ void Boss::MoveBoss(float _speed, float _max)
 	}
 }
 
-float Boss::GetAttackCoolTime()
-{
-	//HP状態においてCollTimeの設定
-	switch (hpRate)
-	{
-	case Boss::MAX:
-		coolTime = 0.3f;
-		break;
-	case Boss::EIGHT:
-		coolTime = 0.2f;
-		break;
-	case Boss::FIVE:
-		coolTime = 0.1f;
-		break;
-	case Boss::THREE:
-		coolTime = 0.0f;
-		break;
-	default:
-		break;
-	}
-	return coolTime;
-}
+//float Boss::GetAttackCoolTime()
+//{
+//	//HP状態においてCollTimeの設定
+//	/*switch (hpRate)
+//	{
+//	case Boss::MAX:
+//		attackCoolTime = 0.3f;
+//		break;
+//	case Boss::EIGHT:
+//		attackCoolTime = 0.2f;
+//		break;
+//	case Boss::FIVE:
+//		attackCoolTime = 0.1f;
+//		break;
+//	case Boss::THREE:
+//		attackCoolTime = 0.0f;
+//		break;
+//	default:
+//		break;
+//	}
+//	return attackCoolTime;*/
+//}
 
 void Boss::BossAttackStateChange()
 {
-	if (maxAttack != -1) { //連続攻撃をするなら
-		enemyBaseComponent.state->ChangeState(StateID::ATTACK_SORTING_S);
-	}
-	else {
-		//プレイヤーの範囲内なら攻撃
-		if (RunChangeAttack()) {
-			enemyBaseComponent.state->ChangeState(StateID::ATTACK_SORTING_S);
-			alotAttack++;
-			if (alotAttack >= 3) {
-				noAttackChangeCounter = Random::GetInt(1,2) * 0.5f;
-				alotAttack = 0;
-				enemyBaseComponent.state->ChangeState(StateID::BOSS_RUN_S);
-			}
-		}
-		else {
-			enemyBaseComponent.state->ChangeState(StateID::BOSS_RUN_S);
-			alotAttack = 0;
-		}
-		
-	}
+	//プレイヤーの範囲内なら攻撃
+	//if (RunChangeAttack())
+	//{
+	//	enemyBaseComponent.state->ChangeState(StateID::ATTACK_SORTING_S);
+	//	alotAttack++;
+	//	if (alotAttack >= 3)
+	//	{
+	//		noAttackChangeCounter = Random::GetInt(1, 2) * 0.5f;
+	//		alotAttack = 0;
+	//		//enemyBaseComponent.state->ChangeState(StateID::BOSS_RUN_S);
+	//		enemyBaseComponent.state->ChangeState(StateID::BOSS_COOL_TIME_S);
+	//	}
+	//}
+	//else
+	//{
+	//	//enemyBaseComponent.state->ChangeState(StateID::BOSS_RUN_S);
+	//	enemyBaseComponent.state->ChangeState(StateID::BOSS_COOL_TIME_S);
+	//	alotAttack = 0;
+	//}
+	enemyBaseComponent.state->ChangeState(StateID::BOSS_COOL_TIME_S);
+
 }
 
 bool Boss::RunChangeAttack()
 {
-	bool result = false;
-	if (noAttackChangeCounter > 0.0f) {
-		return result;
-	}
-	VECTOR3 targetVec = bossTransform->position - enemyBaseComponent.playerObj->GetTransform()->position;
-	if (targetVec.Size() <= bs->GetStatus().range) {
-		result = true;
+	bool result = true;
+	float targetVec = VSize(bossTransform->position - enemyBaseComponent.playerObj->GetTransform()->position);
+	if (targetVec >= bs->GetStatus().range) {
+		result = false;
 	}
 	return result;
 }
@@ -709,7 +711,7 @@ void Boss::BossDamageCollsionEvent(const CollsionEventData& _data)
 	}
 }
 
-void Boss::PlayerSpecialAttackHit(const EnemyInformation::EnemyReaction& _e, std::shared_ptr<PlayerSpecialAttack> _ps, VECTOR3 _randomPos, float _randomAngle)
+void Boss::PlayerSpecialAttackHit(const EnemyInformation::EnemyReaction& _e, const std::shared_ptr<PlayerSpecialAttack> _ps, const VECTOR3& _randomPos, float _randomAngle)
 {
 	PlayerSpecialAttack::PLAYER_SPECIAL_ATTACK_STATE state = _ps->GetSpecialAttackState();
 
@@ -745,7 +747,7 @@ void Boss::PlayerSpecialAttackHit(const EnemyInformation::EnemyReaction& _e, std
 	}
 }
 
-VECTOR3 Boss::GetDamageDrawPos()
+VECTOR3 Boss::GetDamageDrawPos()const
 {
 	return VECTOR3((float)(GetRand(400) - 200), (float)(800 + GetRand(400) - 200), (float)(GetRand(400) - 200));
 }

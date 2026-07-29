@@ -6,7 +6,7 @@
 #include "../Component/Physics/Physics.h"
 #include "../Camera/Camera.h"
 #include "../Component/Hierarchy/Hierarchy.h"
-#include "../Common/ResourceLoader.h"
+#include "../Common/ResourceLoader/ResourceLoader.h"
 #include "../Component/Collider/sphereCollider.h"
 #include "../Component/Animator/Animator.h"
 //#include "TrashEnemy/enemy.h"
@@ -18,7 +18,7 @@
 #include "../Component/Collider/rayCollider.h"
 #include "../Component/Collider/ModelCollider.h"
 #include "../Component/Shadow/Shadow.h"
-#include "../Common/Easing.h"
+#include "../Common/Easing/Easing.h"
 #include "../GameControler/GameControler.h"
 #include "../State/StateManager.h"
 #include "../Stage/StageSelectData.h"
@@ -393,7 +393,7 @@ void EnemyManager::JustAvoidTargetChange(BaseObject* _obj)
 	}
 }
 
-EnemyBase* EnemyManager::PlayerNearEnemy()
+EnemyBase* EnemyManager::PlayerNearEnemy()const
 {
 	if (chara.empty()) {
 		return nullptr;
@@ -411,7 +411,7 @@ EnemyBase* EnemyManager::PlayerNearEnemy()
 	return nearEnemy;
 }
 
-void EnemyManager::NearEnemyAlpha(const VECTOR3& camPos)
+void EnemyManager::NearEnemyAlpha(const VECTOR3& camPos)const
 {
 	for (auto itr = chara.begin(); itr != chara.end(); itr++) {
 		VECTOR3 dist = (*itr)->GetBaseObject()->GetTransform()->position - camPos;
@@ -429,7 +429,7 @@ void EnemyManager::NearEnemyAlpha(const VECTOR3& camPos)
 	}
 }
 
-Transform EnemyManager::NearEnemyPos(const VECTOR3& _pos)
+Transform EnemyManager::NearEnemyPos(const VECTOR3& _pos)const
 {
 
 	if (chara.size() == 0) { //リストに何も入ってなかったら空のTransformを付ける
@@ -447,7 +447,7 @@ Transform EnemyManager::NearEnemyPos(const VECTOR3& _pos)
 	return nearTransform;
 }
 
-Transform EnemyManager::NearFovEnemyPos(Transform& _transform, float _angle)
+Transform EnemyManager::NearFovEnemyPos(const Transform& _transform, float _angle)const
 {
 	if (chara.size() == 0) {//リストに何も入ってなかったら空のTransformを付ける
 		return Transform();
@@ -490,7 +490,7 @@ bool EnemyManager::CameraRockOnStart(Camera* _camera)
 	return (chara != nullptr); //ロックオンが成功したらtrue
 }
 
-EnemyAttackChangeCameraDirection EnemyManager::BossAttackCamera(Camera* camera, const Transform& _targetTransform)
+EnemyAttackChangeCameraDirection EnemyManager::BossAttackCamera(Camera* camera, const Transform& _targetTransform)const
 {
 	//ボスが攻撃を始めたらこの関数を呼ぶ
 	//カメラの視野が90°より敵側に向いていなかったら敵の方向に向けて左側に分けるか右側に分けるかを決定する。
@@ -518,7 +518,7 @@ EnemyAttackChangeCameraDirection EnemyManager::BossAttackCamera(Camera* camera, 
 	}
 }
 
-bool EnemyManager::CameraInEnemy()
+bool EnemyManager::CameraInEnemy()const
 {
 	for (auto itr = chara.begin(); itr != chara.end(); itr++) {
 		VECTOR3 pos = (*itr)->GetBaseObject()->GetTransform()->position;
@@ -584,7 +584,7 @@ void EnemyManager::GameSceneChangeState()
 	
 }
 
-int EnemyManager::PlayerFovEnemyNum(Transform* _pTransform, float _angle)
+int EnemyManager::PlayerFovEnemyNum(const Transform* _pTransform, float _angle)const
 {
 	int num = 0;
 	for (auto itr = chara.begin(); itr != chara.end(); itr++) {
@@ -601,7 +601,7 @@ int EnemyManager::PlayerFovEnemyNum(Transform* _pTransform, float _angle)
 	return num;
 }
 
-bool EnemyManager::ObjectIsEnemy(BaseObject* _base)
+bool EnemyManager::ObjectIsEnemy(BaseObject* _base)const
 {
 	for (auto itr = chara.begin(); itr != chara.end(); itr++) {
 		if ((*itr)->GetBaseObject() == _base) {

@@ -1,7 +1,7 @@
 #include "EffectBase.h"
 #include "../../Component/Object/Object3D.h"
-#include "../ResourceLoader.h"
-#include "../Easing.h"
+#include "../ResourceLoader/ResourceLoader.h"
+#include "../Easing/Easing.h"
 #include "EffectManager.h"
 
 EffectBase::EffectBase()
@@ -92,7 +92,7 @@ void EffectBase::EffectInit(const Transform& _transform, BaseObject* _parent, Ef
 	feedInTime		= FEEDIN_TIME;;
 }
 
-void EffectBase::EffectPlay2D()
+void EffectBase::EffectPlay2D()const
 {
 	Transform worldTrans = GetBaseObject()->GetTransform()->WorldTransform();
 	if (parent != nullptr) {
@@ -107,7 +107,7 @@ void EffectBase::EffectPlay2D()
 	SetSpeedPlayingEffekseer2DEffect(hPlayHandle, speed);
 }
 
-void EffectBase::EffectPlay3D()
+void EffectBase::EffectPlay3D()const
 {
 	Transform worldTrans = GetBaseObject()->GetTransform()->WorldTransform();
 
@@ -118,12 +118,12 @@ void EffectBase::EffectPlay3D()
 	SetSpeedPlayingEffekseer3DEffect(hPlayHandle, speed);
 }
 
-void EffectBase::EffectStop2D()
+void EffectBase::EffectStop2D()const
 {
 	StopEffekseer2DEffect(hPlayHandle);
 }
 
-void EffectBase::EffectStop3D()
+void EffectBase::EffectStop3D()const
 {
 	StopEffekseer3DEffect(hPlayHandle);
 }
@@ -139,22 +139,22 @@ void EffectBase::EffectSpeedSet(float _speed)
 	speed = _speed;
 }
 
-void EffectBase::SetColor2D(Color::Rgb _rgb)
+void EffectBase::SetColor2D(Color::Rgb _rgb)const
 {
 	SetColorPlayingEffekseer2DEffect(hPlayHandle,(int) _rgb.r, (int)_rgb.g, (int)_rgb.b, (int)_rgb.a);
 }
 
-void EffectBase::SetColor3D(Color::Rgb _rgb)
+void EffectBase::SetColor3D(Color::Rgb _rgb)const
 {
 	SetColorPlayingEffekseer3DEffect(hPlayHandle, (int)_rgb.r, (int)_rgb.g, (int)_rgb.b, (int)_rgb.a);
 }
 
-void EffectBase::SetColor(Color::Rgb _rgb)
+void EffectBase::SetColor(Color::Rgb _rgb)const
 {
 	(this->*effectColor)(_rgb);
 }
 
-void EffectBase::ParentTransformRemove()
+void EffectBase::ParentTransformRemove()const
 {
 	parent->GetTransform()->RemoveChild(obj->GetTransform());
 }
